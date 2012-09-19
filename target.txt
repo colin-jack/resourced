@@ -1,0 +1,63 @@
+* TODO *
+Get rid of invoke, its only used by example
+
+* CODE *
+broadway = require('broadway')
+
+namespace = require('require-namespace')
+restrictToAuthenticated = namespace('middleware').restrictToAuthenticated //require('./middleware/restrictToAuthenticated')
+
+new Resource
+    uri: "/readinglist/:id"
+    requirements: [restrictToAuthenticated]
+    cache: 
+      years : 10
+      where: private
+        
+    respondsTo:
+        get: (id) ->
+          ...
+      ,
+        http: [uri: '/read']
+        markAsRead: (id) ->
+          ...
+
+module.exports = new CollectionResource
+  uri: "/readinglist"
+  requirements: [restrictToAuthenticated]
+  cache: 
+    minutes : 10
+    where: private
+    vary-by: user
+
+  respondsTo:
+      create: (item) ->
+          ...
+    ,
+      get: () ->
+        ... 
+    
+
+
+#require('namespaces')('request.middleware')
+#restrictToAuthenticated = namespace('middleware').restrictToAuthenticated #require('./middleware/restrictToAuthenticated')
+#
+#new Resource
+#  uri: "/readinglist/:id"
+#  requirements: [restrictToAuthenticated]
+#  cache:
+#    years : 10
+#    where: private
+#
+#  respondsTo:
+#    {
+#    get: (id) ->
+#      # TODO - Write to @response  
+#    },
+#  {
+#  http: [uri: '/read']
+#  markAsRead: (id) ->
+#    # TODO - Write to @response
+#  }
+
+    
