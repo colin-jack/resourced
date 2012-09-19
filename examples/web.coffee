@@ -1,32 +1,21 @@
 namespace = require('require-namespace')
 express = require('express')
-invoke = require('invoke')
+async = require('async')
 winston = require('winston')
 
-createExpress = ->
+createExpress = (done) ->
   winston.info "Creating express."
-  
-  module.exports = global.app = express.createServer(
+
+  global.app = express(
     express.cookieParser(),
     express.bodyParser(),
     express.session({ secret: 'A secretie valUe' })
   )
-
-createExpress = (data, onComplete) ->
-  invoke (data, done) ->
-    createExpress()
-    done()
   
-  .end null, ->
-      winston.info "Done creating express."
-      onComplete()
+  done()
 
-configureExpress = (data, done) ->
+configureExpress = (done) ->
   winston.info "Configuring express."
-
-  # Basic configuration
-
-  app.configureResources(__dirname + '/resources/')
 
   app.configure 'development', ->
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -34,24 +23,23 @@ configureExpress = (data, done) ->
 
   done()
 
-startExpress = ->
+startExpress = (done) ->
   winston.info "Starting express."
 
-  port = process.env.PORT || 3000;
+  port = process.env.PORT || 3050;
+
   app.listen port, ->
-    winston.info "Express server listening on port #{process.env.PORT} in #{app.settings.env} mode."
+    winston.info "Express server listening on port #{port} in #{app.settings.env} mode."
+    done()
 
-configureLogging = (data, done) ->
+configureLogging = (done) ->
   winston.handleExceptions();
+  done(null, null)
+
+configureRestless = (done) ->
+  winston.info "Configuring restless"
+  #configureResourcesInDirectory = require('../index')
+
   done()
 
-configureRestless = (data, done) ->
-  require('../index')
-
-  done()
-
-invoke(configureLogging)
-.then(createExpress)
-.then(configureExpress)
-.then(configureRestless)
-.end(null, startExpress)
+async.series([configureLogging, createExpress, configureExpress, configureRestless, startExpress])

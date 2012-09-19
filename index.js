@@ -1,7 +1,7 @@
 var fs = require('fs');
+// TODO: Logging wrapper
 var winston = require('winston');
 var async = require('async');
-var express = require('express');
 
 var ResourceLayerConfigurer = function(toConfigure) {
     this.toConfigure = toConfigure;
@@ -27,7 +27,7 @@ ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = functi
 
         winston.info("About to process " + contents.length + " resource files");
 
-        async.forEach(contents, function(fileOrDirectory) {
+        `.forEach(contents, function(fileOrDirectory) {
             that.processFileOrDirectory(fileOrDirectory, directoryPath)
         });
     };
@@ -52,8 +52,10 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
     });
 };
 
-var configureResources = function(directoryPath) {
+var configureResourcesInDirectory = function(directoryPath) {
     new ResourceLayerConfigurer(this).configureFromFilesIn(directoryPath);
 }
 
-express.HTTPServer.prototype.configureResources = configureResources;
+module.exports = { 
+    configureResourcesInDirectory : configureResourcesInDirectory
+}

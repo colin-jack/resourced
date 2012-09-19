@@ -15,8 +15,7 @@
     "async": "*",
     "underscore": "*",
     "express": "*",
-    "require-namespace": "*",
-    "invoke": "*"
+    "require-namespace": "*"
   },
   "devDependencies": {
     "vows": "0.6.x"
