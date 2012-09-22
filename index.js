@@ -42,7 +42,7 @@ ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = functi
 
 ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirectory, parentDirectory) {
     var that = this;
-    var fullPathToFile = parentDirectory + fileOrDirectory;
+    var fullPathToFile = parentDirectory + "/" + fileOrDirectory;
     
     fs.stat(fullPathToFile, function(err, fileStats) {
         if (err != null) {
@@ -56,7 +56,6 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
         }
         else
         {
-            winston.info("HERE3")
             winston.info("About to process file " + fileOrDirectory);
 
             var resource = require(fullPathToFile);
