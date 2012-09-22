@@ -3,13 +3,13 @@ var fs = require('fs');
 var winston = require('winston');
 var async = require('async');
 
-var ResourceLayerConfigurer = function(toConfigure) {
+var ResourceLayerConfigurer = function(toConfigure, done) {
     this.toConfigure = toConfigure;
+    this.done = done;
 }
 
 // This is the entry point
 ResourceLayerConfigurer.prototype.configureFromFilesIn = function(directoryPath) {
-    winston.info("About to load resources from: " + directoryPath);
     var that = this;
 
     this.recursivelyProcessContentsOfDirectory(directoryPath);
@@ -18,16 +18,22 @@ ResourceLayerConfigurer.prototype.configureFromFilesIn = function(directoryPath)
 ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = function(directoryPath) {
     var that = this;
     
-    var processContentsOfDirectory = function(err, contents ) {
+    var processContentsOfDirectory = function(err, contents) {
+        if (err) 
+        {
+            done(err);
+            return;
+        }
+
         if (!contents)
         {
             winston.info("No files or directories in resources directory.")
             return;
         }
 
-        winston.info("About to process " + contents.length + " resource files");
+        //winston.info("Found " + contents.length + " to process in '" + directoryPath = "'");
 
-        `.forEach(contents, function(fileOrDirectory) {
+        async.forEach(contents, function(fileOrDirectory) {
             that.processFileOrDirectory(fileOrDirectory, directoryPath)
         });
     };
@@ -40,20 +46,33 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
     var fullPathToFile = parentDirectory + fileOrDirectory;
     
     fs.stat(fullPathToFile, function(err, fileStats) {
+
+        if (err != null) {
+            winston.info("Error configuring resource layer: " + err.toString());
+            that.done(err);
+            return;
+        }
+
+        winston.info("HERE2")
+
         if (fileStats.isDirectory())
         {
+            winston.info("About to process directory " + fileOrDirectory);
             that.recursivelyProcessContentsOfDirectory(fullPathToFile + "/")
         }
         else
         {
+            winston.info("HERE3")
+            winston.info("About to process file " + fileOrDirectory);
+
             var resource = require(fullPathToFile);
             resource.configureExpress(this.toConfigure);
         }
     });
 };
 
-var configureResourcesInDirectory = function(directoryPath) {
-    new ResourceLayerConfigurer(this).configureFromFilesIn(directoryPath);
+var configureResourcesInDirectory = function(directoryPath, done) {
+    new ResourceLayerConfigurer(this, done).configureFromFilesIn(directoryPath);
 }
 
 module.exports = { 

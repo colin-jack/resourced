@@ -2,6 +2,7 @@ namespace = require('require-namespace')
 express = require('express')
 async = require('async')
 winston = require('winston')
+restless = require('../index')
 
 createExpress = (done) ->
   winston.info "Creating express."
@@ -34,12 +35,16 @@ startExpress = (done) ->
 
 configureLogging = (done) ->
   winston.handleExceptions();
-  done(null, null)
-
-configureRestless = (done) ->
-  winston.info "Configuring restless"
-  #configureResourcesInDirectory = require('../index')
-
   done()
 
-async.series([configureLogging, createExpress, configureExpress, configureRestless, startExpress])
+configureRestless = (done) ->
+  directory = __dirname + '/resources'
+  winston.info "Configuring restless for #{directory}."
+  
+  restless.configureResourcesInDirectory(directory, done)
+
+processSeriesResult = (err) ->
+  if (err)
+    winston.error err.toString()
+
+async.series([configureLogging, createExpress, configureExpress, configureRestless, startExpress], processSeriesResult)
