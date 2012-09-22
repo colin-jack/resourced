@@ -21,8 +21,7 @@ ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = functi
     var processContentsOfDirectory = function(err, contents) {
         if (err) 
         {
-            done(err);
-            return;
+            return done(err);
         }
 
         if (!contents)
@@ -46,14 +45,9 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
     var fullPathToFile = parentDirectory + fileOrDirectory;
     
     fs.stat(fullPathToFile, function(err, fileStats) {
-
         if (err != null) {
-            winston.info("Error configuring resource layer: " + err.toString());
-            that.done(err);
-            return;
+            return that.done(err);
         }
-
-        winston.info("HERE2")
 
         if (fileStats.isDirectory())
         {
