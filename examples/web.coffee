@@ -25,7 +25,7 @@ configureExpress = (done) ->
   done()
 
 startExpress = (done) ->
-  winston.info "Starting express."
+  winston.info "Express is now starting."
 
   port = process.env.PORT || 3050;
 

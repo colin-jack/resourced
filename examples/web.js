@@ -34,7 +34,7 @@
 
   startExpress = function(done) {
     var port;
-    winston.info("Starting express.");
+    winston.info("Express is now starting.");
     port = process.env.PORT || 3050;
     return app.listen(port, function() {
       winston.info("Express server listening on port " + port + " in " + app.settings.env + " mode.");

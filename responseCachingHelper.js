@@ -8,7 +8,6 @@ module.exports = {
         var maxAge = cachingDefinition.years ? cachingDefinition.years * 60 * 60 : 0;
 
         return function(request, response, next) {
-            debugger;
             response.header('Cache-Control', where + ', max-age:' + maxAge)
             next();
         }

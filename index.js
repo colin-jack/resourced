@@ -21,7 +21,7 @@ ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = functi
     var processContentsOfDirectory = function(err, contents) {
         if (err) 
         {
-            return done(err);
+            return that.done(err);
         }
 
         if (!contents)
@@ -30,23 +30,23 @@ ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = functi
             return;
         }
 
-        //winston.info("Found " + contents.length + " to process in '" + directoryPath = "'");
+        winston.info("Found " + contents.length + " to process in '" + directoryPath + "'");
 
-        async.forEach(contents, function(fileOrDirectory) {
-            that.processFileOrDirectory(fileOrDirectory, directoryPath)
-        });
+        async.forEach(contents, function(fileOrDirectory, callback) {
+            that.processFileOrDirectory(fileOrDirectory, directoryPath, callback)
+        }, that.done);
     };
         
     fs.readdir(directoryPath, processContentsOfDirectory);
 }
 
-ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirectory, parentDirectory) {
+ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirectory, parentDirectory, callback) {
     var that = this;
     var fullPathToFile = parentDirectory + "/" + fileOrDirectory;
     
     fs.stat(fullPathToFile, function(err, fileStats) {
         if (err != null) {
-            return that.done(err);
+            callback(err);
         }
 
         if (fileStats.isDirectory())
@@ -61,6 +61,8 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
             var resource = require(fullPathToFile);
             resource.configureExpress(this.toConfigure);
         }
+
+        callback();
     });
 };
 

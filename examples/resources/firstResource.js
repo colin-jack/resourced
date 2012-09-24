@@ -1,4 +1,5 @@
 var Resource = require('../../Resource')
+var winston = require('winston');
 
 
 //require('namespaces')('request.middleware')
@@ -34,10 +35,15 @@ module.exports = new Resource({
     [
         {
             get: function(id) {
-                json = {
+                debugger;
+
+                var response = {
                     message: "Get for thing with ID: " + id
                 }
-                this.response.send(json);
+
+                winston.info("Request for things with id '" + id + "'");
+
+                this.response.send(response);
             }
         }
     ]
