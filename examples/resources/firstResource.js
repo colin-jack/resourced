@@ -34,16 +34,14 @@ module.exports = new Resource({
     respondsTo: 
     [
         {
-            get: function(id) {
+            get: function(id, $logger) {
                 debugger;
-
-                var response = {
-                    message: "Get for thing with ID: " + id
-                }
 
                 winston.info("Request for things with id '" + id + "'");
 
-                this.response.send(response);
+                this.response.send({
+                    message: "Get for thing with ID: " + id
+                });
             }
         }
     ]
