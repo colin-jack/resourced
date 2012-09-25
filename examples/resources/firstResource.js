@@ -24,7 +24,7 @@ var winston = require('winston');
 
 
 module.exports = new Resource({
-    url: "/things/:id",
+    url: "/things/:third/:first/:second",
     
     cache: {
         years : 10,
@@ -34,13 +34,13 @@ module.exports = new Resource({
     respondsTo: 
     [
         {
-            get: function(id, $logger) {
+            get: function(third, second, first, $logger) {
                 debugger;
 
-                winston.info("Request for things with id '" + id + "'");
+                var message = "Retrieved for values: " + first + ", " + second + ", " + third;
 
                 this.response.send({
-                    message: "Get for thing with ID: " + id
+                    message: message
                 });
             }
         }
