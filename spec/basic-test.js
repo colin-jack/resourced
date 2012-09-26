@@ -4,13 +4,16 @@ var vows = require('vows'),
     log = require('util').log;
 
 vows.describe('require all files in directory').addBatch({
-    'when requiring a simple hierarchy': {
+    'when specifying a resource with get method': {
         topic: function (done) {  
+            
             done();
         },
-        'we can require a module with dependencies based on a namespace in a global object': function (err, namespace) {
+        'all provided request parameters should be passed in': function (err, resourceDefinition) {
                 assert.equal(42, 42);
-     },
-
+        },
+        'all missing request parameters should be undefined': function (err, resourceDefinition) {
+                assert.equal(42, 42);
+        },
     }
 }).export(module);

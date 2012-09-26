@@ -12,7 +12,8 @@ var Resource = function(resourceDefinition) {
     this.resourceUrl = this.resourceDefinition.url;
 }
 
-Resource.prototype.configureExpress = function(toConfigure) {   
+Resource.prototype.configureExpress = function(toConfigure, express) {   
+    this.express = express;
     var that = this;
     
     _u.each(this.resourceDefinition.respondsTo, function(resourceHandlerMethodDefinition) {
@@ -33,14 +34,23 @@ Resource.prototype._registerRouteWithExpress = function(expressMethodName, handl
     
     // TODO: If URL specified in responds to its appended to the resource's URL
 
+    debugger;
+
     winston.info("\tMethod '" + handlerMethodName + "' is associated with express method '" + expressMethodName + "' and URI " + this.resourceUrl);
     
-    var responseCachingRouteMiddleware = responseCachingHelper.getResponseCachingRouteMiddleware(this.resourceDefinition.cache);
+    var responseCachingMiddleware = responseCachingHelper.getResponseCachingRouteMiddleware(this.resourceDefinition.cache);
 
     var boundRequestHandler = createResourceHandler(handlerMethod);
-    
-    responseCachingRouteMiddleware ? app[expressMethodName](this.resourceUrl, responseCachingRouteMiddleware, boundRequestHandler) : 
-                                     app[expressMethodName](this.resourceUrl, boundRequestHandler);
+
+    configureExpressForMethod(this.express, expressMethodName, responseCachingMiddleware, boundRequestHandler, this.resourceUrl);
 };
+
+var configureExpressForMethod = function(express, expressMethodName, middleWare, boundRequestHandler, resourceUrl) {
+    if (middleWare) {
+        express[expressMethodName](resourceUrl, middleWare, boundRequestHandler);
+    } else {
+        express[expressMethodName](resourceUrl, boundRequestHandler);
+    }
+}
 
 module.exports = Resource;
