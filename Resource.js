@@ -3,10 +3,9 @@ var express = require('express');
 var _u = require('underscore');
 var httpToExpressMethodMapper = require('./httpToExpressMethodMapper');
 var responseCachingHelper = require('./responseCachingHelper');
-var createResourceHandler = require('./createResourceHandler')
+var createResourceHandler = require('./createResourceHandler');
 
 // TODO: Redesign this, use common JS and normal modules, get rid of the prototype stuff.
-
 
 var Resource = function(resourceDefinition) {
     this.resourceDefinition = resourceDefinition;
@@ -32,7 +31,7 @@ Resource.prototype._processRespondsToDefinition = function(resourceHandlerMethod
 Resource.prototype._registerRouteWithExpress = function(expressMethodName, handlerMethodName, resourceHandlerMethodDefinition) {    
     var handlerMethod = resourceHandlerMethodDefinition[handlerMethodName];
     
-    // TODO: If URL specified in responds to its appended
+    // TODO: If URL specified in responds to its appended to the resource's URL
 
     winston.info("\tMethod '" + handlerMethodName + "' is associated with express method '" + expressMethodName + "' and URI " + this.resourceUrl);
     

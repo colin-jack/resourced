@@ -2,6 +2,12 @@ var Resource = require('../../Resource')
 var winston = require('winston');
 
 
+// TODO:
+//   Use restrict to authenticated
+//   Use url on responds to
+//   Generate links (HATEOAS)
+
+
 //require('namespaces')('request.middleware')
 //restrictToAuthenticated = namespace('middleware').restrictToAuthenticated #require('./middleware/restrictToAuthenticated')
 //requirements: [restrictToAuthenticated]
