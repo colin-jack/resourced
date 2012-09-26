@@ -12,24 +12,23 @@ var Resource = function(resourceDefinition) {
     this.resourceUrl = this.resourceDefinition.url;
 }
 
-Resource.prototype.configureExpress = function(toConfigure, express) {   
-    this.express = express;
+Resource.prototype.configureExpress = function(express) {   
     var that = this;
     
     _u.each(this.resourceDefinition.respondsTo, function(resourceHandlerMethodDefinition) {
-        that._processRespondsToDefinition(resourceHandlerMethodDefinition, toConfigure);
+        that._processRespondsToDefinition(resourceHandlerMethodDefinition, express);
     });
 }
 
-Resource.prototype._processRespondsToDefinition = function(resourceHandlerMethodDefinition, toConfigure) {    
+Resource.prototype._processRespondsToDefinition = function(resourceHandlerMethodDefinition, express) {    
     var expressMethodName = httpToExpressMethodMapper.getExpressMethodName(resourceHandlerMethodDefinition)
 
     var handlerMethodName = _u.functions(resourceHandlerMethodDefinition)[0];
     
-    this._registerRouteWithExpress(expressMethodName, handlerMethodName, resourceHandlerMethodDefinition)
+    this._registerRouteWithExpress(express, expressMethodName, handlerMethodName, resourceHandlerMethodDefinition)
 }
 
-Resource.prototype._registerRouteWithExpress = function(expressMethodName, handlerMethodName, resourceHandlerMethodDefinition) {    
+Resource.prototype._registerRouteWithExpress = function(express, expressMethodName, handlerMethodName, resourceHandlerMethodDefinition) {    
     var handlerMethod = resourceHandlerMethodDefinition[handlerMethodName];
     
     // TODO: If URL specified in responds to its appended to the resource's URL
@@ -42,7 +41,7 @@ Resource.prototype._registerRouteWithExpress = function(expressMethodName, handl
 
     var boundRequestHandler = createResourceHandler(handlerMethod);
 
-    configureExpressForMethod(this.express, expressMethodName, responseCachingMiddleware, boundRequestHandler, this.resourceUrl);
+    configureExpressForMethod(express, expressMethodName, responseCachingMiddleware, boundRequestHandler, this.resourceUrl);
 };
 
 var configureExpressForMethod = function(express, expressMethodName, middleWare, boundRequestHandler, resourceUrl) {

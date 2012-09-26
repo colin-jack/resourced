@@ -59,7 +59,7 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
             winston.info("About to process file " + fileOrDirectory);
 
             var resource = require(fullPathToFile);
-            resource.configureExpress(this.toConfigure, this.app);
+            resource.configureExpress(that.toConfigure, this.app);
         }
 
         callback();
@@ -67,7 +67,7 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
 };
 
 var configureResourcesInDirectory = function(directoryPath, done) {
-    new ResourceLayerConfigurer(this, done).configureFromFilesIn(directoryPath);
+    new ResourceLayerConfigurer(app, done).configureFromFilesIn(directoryPath);
 }
 
 module.exports = { 

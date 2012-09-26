@@ -1,15 +1,18 @@
 {
   "name": "restless",
   "version": "0.0.1",
-  "description": "A resource oriented framework that runs on top of express.",
+  "description": "A resource oriented DSL for configuring express.",
   "main": "index",
+
   "author": {
     "name": "Colin Jack"
   },
+
   "repository": {
     "type": "git",
-    "url": "git://github.com/woodlouse81/restless.git"
+    "url": "git://github.com/colin-jack/restless.git"
   },
+
   "dependencies": {
     "winston": "*",
     "async": "*",
@@ -17,21 +20,26 @@
     "express": "*",
     "require-namespace": "*"
   },
+
   "devDependencies": {
-    "vows": "0.6.x"
+    "vows": "0.6.x",
+    "sinon": "*"
   },
+
   "engines": {
     "node": ">= 0.4.0"
   },
+
   "_npmUser": {
     "name": "colin_jack",
     "email": "colin.jack@gmail.com"
   },
+
   "_id": "restless@0.0.1",
   "optionalDependencies": {},
   "_engineSupported": true,
   "_npmVersion": "1.1.16",
   "_nodeVersion": "v0.6.4",
   "_defaultsLoaded": true,
-  "_from": "require-namespace@>= 0.0.0"
+  "_from": "restless@>= 0.0.0"
 }
