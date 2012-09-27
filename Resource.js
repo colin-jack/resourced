@@ -35,13 +35,13 @@ Resource.prototype._registerRouteWithExpress = function(express, expressMethodNa
     
     // TODO: If URL specified in responds to its appended to the resource's URL
 
-    debugger;
-
     winston.info("\tMethod '" + handlerMethodName + "' is associated with express method '" + expressMethodName + "' and URI " + this.resourceUrl);
     
     var responseCachingMiddleware = responseCachingHelper.getResponseCachingRouteMiddleware(this.resourceDefinition.cache);
 
     var wrappedHandlerMethod = createWrappedHandlerMethod(handlerMethod);
+
+    debugger;
 
     configureExpressForMethod(express, expressMethodName, responseCachingMiddleware, wrappedHandlerMethod, this.resourceUrl);
 };

@@ -32,9 +32,9 @@ vows.describe('simple get only resource').addBatch({
 
             var underTest = createGetOnlyResource();
 
-            underTest.configureExpress(express);
-
             var expressGetMethodSpy = sinon.spy(express, "get");
+
+            underTest.configureExpress(express);
 
             return expressGetMethodSpy;
         },
@@ -42,17 +42,16 @@ vows.describe('simple get only resource').addBatch({
             assert.isFalse(response instanceof Error, response.toString());
         },
 
-        'should notify express of the new GET method' : function(error, expressGetMethodSpy) {
+        'should notify express of the new GET method' : function(expressGetMethodSpy) {
             assert.isTrue(expressGetMethodSpy.calledOnce);
         },
 
-        'should use correct URL when configuring express': function(error, expressGetMethodSpy) {
+        'should use correct URL when configuring express': function(expressGetMethodSpy) {
             assert.equal(expressGetMethodSpy.firstCall.args[0], "/things/:third/:first/:second");
         },
 
         'and then simulating a request getting to the associated handler method' : {
             topic: function(expressGetMethodSpy) {
-                debugger;
                 console.log("ok");
             },
 
