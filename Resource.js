@@ -3,7 +3,7 @@ var express = require('express');
 var _u = require('underscore');
 var httpToExpressMethodMapper = require('./httpToExpressMethodMapper');
 var responseCachingHelper = require('./responseCachingHelper');
-var createResourceHandler = require('./createResourceHandler');
+var createWrappedHandlerMethod = require('./createWrappedHandlerMethod');
 
 // TODO: Redesign this, use common JS and normal modules, get rid of the prototype stuff.
 
@@ -15,7 +15,9 @@ var Resource = function(resourceDefinition) {
 Resource.prototype.configureExpress = function(express) {   
     var that = this;
     
-    _u.each(this.resourceDefinition.respondsTo, function(resourceHandlerMethodDefinition) {
+    var methodsRespondedTo = this.resourceDefinition.respondsTo;
+    
+    methodsRespondedTo.every(function(resourceHandlerMethodDefinition) {
         that._processRespondsToDefinition(resourceHandlerMethodDefinition, express);
     });
 }
@@ -39,16 +41,16 @@ Resource.prototype._registerRouteWithExpress = function(express, expressMethodNa
     
     var responseCachingMiddleware = responseCachingHelper.getResponseCachingRouteMiddleware(this.resourceDefinition.cache);
 
-    var boundRequestHandler = createResourceHandler(handlerMethod);
+    var wrappedHandlerMethod = createWrappedHandlerMethod(handlerMethod);
 
-    configureExpressForMethod(express, expressMethodName, responseCachingMiddleware, boundRequestHandler, this.resourceUrl);
+    configureExpressForMethod(express, expressMethodName, responseCachingMiddleware, wrappedHandlerMethod, this.resourceUrl);
 };
 
-var configureExpressForMethod = function(express, expressMethodName, middleWare, boundRequestHandler, resourceUrl) {
+var configureExpressForMethod = function(express, expressMethodName, middleWare, wrappedHandlerMethod, resourceUrl) {
     if (middleWare) {
-        express[expressMethodName](resourceUrl, middleWare, boundRequestHandler);
+        express[expressMethodName](resourceUrl, middleWare, wrappedHandlerMethod);
     } else {
-        express[expressMethodName](resourceUrl, boundRequestHandler);
+        express[expressMethodName](resourceUrl, wrappedHandlerMethod);
     }
 }
 

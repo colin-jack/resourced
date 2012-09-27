@@ -32,30 +32,37 @@ vows.describe('simple get only resource').addBatch({
 
             var underTest = createGetOnlyResource();
 
-            var expressSpy = sinon.spy(express, "get");
-
             underTest.configureExpress(express);
 
-            return expressSpy;
+            var expressGetMethodSpy = sinon.spy(express, "get");
+
+            return expressGetMethodSpy;
         },
         'should not get an error' : function(response) {
             assert.isFalse(response instanceof Error, response.toString());
         },
 
-        'should notify express of the new GET method' : function(error, expressSpy) {
-            assert.isTrue(expressSpy.calledOnce);
+        'should notify express of the new GET method' : function(error, expressGetMethodSpy) {
+            assert.isTrue(expressGetMethodSpy.calledOnce);
         },
 
-        'should use correct URL when configuring express': function(error, expressSpy) {
-            assert.equal(expressSpy.firstCall.args[0], "/things/:third/:first/:second");
-        }
+        'should use correct URL when configuring express': function(error, expressGetMethodSpy) {
+            assert.equal(expressGetMethodSpy.firstCall.args[0], "/things/:third/:first/:second");
+        },
 
-        // 'should pass all provided request parameters to handler': function (expressSpy) {
+        'and then simulating a request getting to the associated handler method' : {
+            topic: function(expressGetMethodSpy) {
+                debugger;
+                console.log("ok");
+            },
+
+                    // 'should pass all provided request parameters to handler': function (expressSpy) {
         //     //  resourceUrl, boundRequestHandler
         //     expressSpy.firstCall.withArgs()
         // },
         // 'should pass undefined for all missing request parameters': function (expressSpy) {
         //     //assert.equal(42, 42);
         // },
+        }
     }
 }).export(module);

@@ -45,24 +45,29 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
     var fullPathToFile = parentDirectory + "/" + fileOrDirectory;
     
     fs.stat(fullPathToFile, function(err, fileStats) {
-        if (err != null) {
+        try {
+            if (err != null) {
+                callback(err);
+            }
+
+            if (fileStats.isDirectory())
+            {
+                winston.info("About to process directory " + fileOrDirectory);
+                that.recursivelyProcessContentsOfDirectory(fullPathToFile + "/")
+            }
+            else
+            {
+                winston.info("About to process file " + fileOrDirectory);
+
+                var resource = require(fullPathToFile);
+                resource.configureExpress(that.toConfigure, this.app);
+            }
+
+            callback();
+        } catch(err) {
+            winston.info("Failed with configuring express: " + err.toString());
             callback(err);
         }
-
-        if (fileStats.isDirectory())
-        {
-            winston.info("About to process directory " + fileOrDirectory);
-            that.recursivelyProcessContentsOfDirectory(fullPathToFile + "/")
-        }
-        else
-        {
-            winston.info("About to process file " + fileOrDirectory);
-
-            var resource = require(fullPathToFile);
-            resource.configureExpress(that.toConfigure, this.app);
-        }
-
-        callback();
     });
 };
 

@@ -26,22 +26,24 @@ var getHandlerMethodArguments = function(request, handlerMethod) {
     return handlerMethodArguments;
 };
 
-var createResourceHandler = function(handlerMethod) {
-    var requestHandler = function(request, response, next) {
-        // We want the context ('this') inside the handler method to be this object
-        var requestContext = {
-            request: request, 
-            response: response
-        };
+// We want the context ('this') inside the handler method to be the returned object
+var createContextForHandlerMethod = function(request, response) {
+    return {
+        request: request, 
+        response: response
+    };
+};
 
-        debugger;
+// handlerMethod is the function that will be registered to handle a specific type of HTTP request,
+// here we wrap it with our own custom proxy function which is returned.
+var createWrappedHandlerMethod = function(handlerMethod) {
+    return function(request, response, next) {
+        var requestContext = createContextForHandlerMethod(request, response);
 
         var handlerMethodArguments = getHandlerMethodArguments(request, handlerMethod);
 
         handlerMethod.apply(requestContext, handlerMethodArguments);
     };
-
-    return requestHandler;
 };
 
-module.exports = createResourceHandler;
+module.exports = createWrappedHandlerMethod;

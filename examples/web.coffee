@@ -10,7 +10,8 @@ createExpress = (done) ->
   global.app = express(
     express.cookieParser(),
     express.bodyParser(),
-    express.session({ secret: 'A secretie valUe' })
+    express.session({ secret: 'A secretie valUe' }),
+    express.errorHandler({ dumpExceptions: true, showStack: true })
   )
   
   done()

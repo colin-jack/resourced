@@ -16,6 +16,9 @@
     winston.info("Creating express.");
     global.app = express(express.cookieParser(), express.bodyParser(), express.session({
       secret: 'A secretie valUe'
+    }), express.errorHandler({
+      dumpExceptions: true,
+      showStack: true
     }));
     return done();
   };
