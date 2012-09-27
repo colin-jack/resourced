@@ -30,7 +30,7 @@ vows.describe('require all files in directory').addBatch({
                 get: function() {}
             };
 
-            var underTest = createGetOnlyResource();
+            var underTest = this.createGetOnlyResource();
 
             var expressSpy = sinon.spy(express, "get");
 
@@ -39,7 +39,7 @@ vows.describe('require all files in directory').addBatch({
             return expressSpy;
         },
         'should not get an error' : function(response) {
-            assert.isFalse(response instanceof Error, response.toString());
+            assert.instanceOf(response, Error);
         },
 
         'should configure the appropriate method of express' : function(error, expressSpy) {
