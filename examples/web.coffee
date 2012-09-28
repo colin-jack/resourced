@@ -31,7 +31,7 @@ startExpress = (done) ->
   port = process.env.PORT || 3050;
 
   app.listen port, ->
-    winston.info "Express server listening on port #{port} in #{app.settings.env} mode."
+    winston.info "Express server listening on port #{port} in #{app.settings.env} mode. Please go to http://localhost:3050/things/3/1/2."
     done()
 
 configureLogging = (done) ->

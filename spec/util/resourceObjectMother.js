@@ -1,4 +1,5 @@
-var Resource = require('./../../Resource');
+var underTestNamespace = require('./../underTestNamespace');
+var Resource = underTestNamespace.require('Resource');
 
 var createGetOnlyResource = function() {
     return new Resource({

@@ -1,5 +1,25 @@
-* TODO *
-Get rid of invoke, its only used by example
+
+
+//require('namespaces')('request.middleware')
+//restrictToAuthenticated = namespace('middleware').restrictToAuthenticated #require('./middleware/restrictToAuthenticated')
+//requirements: [restrictToAuthenticated]
+//       , {
+//            destroy: function(id) {
+//                // TODO - Write to @response
+//            }
+//        },
+//        {
+//            put: function(id) {
+//                // TODO - Write to @response
+//            }
+//        },
+//        {
+//            http: {url: '/read', method: "PUT"},
+//            markAsRead: function(id) {
+//                // TODO - Write to @response
+//            }
+//        }
+
 
 * CODE *
 broadway = require('broadway')

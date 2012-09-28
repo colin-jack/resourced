@@ -3,14 +3,11 @@ var vows = require('vows'),
     resourceObjectMother = require('./util/resourceObjectMother'),
     expressConfigurationSpy = require('./util/expressConfigurationSpy');
 
-vows.describe('simple get only resource').addBatch({
+vows.describe('resource configuration').addBatch({
     'when specifying a resource with get method': {
         
         topic: function () {  
             var underTest = resourceObjectMother.createGetOnlyResource();
-
-            debugger;
-
             var spy = expressConfigurationSpy("get");
             spy.configureExpressUsing(underTest);
             return spy;
@@ -21,7 +18,6 @@ vows.describe('simple get only resource').addBatch({
         },
 
         'should notify express of the new GET method' : function(expressSpy) {
-            debugger;
             expressSpy.assertCalledOnce();
         },
 
