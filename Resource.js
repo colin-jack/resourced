@@ -39,9 +39,9 @@ Resource.prototype._registerRouteWithExpress = function(express, expressMethodNa
     
     var responseCachingMiddleware = responseCachingHelper.getResponseCachingRouteMiddleware(this.resourceDefinition.cache);
 
-    var wrappedHandlerMethod = createWrappedHandlerMethod(handlerMethod);
-
     debugger;
+
+    var wrappedHandlerMethod = createWrappedHandlerMethod(handlerMethod);
 
     configureExpressForMethod(express, expressMethodName, responseCachingMiddleware, wrappedHandlerMethod, this.resourceUrl);
 };

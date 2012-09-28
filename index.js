@@ -17,7 +17,7 @@ ResourceLayerConfigurer.prototype.configureFromFilesIn = function(directoryPath)
 
 ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = function(directoryPath) {
     var that = this;
-    
+
     var processContentsOfDirectory = function(err, contents) {
         if (err) 
         {
@@ -32,22 +32,25 @@ ResourceLayerConfigurer.prototype.recursivelyProcessContentsOfDirectory = functi
 
         winston.info("Found " + contents.length + " to process in '" + directoryPath + "'");
 
-        async.forEach(contents, function(fileOrDirectory, callback) {
+        var processFileOrDirectory = function(fileOrDirectory, callback) {
             that.processFileOrDirectory(fileOrDirectory, directoryPath, callback)
-        }, that.done);
+        };
+
+        async.forEach(contents, processFileOrDirectory, that.done);
     };
-        
+
     fs.readdir(directoryPath, processContentsOfDirectory);
 }
 
-ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirectory, parentDirectory, callback) {
+ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirectory, parentDirectory, done) {
     var that = this;
     var fullPathToFile = parentDirectory + "/" + fileOrDirectory;
-    
+
     fs.stat(fullPathToFile, function(err, fileStats) {
+        // TODO - Use domains for this.
         try {
             if (err != null) {
-                callback(err);
+                done(err);
             }
 
             if (fileStats.isDirectory())
@@ -63,10 +66,10 @@ ResourceLayerConfigurer.prototype.processFileOrDirectory = function(fileOrDirect
                 resource.configureExpress(that.toConfigure, this.app);
             }
 
-            callback();
+            done();
         } catch(err) {
             winston.info("Failed with configuring express: " + err.toString());
-            callback(err);
+            done(err);
         }
     });
 };

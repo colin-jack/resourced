@@ -41,7 +41,7 @@ configureLogging = (done) ->
 configureRestless = (done) ->
   directory = __dirname + '/resources'
   winston.info "Configuring restless for #{directory}."
-  
+
   restless.configureResourcesInDirectory(directory, done)
 
 processSeriesResult = (err) ->
