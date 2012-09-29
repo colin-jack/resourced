@@ -2,6 +2,12 @@ var underTestNamespace = require('./../underTestNamespace');
 var Resource = underTestNamespace.require('Resource');
 
 var createGetOnlyResource = function() {
+    var anyOldGetMethod = function() {}
+
+    return createResourceWithGetMethod(anyOldGetMethod);
+};
+
+var createResourceWithGetMethod = function(getMethod) {
     return new Resource({
         url: "/things/:third/:first/:second",
         
@@ -13,8 +19,7 @@ var createGetOnlyResource = function() {
         respondsTo: 
         [
             {
-                get: function(third, second, first) {
-                }
+                get: getMethod
             }
         ]
     });
@@ -24,21 +29,13 @@ var createGetOnlyResource = function() {
 var createGetOnlyResourceSpy = function() {
     var argumentsPassedToGetMethod = [];
 
-    var resource = new Resource({
-        url: "/things/:third/:first/:second",
+    var spyingGetMethod = function(third, second, first) {
+        argumentsPassedToGetMethod.push(third);
+        argumentsPassedToGetMethod.push(second);
+        argumentsPassedToGetMethod.push(first);
+    };
 
-        argumentsPassedToGetMethod : [],
-
-        respondsTo: [
-            {
-                get: function(third, second, first) {
-                    argumentsPassedToGetMethod.push(third);
-                    argumentsPassedToGetMethod.push(second);
-                    argumentsPassedToGetMethod.push(first);
-                }
-            }
-        ],
-    });
+    var resource = createResourceWithGetMethod(spyingGetMethod);
 
     // Used to return record of arguments passed to get method, making spying simple.
     resource.getArgumentsPassedToGetMethod = function() {

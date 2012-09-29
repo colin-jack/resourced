@@ -29,12 +29,12 @@ vows.describe('resource configuration').addBatch({
         },
     },
 
-    'when you use a get-only resource to configure a stubbed express and then trigger the wrapped handler method': {
-        
+    'when you trigger the wrapped handler method': {        
         topic: function () {  
             var resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
             var expressSpy = expressConfigurationSpy("get", resourceSpy);
 
+            // NOTE - These are mapped to
             var stubRequest =  {
                 params: {
                     "first" : 1,
@@ -50,7 +50,7 @@ vows.describe('resource configuration').addBatch({
             return resourceSpy;
         },
 
-        'should populate handle arguments with request parameters matching on name': function (resourceSpy) {
+        'should populate handler arguments with request parameters, matching on name': function (resourceSpy) {
             assert.deepEqual(resourceSpy.getArgumentsPassedToGetMethod(), [3, 2, 1]);
         }
     }
