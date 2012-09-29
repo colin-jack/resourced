@@ -20,14 +20,16 @@ var createSpy = function(methodToSpyOn) {
         assert.equal(expressSpy.firstCall.args[ExpressConfigArgumntIndexes.Url], url);
     };
 
-    var configureExpressUsing = function(underTest) {
-        underTest.configureExpress(stubExpress);
+    var triggerWrappedHandlerMethod = function(stubRequest) {
+        var wrappedHandler = expressSpy.firstCall.args[ExpressConfigArgumntIndexes.HandlerMethod];
+        wrappedHandler(stubRequest);
     };
 
     return {
-        configureExpressUsing : configureExpressUsing,
         assertCalledOnce : assertCalledOnce,
-        assertUrlRegisteredWithIs : assertUrlRegisteredWithIs
+        assertUrlRegisteredWithIs : assertUrlRegisteredWithIs, 
+        stubExpress : stubExpress,
+        triggerWrappedHandlerMethod : triggerWrappedHandlerMethod
     }
 };
 

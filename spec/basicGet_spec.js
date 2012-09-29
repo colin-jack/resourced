@@ -1,15 +1,18 @@
 var vows = require('vows'),
 	assert = require('assert'),
+    sinon = require('sinon'),
     resourceObjectMother = require('./util/resourceObjectMother'),
     expressConfigurationSpy = require('./util/expressConfigurationSpy');
 
 vows.describe('resource configuration').addBatch({
-    'when specifying a resource with get method': {
+    'when you use a get-only resource to configure a stubbed express': {
         
         topic: function () {  
-            var underTest = resourceObjectMother.createGetOnlyResource();
+            var resource = resourceObjectMother.createGetOnlyResource();
             var spy = expressConfigurationSpy("get");
-            spy.configureExpressUsing(underTest);
+
+            resource.configureExpress(spy.stubExpress);
+
             return spy;
         },
 
@@ -24,20 +27,31 @@ vows.describe('resource configuration').addBatch({
         'should use correct URL when configuring express': function(expressSpy) {
             expressSpy.assertUrlRegisteredWithIs("/things/:third/:first/:second");
         },
+    },
 
-        'and then simulating a request getting to the associated handler method' : {
-            topic: function(expressSpy) {
-                //var handlerMethod = expressSpy.firstCall.args[ExpressConfigArgumntIndexes.HandlerMethod];
-                //handlerMethod();
-            },
+    'when you use a get-only resource to configure a stubbed express and then trigger the wrapped handler method': {
+        
+        topic: function () {  
+            var resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
+            var expressSpy = expressConfigurationSpy("get", resourceSpy);
 
-                    // 'should pass all provided request parameters to handler': function (expressSpy) {
-        //     //  resourceUrl, boundRequestHandler
-        //     expressSpy.firstCall.withArgs()
-        // },
-        // 'should pass undefined for all missing request parameters': function (expressSpy) {
-        //     //assert.equal(42, 42);
-        // },
+            var stubRequest =  {
+                params: {
+                    "first" : 1,
+                    "second" : 2,
+                    "third" : 3
+                }
+            };
+
+            resourceSpy.configureExpress(expressSpy.stubExpress);
+
+            expressSpy.triggerWrappedHandlerMethod(stubRequest);
+
+            return resourceSpy;
+        },
+
+        'should populate handle arguments with request parameters matching on name': function (resourceSpy) {
+            assert.deepEqual(resourceSpy.getArgumentsPassedToGetMethod(), [3, 2, 1]);
         }
     }
 }).export(module);
