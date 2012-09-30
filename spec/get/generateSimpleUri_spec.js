@@ -1,7 +1,7 @@
 var vows = require('vows'),
     assert = require('assert'),
     sinon = require('sinon'),
-    resourceObjectMother = require('./util/resourceObjectMother');
+    resourceObjectMother = require('./../util/resourceObjectMother');
 
 vows.describe('generating simple link to resource').addBatch({
     'when you generate a link to a simple resource': {

@@ -1,8 +1,8 @@
 var vows = require('vows'),
     assert = require('assert'),
     sinon = require('sinon'),
-    resourceObjectMother = require('./util/resourceObjectMother'),
-    expressConfigurationSpy = require('./util/expressConfigurationSpy');
+    resourceObjectMother = require('./../util/resourceObjectMother'),
+    expressConfigurationSpy = require('./../util/expressConfigurationSpy');
 
 vows.describe('resource with single get method').addBatch({
     'when you trigger the wrapped handler method': {        
