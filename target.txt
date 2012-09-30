@@ -1,4 +1,5 @@
-
+// TODO - conventions about response codes etc
+// TODO - Research node.js service/REST testing
 
 //require('namespaces')('request.middleware')
 //restrictToAuthenticated = namespace('middleware').restrictToAuthenticated #require('./middleware/restrictToAuthenticated')
