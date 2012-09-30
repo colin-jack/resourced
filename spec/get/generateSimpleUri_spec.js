@@ -3,12 +3,12 @@ var vows = require('vows'),
     sinon = require('sinon'),
     resourceObjectMother = require('./../util/resourceObjectMother');
 
-vows.describe('generating simple link to resource').addBatch({
+vows.describe('generating relative link to resource').addBatch({
     'when you generate a link to a simple resource': {
         topic: function () {  
-            var resource = resourceObjectMother.createGetOnlyResource();
+            var resource = resourceObjectMother.createGetOnlyResource({ url: "/:first/:second/:third"});
             
-            return "";
+            return resource.getUri({ first: 1, second: 2, third: 3});
         },
 
         'should not get an error' : function(topic) {
@@ -16,7 +16,10 @@ vows.describe('generating simple link to resource').addBatch({
         },
 
         'should get expected value' : function(url) {
-            assert.areEqual(true, false);
+            assert.areEqual(url, "/1/2/3");
         }
-    }
+    },
+
+    // TODO: absolute
+    // TODO: complex
 }).export(module);
