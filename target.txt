@@ -13,6 +13,7 @@
 // TODO: Wrap logging
 // TODO: Configuration integration test -> blah.foo.js, blah.ts, js file with no resource in it
 // TODO: Resource raises exception if no URL provided.
+// TODO: Refactor resourceRegistrar
 
 // TODO - Handle errors e.g. invalid resource files in directory, no resource files, error in request.
 

@@ -35,7 +35,7 @@
     port = process.env.PORT || 3050;
     return app.listen(port, function() {
       winston.info("Express server listening on port " + port + " in " + app.settings.env + " mode.");
-      winston.info("Please go to http://localhost:3050/things/3/1/2.");
+      winston.info('Please go to "http://localhost:3050/people/5" to start your exciting journey.');
       return done();
     });
   };

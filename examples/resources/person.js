@@ -1,5 +1,6 @@
 // TODO: Load this using require-namespace
 var Resource = require('../../lib/Resource'),
+    Link = require('../../lib/Link'),
     addressResource = require('./address')
 
 // TODO:
@@ -24,11 +25,14 @@ module.exports = new Resource({
 
                 // NOTE - We could call "this.response.send(person)" but the assumption is if we don't
                 // then the returned object is response.
-                return {
+                var person = {
                     firstName : "Colin",
                     secondName : "Jack",
+                    id : id,
                     address: new Link("address", associatedAddressesUri)
                 };
+
+                this.response.send(person);
             }
         }
     ]
