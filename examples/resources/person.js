@@ -25,14 +25,14 @@ module.exports = new Resource({
 
                 // NOTE - We could call "this.response.send(person)" but the assumption is if we don't
                 // then the returned object is response.
-                var person = {
+                return {
                     firstName : "Colin",
                     secondName : "Jack",
                     id : id,
                     address: new Link("address", associatedAddressesUri)
                 };
 
-                this.response.send(person);
+                //this.response.send(person);
             }
         }
     ]

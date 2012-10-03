@@ -9,11 +9,28 @@
             -> CoffeeScript    - TypeScript
             - HTTPS            -> Generating URL
             -> Caching         -> Multiple Methods
-// TODO: Control request/response interfaces.
+// TODO: Control request/response interfaces, give only what you need.
 // TODO: Wrap logging
 // TODO: Configuration integration test -> blah.foo.js, blah.ts, js file with no resource in it
 // TODO: Resource raises exception if no URL provided.
 // TODO: Refactor resourceRegistrar
+
+
+// TODO: Tests
+// No files in resources directory
+// File that isn't a resource in the directory
+// Object passed into Resource is invalid
+//    URL is not a valid URL (or does express handle OK?) - use flatiron / revalidator 
+//    No http overload specifying verb and method name doesn't tell us, individual resource
+//    No http overload specifying verb and method name doesn't tell us, collection resource
+//    More than one function in an object in respondsTo
+// Resource URI is not valid/starting with "/", contains inappropriate characters
+// RespondsTo had HTTP but method or URL are invalid, or url has no "/" at start.
+// Cache
+//   specifies -ve years, or years and some other metric.
+//   specifies no where then it defaults to private
+//   if ommitted then defaults to no caching
+
 
 // TODO - Handle errors e.g. invalid resource files in directory, no resource files, error in request.
 
