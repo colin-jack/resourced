@@ -16,7 +16,9 @@ restless.configureResourcesInDirectory(resourcesDirectory, done);
 
 The directory will be scanned for files including resources.
 
-### Creating Resources
+### Resource Definitions
+The following samples show resource from the [runnable example](#example).
+
 #### JavaScript
 ```js
 var Resource = require('restless').Resource;
@@ -40,7 +42,12 @@ module.exports = new Resource({
     ]
 })
 ```
-## Running Examples
+
+#### CoffeeScript
+```coffeescript
+```
+
+## <a name="example"/>Running Examples
 You can run the sample application using the following command:
 
     node examples/web.js
