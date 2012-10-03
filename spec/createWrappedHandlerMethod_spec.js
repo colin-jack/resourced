@@ -1,6 +1,7 @@
 var vows = require('vows'),
     assert = require('assert');
 
+// TODO: Fill in.
 vows.describe('wrapped handler method').addBatch({
     'when you call a wrapped handler method': {
         

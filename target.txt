@@ -2,6 +2,7 @@
 // TODO - Research node.js service/REST testing
 // TODO - Use https://github.com/flatiron/nconf, particularly to control per-request logging.
 // TODO - Refactor index.js
+// TODO - Query string used in routing 
 
 //require('namespaces')('request.middleware')
 //restrictToAuthenticated = namespace('middleware').restrictToAuthenticated #require('./middleware/restrictToAuthenticated')

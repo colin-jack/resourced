@@ -6,6 +6,8 @@ var winston = require('winston');
 //   Use restrict to authenticated
 //   Use url on responds to
 //   Generate links (HATEOAS)
+// TODO:
+//   More complex routing example
 
 module.exports = new Resource({
     url: "/things/:third/:first/:second",

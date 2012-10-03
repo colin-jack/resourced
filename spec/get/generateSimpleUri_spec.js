@@ -6,9 +6,9 @@ var vows = require('vows'),
 vows.describe('generating relative link to resource').addBatch({
     'when you generate a link to a simple resource': {
         topic: function () {  
-            var resource = resourceObjectMother.createGetOnlyResource({ url: "/:first/:second/:third"});
+            var resource = resourceObjectMother.createGetOnlyResource({ url: "/:id/:idTwo/:somethingElse"});
             
-            return resource.getUri({ first: 1, second: 2, third: 3});
+            return resource.getUri({ id: 1, idTwo: 4, somethingElse: 2});
         },
 
         'should not get an error' : function(topic) {
@@ -16,7 +16,7 @@ vows.describe('generating relative link to resource').addBatch({
         },
 
         'should get expected value' : function(url) {
-            assert.areEqual(url, "/1/2/3");
+            assert.equal(url, "/1/4/2");
         }
     },
 
