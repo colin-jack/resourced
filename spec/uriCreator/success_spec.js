@@ -17,5 +17,21 @@ vows.describe('generating simple uri').addBatch({
         'should get expected url' : function(url) {
             assert.equal(url, "/1/4/2?idThree=3&idFour=4&id=1");
         }
+    },
+
+    'when you generate a simple url but miss optional parameters': {
+        topic: function () {           
+            var stubResource = {
+                resourceUrl: "/:id/:somethingElse/:anotherThing"
+            };
+
+            var parameters = { id: 1, somethingElse: 2};
+
+            return uriCreator.createUri(stubResource, parameters);
+        },
+
+        'should get url with tokens still included' : function(url) {
+            assert.equal(url, "/1/2/:anotherThing");
+        }
     }
 }).export(module);
