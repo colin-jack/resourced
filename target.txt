@@ -5,6 +5,10 @@
 // TODO - Query string used in routing
 // TODO - Absolute URIs
 // TODO - HTTPS 
+// TODO - Examples
+            - CoffeeScript     - TypeScript
+            - HTTPS            - Generating URL
+            - Caching
 
 //require('namespaces')('request.middleware')
 //restrictToAuthenticated = namespace('middleware').restrictToAuthenticated #require('./middleware/restrictToAuthenticated')
