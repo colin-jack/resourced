@@ -18,8 +18,5 @@ vows.describe('generating relative link to resource').addBatch({
         'should get expected value' : function(url) {
             assert.equal(url, "/1/4/2");
         }
-    },
-
-    // TODO: absolute
-    // TODO: complex
+    }
 }).export(module);

@@ -21,8 +21,6 @@ module.exports = new Resource({
     [
         {
             get: function(third, second, first, $logger) {
-                debugger;
-
                 var message = "Retrieved for values: " + first + ", " + second + ", " + third;
 
                 this.response.send({
