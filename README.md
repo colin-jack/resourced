@@ -1,9 +1,8 @@
-## Restless
+========
+restless
+========
 
-A simple DSL for building a resource oriented design on top of express.js. Note what we're aiming for here is not the resource oriented style popularised by Rails, instead we're going for an approach where you can declaritively define your resoruces and then use the full power of linking to start getting some of that HATEOAS magic. 
+A simple DSL for building a resource oriented design on top of express.js. 
 
-On to some examples....
+Note what we're aiming for here is not the resource oriented style popularised by Rails, instead we're going for an approach where you can declaritively define your resoruces and then use the full power of linking to start getting some of that HATEOAS magic. 
 
-```js
-namespace.create('domain', __dirname + '/server/javascript/domain/', done)
-```
