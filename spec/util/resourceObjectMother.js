@@ -12,11 +12,6 @@ var createGetOnlyResource = function(options) {
 
     return new Resource({
         url: defaultOptions.url,
-        
-        // cache: {
-        //     years : 10,
-        //     where : "private"
-        // },
 
         respondsTo: 
         [

@@ -10,8 +10,6 @@ createExpress = (done) ->
   global.app = express(
     express.cookieParser(),
     express.bodyParser(),
-    express.session({ secret: 'A secretie valUe' }),
-    express.errorHandler({ dumpExceptions: true, showStack: true })
   )
   
   done()
@@ -21,7 +19,6 @@ configureExpress = (done) ->
 
   app.configure 'development', ->
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-    app.use(express.static(__dirname + '/public'));
 
   done()
 
@@ -31,7 +28,8 @@ startExpress = (done) ->
   port = process.env.PORT || 3050;
 
   app.listen port, ->
-    winston.info "Express server listening on port #{port} in #{app.settings.env} mode. Please go to http://localhost:3050/things/3/1/2."
+    winston.info "Express server listening on port #{port} in #{app.settings.env} mode."
+    winston.info "Please go to http://localhost:3050/things/3/1/2."
     done()
 
 configureLogging = (done) ->
@@ -39,10 +37,7 @@ configureLogging = (done) ->
   done()
 
 configureRestless = (done) ->
-  directory = __dirname + '/resources'
-  winston.info "Configuring restless for #{directory}."
-
-  restless.configureResourcesInDirectory(directory, done)
+  restless.configureResourcesInDirectory(__dirname + '/resources', done)
 
 processSeriesResult = (err) ->
   if (err)

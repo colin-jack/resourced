@@ -14,23 +14,17 @@
 
   createExpress = function(done) {
     winston.info("Creating express.");
-    global.app = express(express.cookieParser(), express.bodyParser(), express.session({
-      secret: 'A secretie valUe'
-    }), express.errorHandler({
-      dumpExceptions: true,
-      showStack: true
-    }));
+    global.app = express(express.cookieParser(), express.bodyParser());
     return done();
   };
 
   configureExpress = function(done) {
     winston.info("Configuring express.");
     app.configure('development', function() {
-      app.use(express.errorHandler({
+      return app.use(express.errorHandler({
         dumpExceptions: true,
         showStack: true
       }));
-      return app.use(express["static"](__dirname + '/public'));
     });
     return done();
   };
@@ -40,7 +34,8 @@
     winston.info("Express is now starting.");
     port = process.env.PORT || 3050;
     return app.listen(port, function() {
-      winston.info("Express server listening on port " + port + " in " + app.settings.env + " mode. Please go to http://localhost:3050/things/3/1/2.");
+      winston.info("Express server listening on port " + port + " in " + app.settings.env + " mode.");
+      winston.info("Please go to http://localhost:3050/things/3/1/2.");
       return done();
     });
   };
@@ -51,10 +46,7 @@
   };
 
   configureRestless = function(done) {
-    var directory;
-    directory = __dirname + '/resources';
-    winston.info("Configuring restless for " + directory + ".");
-    return restless.configureResourcesInDirectory(directory, done);
+    return restless.configureResourcesInDirectory(__dirname + '/resources', done);
   };
 
   processSeriesResult = function(err) {
