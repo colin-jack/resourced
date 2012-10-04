@@ -17,9 +17,8 @@ vows.describe('wrapped handler method').addBatch({
                 return returnedFromWrapped;
             };
 
-            var wrapped = createWrappedHandlerMethod(toWrap);
+            var wrapped = createWrappedHandlerMethod("get", toWrap);
 
-            debugger;
             wrapped({}, fakeResponse);
 
             return responseSendSpy;
