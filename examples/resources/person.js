@@ -1,14 +1,10 @@
 // TODO: Load this using require-namespace
 var Resource = require('../../lib/Resource'),
     Link = require('../../lib/Link'),
-    addressResource = require('./address')
-
-// TODO:
-//   Use restrict to authenticated
-//   Use url on responds to
-//   Generate links (HATEOAS)
-// TODO:
-//   More complex routing example
+    addressResource = require('./addressResource'),
+    log = require('util').log,
+    format = require('util').format,
+    inspect = require('util').inspect;
 
 module.exports = new Resource({
     url: "/people/:id",
@@ -23,17 +19,23 @@ module.exports = new Resource({
             get: function(id) {
                 associatedAddressesUri = addressResource.getUri({ id: "5"});
 
-                // NOTE - We could call "this.response.send(person)" but the assumption is if we don't
-                // then the returned object is response.
+                // NOTE - We could call "this.response.send(person)" but since this is a GET if we don't
+                // but return an object then that's what goes in the response.
                 return {
                     firstName : "Colin",
                     secondName : "Jack",
                     id : id,
                     address: new Link("address", associatedAddressesUri)
                 };
+            }
+        },
+        {
+            put : function(id, body) {
+                var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
+                log(message);
 
-                //this.response.send(person);
+                return body;
             }
         }
     ]
-})
+});

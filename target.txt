@@ -9,6 +9,8 @@
             -> CoffeeScript    - TypeScript
             - HTTPS            -> Generating URL
             -> Caching         -> Multiple Methods
+            - Use restrict to authenticated
+            - Url/over-ridden method/over-ridden caching on responds to
 // TODO: Wrap logging
 // TODO: Refactor resourceRegistrar
 
