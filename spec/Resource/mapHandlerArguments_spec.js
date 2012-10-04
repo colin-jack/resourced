@@ -10,7 +10,7 @@ vows.describe('resource with single get method').addBatch({
             var resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
             var expressSpy = expressConfigurationSpy("get", resourceSpy);
 
-            // NOTE - These are mapped to te arguments of the wrapped handler method
+            // NOTE - These are mapped to the arguments of the wrapped handler method
             var stubRequest =  {
                 params: {
                     "first" : 1,

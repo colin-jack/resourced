@@ -22,7 +22,9 @@ var createSpy = function(methodToSpyOn) {
 
     var triggerWrappedHandlerMethod = function(stubRequest) {
         var wrappedHandler = expressSpy.firstCall.args[ExpressConfigArgumntIndexes.HandlerMethod];
-        wrappedHandler(stubRequest);
+        var fakeResponse = { send: function() {} };
+
+        wrappedHandler(stubRequest, fakeResponse);
     };
 
     return {

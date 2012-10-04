@@ -21,7 +21,7 @@ module.exports = new Resource({
     respondsTo: [
         {
             get: function(id) {
-                associatedAddressesUri = addressResource.getUri("5");
+                associatedAddressesUri = addressResource.getUri({ id: "5"});
 
                 // NOTE - We could call "this.response.send(person)" but the assumption is if we don't
                 // then the returned object is response.

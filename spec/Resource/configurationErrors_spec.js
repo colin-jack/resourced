@@ -18,4 +18,7 @@ vows.describe('errors specifying resource').addBatch({
             assert.instanceOf(error, Error);
         }
     },
+
+    'when the resource URL is not valid': 'NYI - Consider flatiron / revalidator, covers not starting with / or invalid characters too',
+    'when the resource URL is an absolute URL': 'NYI - Consider flatiron / revalidator',    
 }).export(module);
