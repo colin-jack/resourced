@@ -1,5 +1,5 @@
 # restless
-NOTE - This is a very very early version of this project.
+NOTE - This is a very very early version of this project, definitely not ready for use.
 
 A simple DSL for building a resource oriented design on top of express.js. 
 
