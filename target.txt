@@ -12,7 +12,7 @@
             - Use restrict to authenticated
             - Url/over-ridden method/over-ridden caching on responds to
 // TODO: Wrap logging
-// TODO: Refactor resourceRegistrar
+// TODO: Refactor registerAllResourcesInDirectory
 
 
 // TODO: Tests

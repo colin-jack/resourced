@@ -6,7 +6,7 @@ vows.describe('generating simple uri').addBatch({
     'when you generate a simple url': {
         topic: function () {           
             var stubResource = {
-                resourceUrl: "/:id/:idTwo/:somethingElse?idThree=:idThree&idFour=:idFour&id=:id"
+                url: "/:id/:idTwo/:somethingElse?idThree=:idThree&idFour=:idFour&id=:id"
             };
 
             var parameters = { id: 1, idTwo: 4, somethingElse: 2, idThree: 3, idFour: 4};
@@ -22,7 +22,7 @@ vows.describe('generating simple uri').addBatch({
     'when you generate a simple url but miss optional parameters': {
         topic: function () {           
             var stubResource = {
-                resourceUrl: "/:id/:somethingElse/:anotherThing"
+                url: "/:id/:somethingElse/:anotherThing"
             };
 
             var parameters = { id: 1, somethingElse: 2};

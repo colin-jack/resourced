@@ -19,8 +19,6 @@ module.exports = new Resource({
             get: function(id) {
                 associatedAddressesUri = addressResource.getUri({ id: "5"});
 
-                // NOTE - We could call "this.response.send(person)" but since this is a GET if we don't
-                // but return an object then that's what goes in the response.
                 return {
                     firstName : "Colin",
                     secondName : "Jack",
