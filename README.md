@@ -1,9 +1,9 @@
 # restless
 NOTE - This is a very very early version of this project, definitely not ready for use.
 
-A simple DSL for building a resource oriented design on top of express.js. 
+A simple DSL for building a resource-oriented design on top of express.js. 
 
-Note what we're aiming for here is not the resource oriented style popularised by Rails, instead we're going for an approach where you can declaritively define your resoruces and then use the full power of linking to start getting some of that HATEOAS magic. 
+Note what we're aiming for here is not the resource oriented style popularised by Rails. Instead we're going for an approach where you can define your resoruces and then use the full power of linking to start getting some of that RESTful HATEOAS magic. 
 
 ## Samples
 ### Configuration
