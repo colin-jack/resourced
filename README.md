@@ -20,28 +20,47 @@ The directory will be scanned for files including resources.
 The following samples show resource from the [runnable example](#example).
 
 #### JavaScript
+The following shows a simple person resource, where the JSON response includes a link to the associated address:
 ```js
 var Resource = require('restless').Resource;
 
 module.exports = new Resource({
-    url: "/things/:third/:first/:second",
-    
-    cache: {
-        years : 10,
-        where : "private"
-    },
+    url: "/people/:id",
+
+    cache: caching.minutes(5).publically(),
 
     respondsTo: [
         {
-            get: function(third, second, first) {
-                var message = "Retrieved for values: " + first + ", " + second + ", " + third;
+            //cache: caching.minutes(10).publically(),
+            get: function(id) {
+                associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
-                this.response.send({ message: message });
+                return {
+                    firstName : "Colin",
+                    secondName : "Jack",
+                    id : id,
+                    address: associatedAddressLink
+                };
             }
         }
     ]
-})
+});
 ```
+The response here is:
+```js
+{
+  "firstName": "Colin",
+  "secondName": "Jack",
+  "id": "5",
+  "address": {
+    "rel": "address",
+    "url": "/address/5"
+  }
+}
+```
+And the caching information will be included in the response headers:
+
+    Cache-Control:max-age:300, public
 
 #### CoffeeScript
 ```coffeescript
