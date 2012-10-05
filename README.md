@@ -63,8 +63,26 @@ And the caching information will be included in the response headers:
     Cache-Control:max-age:300, public
 
 #### CoffeeScript
+The following shows the address resource linked to by the person resource shown above:
 ```coffeescript
+module.exports = new Resource
+  url: "/address/:id"
+
+  # We can cache for a long time because we never modify addresses.
+  cache: cache.forever().publically(),
+
+  respondsTo: [{
+    get: (id) ->
+      address =
+        "House Name/Number" : 72
+        "Stree Name" : "Fox Lane"
+        "Town" : "Edinburgh"
+        "PostCode" :"EH99 7JJ"
+  }]
 ```
+As with the person resource a GET request will result in the appropriate caching header being set:
+
+    Cache-Control:max-age:315360000, public
 
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
