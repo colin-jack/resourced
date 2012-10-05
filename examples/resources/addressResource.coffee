@@ -1,4 +1,5 @@
-Resource = require('../../lib/resource/Resource')
+Resource = require('../../lib/resource/Resource'),
+caching = require('../../lib/caching/caching'),
 
 module.exports = new Resource
   url: "/address/:id"
@@ -6,9 +7,7 @@ module.exports = new Resource
   #requirements: [restrictToAuthenticated]
 
   # We can cache for a long time because we never modify addresses.
-  cache:
-    years : 10
-    where: "private"
+  cache: caching.forever().publically(),
 
   respondsTo: [{
     get: (id) ->

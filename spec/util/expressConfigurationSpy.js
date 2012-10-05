@@ -3,9 +3,13 @@ var assert = require('assert'),
 
 var ExpressConfigArgumntIndexes = {
     Url: 0,
-    HandlerMethod: 1
+    Middleware: 1,
+    HandlerMethod: 2
 };
 
+// Acts as a stub for express so you can use the resource functionality to configure it, spying on what's
+// going on as appopriate. Also provides support for triggering the wrappd handler method so you can see what
+// method was registered with express.
 var createSpy = function(methodToSpyOn) {
     var stubExpress = {};
     stubExpress[methodToSpyOn] = function() {};
@@ -20,11 +24,18 @@ var createSpy = function(methodToSpyOn) {
         assert.equal(expressSpy.firstCall.args[ExpressConfigArgumntIndexes.Url], url);
     };
 
+    // Gets the method that was registered with express and invokes it.
     var triggerWrappedHandlerMethod = function(stubRequest) {
         var wrappedHandler = expressSpy.firstCall.args[ExpressConfigArgumntIndexes.HandlerMethod];
-        var fakeResponse = { send: function() {} };
+        
+        var fakeResponse = { 
+            send: function() {},
+            header: function(header, value) {}
+        };
 
-        wrappedHandler(stubRequest, fakeResponse);
+        var next = function() {};
+
+        wrappedHandler(stubRequest, fakeResponse, next);
     };
 
     return {
@@ -35,4 +46,4 @@ var createSpy = function(methodToSpyOn) {
     }
 };
 
-module.exports = createSpy;
+module.exports = createSpy; 

@@ -3,58 +3,53 @@ var vows = require('vows'),
     sinon = require('sinon'),
     fixture = require('./../testFixture'),
     getResponseCachingMiddleware = fixture.require('getResponseCachingMiddleware'),
-    CachingLocation = fixture.require('CachingLocation');
+    cache = fixture.require('cache');
 
 vows.describe('cache definitions').addBatch({
     'when you use a five minutes privately caching definition': {
-        topic: applyCachingDefinitionAndSpyOnHeaderSet(
-                {
-                    minutes : 5,
-                    where : CachingLocation.Private
-                }),
+        topic: applyCachingAndSpyOnReponseHeaderSet(cache.minutes(5).privately()),
 
-        'should update response header max-age' : correctMaxAgeSet(300, "private")
+        'should update response header max-age' : corectCacheControlValuesSet(300, "private")
     },
 
     'when you use a ten hours publically caching definition': {
-        topic: applyCachingDefinitionAndSpyOnHeaderSet(
-                {
-                    hours : 10,
-                    where : CachingLocation.Public
-                }),
+        topic: applyCachingAndSpyOnReponseHeaderSet(cache.hours(10).publically()),
 
-        'should update response header max-age' : correctMaxAgeSet(36000, "public")
+        'should update response header max-age' : corectCacheControlValuesSet(36000, "public")
     },
 
     'when you use a two days publically caching definition': {
-        topic: applyCachingDefinitionAndSpyOnHeaderSet(
-                {
-                    days : 2,
-                    where : CachingLocation.Public
-                }),
+        topic: applyCachingAndSpyOnReponseHeaderSet(cache.days(2).publically()),
 
-        'should update response header max-age' : correctMaxAgeSet(172800, "public")
+        'should update response header max-age' : corectCacheControlValuesSet(172800, "public")
     },
 
-    'when you use a cache forever definition': {
-        topic: applyCachingDefinitionAndSpyOnHeaderSet(
-                        {
-                                forever: "scfas",
-                                where : "public"
-                        }),
+    // 'when you use a cache forever definition': {
+    //     topic: applyCachingAndSpyOnReponseHeaderSet(cache.forever.publically()),
+    //     'should update response header max-age' : corectCacheControlValuesSet(172800, "public")
+    // },
 
-        'should update response header max-age' : correctMaxAgeSet(172800, "public")
+    'when you specify a resource should not be cached': {
+        topic: applyCachingAndSpyOnReponseHeaderSet(cache.no()),
+        'should say so in response' : function(err, responseHeaderSpy) {
+            assert.equal(responseHeaderSpy.firstCall.args[1], 'no-cache');
+        }
     },
+
+    'when the caching information has negative value for years' : 'NYI - Consider flatiron / revalidator',
+    'when the caching information has negative value for months' : 'NYI - Consider flatiron / revalidator',
+    'when the caching information has negative value for seconds' : 'NYI - Consider flatiron / revalidator',
+    'when the caching information is not specified' : 'NYI - No caching',
+    'when the caching information is specified multiple times' : 'NYI - error',
 }).export(module);
 
-function correctMaxAgeSet(expectedMaxAge, location) {
+function corectCacheControlValuesSet(expectedMaxAge, location) {
     return function(err, responseHeaderSpy) {
-        debugger;
         assert.equal(responseHeaderSpy.firstCall.args[1], 'max-age:' + expectedMaxAge + ', ' + location);
     }
 };
 
-function applyCachingDefinitionAndSpyOnHeaderSet(cachingDefinition) {
+function applyCachingAndSpyOnReponseHeaderSet(cachingDefinition) {
     return function() {
         var underTest = getResponseCachingMiddleware(cachingDefinition);
         var response = {

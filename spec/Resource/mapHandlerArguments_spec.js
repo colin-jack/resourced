@@ -6,7 +6,7 @@ var vows = require('vows'),
 
 vows.describe('resource with single get method').addBatch({
     'when you trigger the wrapped handler method': {        
-        topic: function () {  
+        topic: function () { 
             var resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
             var expressSpy = expressConfigurationSpy("get", resourceSpy);
 

@@ -7,7 +7,7 @@ vows.describe('generating relative link to resource').addBatch({
         topic: function () {  
             var resource = resourceObjectMother.createGetOnlyResource({ url: "/:id/:idTwo/:somethingElse"});
             
-            return resource.getUri("myRel", { id: 1, idTwo: 4, somethingElse: 2});
+            return resource.getLink("myRel", { id: 1, idTwo: 4, somethingElse: 2});
         },
 
         'should not get an error' : function(topic) {
