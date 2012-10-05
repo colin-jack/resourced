@@ -46,7 +46,7 @@ module.exports = new Resource({
     ]
 });
 ```
-The response here is:
+The response to a GET request for the associated URI (for example /people/5) would be:
 ```js
 {
   "firstName": "Colin",
