@@ -3,6 +3,7 @@ express = require('express')
 async = require('async')
 winston = require('winston')
 restless = require('../index')
+require('longjohn') # Might as well get long stack traces as this is an example app
 
 createExpress = (done) ->
   winston.info "Creating express."

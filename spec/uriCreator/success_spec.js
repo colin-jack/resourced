@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    uriCreator = require('./../underTestNamespace').require('uriCreator');
+    uriCreator = require('./../testFixture').require('uriCreator');
 
 vows.describe('generating simple uri').addBatch({
     'when you generate a simple url': {

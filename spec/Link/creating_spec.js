@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    Link = require('./../underTestNamespace').require('Link');
+    Link = require('./../testFixture').require('Link');
 
 vows.describe('errors specifying resource').addBatch({
     'when you provide all values when creating a link': {

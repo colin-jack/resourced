@@ -1,7 +1,9 @@
 var vows = require('vows'),
     assert = require('assert'),
     sinon = require('sinon'),
-    createWrappedHandlerMethod = require('./../underTestNamespace').require('createWrappedHandlerMethod');
+    fixture = require('./../testFixture');
+debugger;   
+var createWrappedHandlerMethod = fixture.require('createWrappedHandlerMethod');
 
 var returnedFromWrapped = {
 };

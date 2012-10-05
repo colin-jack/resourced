@@ -23,7 +23,8 @@
 
   "devDependencies": {
     "vows": "0.6.x",
-    "sinon": "*"
+    "sinon": "*",
+    "longjohn": "*"
   },
 
   "engines": {

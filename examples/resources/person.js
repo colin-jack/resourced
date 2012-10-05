@@ -1,6 +1,5 @@
 // TODO: Load this using require-namespace
-var Resource = require('../../lib/Resource'),
-    Link = require('../../lib/Link'),
+var Resource = require('../../lib/resource/Resource'),
     addressResource = require('./addressResource'),
     log = require('util').log,
     format = require('util').format,
@@ -17,13 +16,13 @@ module.exports = new Resource({
     respondsTo: [
         {
             get: function(id) {
-                associatedAddressesUri = addressResource.getUri({ id: "5"});
+                associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
                 return {
                     firstName : "Colin",
                     secondName : "Jack",
                     id : id,
-                    address: new Link("address", associatedAddressesUri)
+                    address: associatedAddressLink
                 };
             }
         },

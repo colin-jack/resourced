@@ -2,7 +2,7 @@
 (function() {
   var Resource;
 
-  Resource = require('../../lib/Resource');
+  Resource = require('../../lib/resource/Resource');
 
   module.exports = new Resource({
     url: "/address/:id",

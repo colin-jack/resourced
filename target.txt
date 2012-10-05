@@ -13,6 +13,7 @@
             - Url/over-ridden method/over-ridden caching on responds to
 // TODO: Wrap logging
 // TODO: Refactor registerAllResourcesInDirectory
+// TODO: NPM freeze dependency versions
 
 
 // TODO: Tests

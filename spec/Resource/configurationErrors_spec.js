@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    Resource = require('./../underTestNamespace').require('Resource');
+    Resource = require('./../testFixture').require('Resource');
 
 vows.describe('errors specifying resource').addBatch({
     'when you omit the URL when defining a resource': {

@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    Resource = require('./../underTestNamespace').require('Resource');
+    Resource = require('./../testFixture').require('Resource');
 
 vows.describe('specifying resource method').addBatch({
 'when the resource method definition overrides HTTP method' : 'NYI',

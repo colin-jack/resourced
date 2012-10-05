@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    HttpMethod = require('./../underTestNamespace').require('HttpMethod');
+    HttpMethod = require('./../testFixture').require('HttpMethod');
 
 var resultEquals = function(expectedResponse) {
     return function(err, result) {

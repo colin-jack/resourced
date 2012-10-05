@@ -1,5 +1,5 @@
-var underTestNamespace = require('./../underTestNamespace'),
-    Resource = underTestNamespace.require('Resource');
+var testFixture = require('./../testFixture'),
+    Resource = testFixture.require('Resource');
     _u = require('underscore');
 
 var createGetOnlyResource = function(options) {

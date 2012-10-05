@@ -1,6 +1,5 @@
 var vows = require('vows'),
     assert = require('assert'),
-    sinon = require('sinon'),
     resourceObjectMother = require('./../util/resourceObjectMother');
 
 vows.describe('generating relative link to resource').addBatch({
@@ -8,15 +7,16 @@ vows.describe('generating relative link to resource').addBatch({
         topic: function () {  
             var resource = resourceObjectMother.createGetOnlyResource({ url: "/:id/:idTwo/:somethingElse"});
             
-            return resource.getUri({ id: 1, idTwo: 4, somethingElse: 2});
+            return resource.getUri("myRel", { id: 1, idTwo: 4, somethingElse: 2});
         },
 
         'should not get an error' : function(topic) {
             assert.isFalse(topic instanceof Error, topic.toString());
         },
 
-        'should get expected value' : function(url) {
-            assert.equal(url, "/1/4/2");
+        'should get expected value' : function(link) {
+            assert.equal(link.url, "/1/4/2");
+            assert.equal(link.rel, "myRel");
         }
     }
 }).export(module);

@@ -12,6 +12,8 @@
 
   restless = require('../index');
 
+  require('longjohn');
+
   createExpress = function(done) {
     winston.info("Creating express.");
     global.app = express(express.cookieParser(), express.bodyParser());
