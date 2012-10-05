@@ -1,6 +1,6 @@
 // TODO: Load this using require-namespace
 var Resource = require('../../lib/resource/Resource'),
-    caching = require('../../lib/caching/caching'),
+    caching = require('../../lib/caching/cache'),
     addressResource = require('./addressResource'),
     log = require('util').log,
     format = require('util').format,
