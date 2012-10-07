@@ -8,29 +8,29 @@ var resultEquals = function(expectedResponse) {
     }
 };
 
-vows.describe('resource with single get method').addBatch({
-    'when you map "get" to an http method': {
-        topic: HttpMethod.mapFrom("get"),
+vows.describe('validating http requests').addBatch({
+    'when you ask if "get" can be handled': {
+        topic: HttpMethod.canHandle("get"),
         'should get expected result' : resultEquals(HttpMethod.GET)
     },
 
-    'when you map "GET" to an http method': {
-        topic: HttpMethod.mapFrom("GET"),
+    'when you ask if "GET" can be handled': {
+        topic: HttpMethod.canHandle("GET"),
         'should get expected result' : resultEquals(HttpMethod.GET)
     },
 
-    'when you map "put" to an http method': {
-        topic: HttpMethod.mapFrom("put"),
+    'when you ask if "put" can be handled': {
+        topic: HttpMethod.canHandle("put"),
         'should get expected result' : resultEquals(HttpMethod.PUT)
     },
 
-    'when you map "post" to an http method': {
-        topic: HttpMethod.mapFrom("post"),
+    'when you ask if "post" can be handled': {
+        topic: HttpMethod.canHandle("post"),
         'should get expected result' : resultEquals(HttpMethod.POST)
     },
 
-    'when you map "delete" to an http method': {
-        topic: HttpMethod.mapFrom("delete"),
+    'when you ask if "delete" can be handled': {
+        topic: HttpMethod.canHandle("delete"),
         'should get expected result' : resultEquals(HttpMethod.DELETE)
     }
 }).export(module);
