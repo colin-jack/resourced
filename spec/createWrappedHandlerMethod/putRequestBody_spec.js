@@ -37,7 +37,35 @@ vows.describe('wrapped handler method').addBatch({
             assert.equal(bodySendToHandler, bodyFromRequest);
         }
     },
-     'when you call a wrapped handler method associated with PUT but there is no request body' : 'NYI'/*{
+    'when you call a wrapped handler method associated with PUT' : {
+        topic: function () {  
+            var bodySendToHandler;
+
+            var toWrap = function(id, body) {
+                bodySendToHandler = body;
+            };
+
+            var fakeRequest = {
+                params: { 
+                    "id" : 5
+                },
+                body: bodyFromRequest
+            };
+
+            var wrapped = createWrappedHandlerMethod("put", toWrap);
+
+            wrapped(fakeRequest, requestResponseBuilder.createFakeResponse());
+
+            debugger;
+
+            this.callback(bodySendToHandler);
+        },
+
+        'should also be able to access body from request' : function() {
+            
+        }
+    },
+    'when you call a wrapped handler method associated with PUT but there is no request body' : 'NYI'/*{
         topic: function () {  
           
         },
