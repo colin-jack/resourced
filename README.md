@@ -14,7 +14,11 @@ var resourcesDirectory = __dirname + '/resources';
 restless.configureResourcesInDirectory(resourcesDirectory, done);
 ```
 
-The directory will be scanned for files including resources.
+The directory will be scanned for files including resources. You must also tell express to use the body parser:
+
+```js
+app.use(express.bodyParser())
+```
 
 ### Resource Definitions
 The following samples show resource from the [runnable example](#example).
