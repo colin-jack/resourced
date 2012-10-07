@@ -66,9 +66,11 @@ The response to a GET request for the associated URI (for example /people/5) wou
         "url": "/address/5"
       }
     }
-You can also send a PUT request to the resource, for example:
+Note the link to the associated address in the response. You can also send a PUT request to the resource, for example:
 
-The response will be:
+Since the PUT method on the resource just returns the request body there isn't much to see in the response:
+
+Worth noting is that request body was passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are ached currently).
 
 #### CoffeeScript
 The following shows the address resource linked to by the person resource shown above:
