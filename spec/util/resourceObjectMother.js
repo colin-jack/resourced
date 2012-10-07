@@ -32,8 +32,6 @@ var createGetOnlyResourceSpy = function() {
         argumentsPassedToGetMethod.push(first);
     };
 
-    debugger;
-
     var resource = createGetOnlyResource({ getMethod: spyingGetMethod});
 
     // Used to return record of arguments passed to get method, making spying simple.
