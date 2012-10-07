@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    Resource = require('./../testFixture').require('Resource');
+    Resource = require('./../../testFixture').require('Resource');
 
 vows.describe('errors specifying resource method').addBatch({
     'when the resource method definition has no verb specified and conventions do not cover it' : 'NYI - Consider flatiron / revalidator',

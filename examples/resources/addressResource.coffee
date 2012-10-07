@@ -4,7 +4,7 @@ cache = require('../../lib/caching/cache')
 module.exports = new Resource
   url: "/address/:id"
 
-  #requirements: [restrictToAuthenticated]
+  #securedBy: [restrictToAuthenticated]
 
   # We can cache for a long time because we never modify addresses.
   cache: cache.forever().publically(),

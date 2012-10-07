@@ -15,7 +15,8 @@
 // TODO: Refactor registerAllResourcesInDirectory
 // TODO: NPM freeze dependency versions
 // TODO: Index.js will need to export caching, Resource etc.
-// TODO: Needs body parser to work.
+// TODO: Document - Needs body parser to work/curl
+// TODO: jsHint
 
 
 // TODO: Tests

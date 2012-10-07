@@ -35,10 +35,10 @@ vows.describe('cache definitions').addBatch({
             assert.equal(responseHeaderSpy.firstCall.args[0], 'Cache-Control');
             assert.equal(responseHeaderSpy.firstCall.args[1], 'no-cache');
         },
-        'should say so in pragma header in response' : function(err, responseHeaderSpy) {
-            assert.equal(responseHeaderSpy.secondCall.args[0], 'Pragma');
-            assert.equal(responseHeaderSpy.secondCall.args[1], 'no-cache');
-        },
+        // 'should say so in pragma header in response' : function(err, responseHeaderSpy) {
+        //     assert.equal(responseHeaderSpy.secondCall.args[0], 'Pragma');
+        //     assert.equal(responseHeaderSpy.secondCall.args[1], 'no-cache');
+        // },
     },
 
     'when the caching information exists but its a POST request' : 'NYI - Do not cache',

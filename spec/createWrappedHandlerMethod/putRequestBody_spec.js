@@ -8,6 +8,19 @@ var bodyFromRequest = {
     foo: "bar"
 };
 
+var callWrappedHandler = function(toWrap) {
+    var fakeRequest = {
+        params: { 
+            "id" : 5
+        },
+        body: bodyFromRequest
+    };
+
+    var wrapped = createWrappedHandlerMethod("put", toWrap);
+
+    wrapped(fakeRequest, requestResponseBuilder.createFakeResponse());
+};
+
 vows.describe('wrapped handler method').addBatch({
     'when you call a wrapped handler method associated with PUT' : {
         topic: function () {  
@@ -17,54 +30,34 @@ vows.describe('wrapped handler method').addBatch({
                 bodySendToHandler = body;
             };
 
-            var fakeRequest = {
-                params: { 
-                    "id" : 5
-                },
-                body: bodyFromRequest
-            };
+            callWrappedHandler(toWrap);
 
-            var wrapped = createWrappedHandlerMethod("put", toWrap);
-
-            wrapped(fakeRequest, requestResponseBuilder.createFakeResponse());
-
-            debugger;
-
-            this.callback(bodySendToHandler);
+            return bodySendToHandler;
         },
 
         'should pass in response body as last argument' : function(bodySendToHandler) {
             assert.equal(bodySendToHandler, bodyFromRequest);
         }
     },
-    'when you call a wrapped handler method associated with PUT' : {
+
+    'when you call a wrapped handler method associated with PUT and access request body in handler' : {
         topic: function () {  
-            var bodySendToHandler;
+            var bodyInRequestInHandler;
 
             var toWrap = function(id, body) {
-                bodySendToHandler = body;
+                bodyInRequestInHandler = this.request.body;
             };
 
-            var fakeRequest = {
-                params: { 
-                    "id" : 5
-                },
-                body: bodyFromRequest
-            };
+            callWrappedHandler(toWrap);
 
-            var wrapped = createWrappedHandlerMethod("put", toWrap);
-
-            wrapped(fakeRequest, requestResponseBuilder.createFakeResponse());
-
-            debugger;
-
-            this.callback(bodySendToHandler);
+            return bodyInRequestInHandler;
         },
 
-        'should also be able to access body from request' : function() {
-            
+        'should get appropriate value' : function(bodyInRequestInHandler) {
+            assert.equal(bodyInRequestInHandler, bodyFromRequest);
         }
-    },
+    },    
+
     'when you call a wrapped handler method associated with PUT but there is no request body' : 'NYI'/*{
         topic: function () {  
           
