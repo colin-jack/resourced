@@ -31,7 +31,6 @@ module.exports = new Resource({
 
     respondsTo: [
         {
-            //cache: caching.minutes(10).publically(),
             get: function(id) {
                 associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
