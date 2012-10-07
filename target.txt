@@ -6,17 +6,19 @@
 // TODO - Absolute URIs
 // TODO - HTTPS 
 // TODO - Examples
-            -> CoffeeScript    - TypeScript
-            - HTTPS            -> Generating URL
-            -> Caching         -> Multiple Methods
+            - TypeScript
+            - HTTPS            
             - Use restrict to authenticated
             - Url/over-ridden method/over-ridden caching on responds to
 // TODO: Wrap logging
 // TODO: Refactor registerAllResourcesInDirectory
 // TODO: NPM freeze dependency versions
 // TODO: Index.js will need to export caching, Resource etc.
-// TODO: Document - Needs body parser to work/curl
 // TODO: jsHint
+
+curl -i -H "Accept: application/json" -X PUT -d "{ first_name: 'bob'}" http://localhost:3050/people/5
+
+curl -i http://localhost:3050/people/5
 
 
 // TODO: Tests

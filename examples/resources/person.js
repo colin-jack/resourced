@@ -13,7 +13,6 @@ module.exports = new Resource({
 
     respondsTo: [
         {
-            //cache: caching.minutes(10).publically(),
             get: function(id) {
                 associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
@@ -26,13 +25,17 @@ module.exports = new Resource({
             }
         },
         {
-            //restrictAccessUsing: adminMiddleware,
             put : function(id, body) {
                 var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
                 log(message);
 
+                debugger;
+
                 return body;
             }
         }
+        // httpMethod.get(function() {
+
+        // })
     ]
 });
