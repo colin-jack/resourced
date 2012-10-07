@@ -8,8 +8,6 @@ require('longjohn') # Might as well get long stack traces as this is an example 
 createExpress = (done) ->
   winston.info "Creating express."
 
-  debugger
-
   global.app = express()
   app.use(express.bodyParser())
   app.use(express.cookieParser())

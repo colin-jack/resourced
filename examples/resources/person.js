@@ -31,8 +31,6 @@ module.exports = new Resource({
                 var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
                 log(message);
 
-                debugger;
-
                 return body;
             }
         }

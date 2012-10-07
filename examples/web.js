@@ -16,7 +16,6 @@
 
   createExpress = function(done) {
     winston.info("Creating express.");
-    debugger;
     global.app = express();
     app.use(express.bodyParser());
     app.use(express.cookieParser());
