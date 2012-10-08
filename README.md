@@ -50,20 +50,27 @@ module.exports = new Resource({
 });
 ```
 The response to a GET request for the associated URI (for example /people/5) would be:
-```js
-{
-  "firstName": "Colin",
-  "secondName": "Jack",
-  "id": "5",
-  "address": {
-    "rel": "address",
-    "url": "/address/5"
-  }
-}
-```
-And the caching information will be included in the response headers:
 
-    Cache-Control:max-age:300, public
+    HTTP/1.1 200 OK
+    X-Powered-By: Express
+    Cache-Control: max-age:300, public
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 129
+    ...
+    {
+      "firstName": "Colin",
+      "secondName": "Jack",
+      "id": "5",
+      "address": {
+        "rel": "address",
+        "url": "/address/5"
+      }
+    }
+Note the link to the associated address in the response. You can also send a PUT request to the resource, for example:
+
+Since the PUT method on the resource just returns the request body there isn't much to see in the response:
+
+Worth noting is that request body was passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are ached currently).
 
 #### CoffeeScript
 The following shows the address resource linked to by the person resource shown above:
