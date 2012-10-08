@@ -42,21 +42,21 @@ vows.describe('cache definitions').addBatch({
     },
 
     'when you say a resource can be cached publically for two days and make a POST request': {
-        topic: applyCachingAndSpyOnReponseHeaderSet(cache.days(2).publically(), "post"),
+        topic: createCachingMiddleware(cache.days(2).publically(), "post"),
 
-        'should not set Cache-Control header': assertCacheControlNotSet
+        'should not get any response caching middleware': assertNoCachingMiddlewareCreated
     },
 
     'when you say a resource can be cached publically for two days and make a DELETE request': {
-        topic: applyCachingAndSpyOnReponseHeaderSet(cache.days(2).publically(), "delete"),
+        topic: createCachingMiddleware(cache.days(2).publically(), "delete"),
 
-        'should not set Cache-Control header': assertCacheControlNotSet
+        'should not get any response caching middleware': assertNoCachingMiddlewareCreated
     },
 
     'when you say a resource can be cached publically for two days and make a PUT request': {
-        topic: applyCachingAndSpyOnReponseHeaderSet(cache.days(2).publically(), "put"),
+        topic: createCachingMiddleware(cache.days(2).publically(), "put"),
 
-        'should not set Cache-Control header': assertCacheControlNotSet
+        'should not get any response caching middleware': assertNoCachingMiddlewareCreated
     },
 
     'when the caching information exists but its a POST request' : 'NYI - Do not cache',
@@ -70,24 +70,28 @@ vows.describe('cache definitions').addBatch({
 
 }).export(module);
 
-function assertCacheControlNotSet(responseHeaderSpy) {
-    assert.isFalse(responseHeaderSpy.called);
-};
+function createCachingMiddleware(cachingDefinition, httpMethodForRequest) {
+    var fakeResource = {
+        cache: cachingDefinition
+    };
+
+    return getResponseCachingMiddleware(fakeResource, httpMethodForRequest);
+}
+
+function assertNoCachingMiddlewareCreated(cachingMiddleware) {
+    assert.isNull(cachingMiddleware);
+}
 
 function corectCacheControlValuesSet(expectedMaxAge, location) {
     return function(err, responseHeaderSpy) {
         assert.equal(responseHeaderSpy.firstCall.args[0], 'Cache-Control');
         assert.equal(responseHeaderSpy.firstCall.args[1], 'max-age:' + expectedMaxAge + ', ' + location);
     }
-};
+}
 
 function applyCachingAndSpyOnReponseHeaderSet(cachingDefinition, httpMethodForRequest) {
     return function() {
-        var fakeResource = {
-            cache: cachingDefinition
-        };
-
-        var underTest = getResponseCachingMiddleware(fakeResource, httpMethodForRequest);
+        var underTest = createCachingMiddleware(cachingDefinition, httpMethodForRequest);
 
         var response = {
             header: function(name, value) {}

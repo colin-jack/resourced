@@ -13,7 +13,6 @@ var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, http
 
 var correctHttpMethodApplied = function(httpMethod) {
     return function(err, result) {
-        debugger;
         assert.equal(result, httpMethod);
     }
 };
