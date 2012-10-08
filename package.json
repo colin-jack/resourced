@@ -1,5 +1,5 @@
 {
-  "name": "restless",
+  "name": "resourced",
   "version": "0.0.1",
   "description": "A resource oriented DSL for configuring express.js (REST).",
   "main": "index",
