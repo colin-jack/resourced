@@ -1,9 +1,14 @@
 # resourced
 NOTE - This is a very very early version of this project, definitely not ready for use.
 
-A simple DSL for building a resource-oriented design on top of express.js. 
+A simple DSL for building a resource-oriented design on top of express.js, each resource has the following associated with it:
 
-Note what we're aiming for here is not the resource oriented style popularised by Rails. Instead we're going for an approach where you can define your resoruces and then use the full power of linking to start getting some of that RESTful HATEOAS magic. 
+* URI - The address of the resources
+* Methods - One or more HTTP request handler methods
+* Caching - Definition of where and how long to cache responses from the resource.
+* Middleware - You can attach middleware to run before and after requests, for example to perform authorization.
+
+As you can see this takes a very resource-oriented/RESTful approach to defining services. We're thus not necessarily aiming to replicate directly the resource style popularised by Rails.
 
 ## Samples
 ### Configuration
