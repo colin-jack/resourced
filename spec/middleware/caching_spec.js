@@ -83,7 +83,11 @@ function corectCacheControlValuesSet(expectedMaxAge, location) {
 
 function applyCachingAndSpyOnReponseHeaderSet(cachingDefinition, httpMethodForRequest) {
     return function() {
-        var underTest = getResponseCachingMiddleware(cachingDefinition, httpMethodForRequest);
+        var fakeResource = {
+            cache: cachingDefinition
+        };
+
+        var underTest = getResponseCachingMiddleware(fakeResource, httpMethodForRequest);
 
         var response = {
             header: function(name, value) {}

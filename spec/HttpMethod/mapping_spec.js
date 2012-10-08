@@ -11,26 +11,36 @@ var resultEquals = function(expectedResponse) {
 vows.describe('validating http requests').addBatch({
     'when you ask if "get" can be handled': {
         topic: HttpMethod.canHandle("get"),
-        'should get expected result' : resultEquals(HttpMethod.GET)
+        'should get told it can be' : resultEquals(true)
     },
 
     'when you ask if "GET" can be handled': {
         topic: HttpMethod.canHandle("GET"),
-        'should get expected result' : resultEquals(HttpMethod.GET)
+        'should get told it can be' : resultEquals(true)
     },
 
     'when you ask if "put" can be handled': {
         topic: HttpMethod.canHandle("put"),
-        'should get expected result' : resultEquals(HttpMethod.PUT)
+        'should get told it can be' : resultEquals(true)
     },
 
     'when you ask if "post" can be handled': {
         topic: HttpMethod.canHandle("post"),
-        'should get expected result' : resultEquals(HttpMethod.POST)
+        'should get told it can be' : resultEquals(true)
     },
 
     'when you ask if "delete" can be handled': {
         topic: HttpMethod.canHandle("delete"),
-        'should get expected result' : resultEquals(HttpMethod.DELETE)
+        'should get told it can be' : resultEquals(true)
+    },
+
+    'when you ask if "foo" can be handled': {
+        topic: HttpMethod.canHandle("foo"),
+        'should get told it can be' : resultEquals(false)
+    },
+
+    'when you ask if "head" can be handled': {
+        topic: HttpMethod.canHandle("head"),
+        'should get told it can be' : resultEquals(false)
     }
 }).export(module);
