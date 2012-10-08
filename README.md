@@ -1,4 +1,4 @@
-# restless
+# resourced
 NOTE - This is a very very early version of this project, definitely not ready for use.
 
 A simple DSL for building a resource-oriented design on top of express.js. 
@@ -45,6 +45,11 @@ module.exports = new Resource({
                     address: associatedAddressLink
                 };
             }
+        },
+        {
+            put : function(id, body) {      
+                return body;
+            }
         }
     ]
 });
@@ -66,11 +71,9 @@ The response to a GET request for the associated URI (for example /people/5) wou
         "url": "/address/5"
       }
     }
-Note the link to the associated address in the response. You can also send a PUT request to the resource, for example:
+Note the link to the associated address in the response. 
 
-Since the PUT method on the resource just returns the request body there isn't much to see in the response:
-
-Worth noting is that request body was passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are ached currently).
+You can also send a PUT request to the resource, the example shown just echoes the request body back in the response. The only interesting things to note about the put example are that the request body will be passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are cached currently).
 
 #### CoffeeScript
 The following shows the address resource linked to by the person resource shown above:
@@ -99,9 +102,12 @@ You can run the sample application using the following command:
 
     node examples/web.js
     
-The output will end with a hard-coded URL that you can use to GET the first resource, the response will be something like:
+The output will end with a hard-coded URL that you can use to GET/PUT the first resource:
+
+    curl http://localhost:3050/people/5
+    curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty", "secondName": "Mouse", "id": 5}'
 
 ## Running Tests
 The tests use [vows](http://vowsjs.org/) and can be run using:
 
-    vows spec/**/*_spec.js --spec
+    vows spec/**/*_spec.js spec/**/**/*_spec.js
