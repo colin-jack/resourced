@@ -14,15 +14,16 @@ module.exports = new Resource({
 
     respondsTo: [
         http.get(function(id) {
-                associatedAddressLink = addressResource.getLink("address", { id: "5"});
+            associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
-                return {
-                    firstName : "Colin",
-                    secondName : "Jack",
-                    id : id,
-                    address: associatedAddressLink
-                };
+            return {
+                firstName : "Colin",
+                secondName : "Jack",
+                id : id,
+                address: associatedAddressLink
+            };
         }),
+
         http.put(function(id, body) {
             var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
             log(message);
