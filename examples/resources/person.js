@@ -1,5 +1,6 @@
 // TODO: Load this using require-namespace
 var Resource = require('../../lib/resource/Resource'),
+    http = require('../../lib/resource/http'),
     caching = require('../../lib/caching/cache'),
     addressResource = require('./addressResource'),
     log = require('util').log,
@@ -12,8 +13,7 @@ module.exports = new Resource({
     cache: caching.minutes(5).publically(),
 
     respondsTo: [
-        {
-            get: function(id) {
+        http.get(function(id) {
                 associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
                 return {
@@ -22,20 +22,12 @@ module.exports = new Resource({
                     id : id,
                     address: associatedAddressLink
                 };
-            }
-        },
-        {
-            put : function(id, body) {
-                var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
-                log(message);
+        }),
+        http.put(function(id, body) {
+            var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
+            log(message);
 
-                debugger;
-
-                return body;
-            }
-        }
-        // httpMethod.get(function() {
-
-        // })
+            return body;
+        })
     ]
 });

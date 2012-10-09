@@ -16,11 +16,6 @@
 // TODO: Index.js will need to export caching, Resource etc.
 // TODO: jsHint
 
-curl -i -H "Accept: application/json" -X PUT -d "{ first_name: 'bob'}" http://localhost:3050/people/5
-
-curl -i http://localhost:3050/people/5
-
-
 // TODO: Tests
 // No files in resources directory
 

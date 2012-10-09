@@ -7,6 +7,9 @@
 //   blah.ts
 //   foo.js file with no resource in it
 //   other.txt
+// TODO: Also would have multiple resources from same URL
+// TODO: One resource no URI, one resource invalid method name
+
 var vows = require('vows'),
     assert = require('assert');
 
