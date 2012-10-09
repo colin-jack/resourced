@@ -3,14 +3,17 @@ NOTE - This is a very very early version of this project, definitely not ready f
 
 A simple DSL for building a resource-oriented design on top of express.js, each resource has the following associated with it:
 
-* URI - The address of the resources
-* Methods - One or more HTTP request handler methods
-* Caching - Definition of where and how long to cache responses from the resource.
-* Middleware - You can attach middleware to run before and after requests, for example to perform authorization.
+## Philosophy
+A small HTTP focussed DSL on top of express that makes it easier to developer RESTful or resource oriented API's. Rather than seperatng our application into MVC with routing we thus focus on defining resources, each of which has the following:
 
-As you can see this takes a very resource-oriented/RESTful approach to defining services. We're thus not necessarily aiming to replicate directly the resource style popularised by Rails.
+* URL - The address of the resource.
+* Methods - One or more HTTP request handler methods.
+* Caching - Where and how long to cache responses from the resource (optional).
+* Middleware - Middleware to run before and after requests, for example to perform authorization (optional).
 
 ## Samples
+All these samples are taken from the [example application](#example).
+
 ### Configuration
 To configure restless you need to tell it which directory to look for resources in:
 
@@ -18,20 +21,16 @@ To configure restless you need to tell it which directory to look for resources 
 var resourcesDirectory = __dirname + '/resources';
 restless.configureResourcesInDirectory(resourcesDirectory, done);
 ```
-
 The directory will be scanned for files including resources. You must also tell express to use the body parser:
-
 ```js
 app.use(express.bodyParser())
 ```
 
-### Resource Definitions
-The following samples show resource from the [runnable example](#example).
-
-#### JavaScript
+### Resource Definition - JavaScript
 The following shows a simple person resource, where the JSON response includes a link to the associated address:
 ```js
-var Resource = require('restless').Resource;
+var Resource = require('resourced').Resource,
+    http = require('resourced').http;
 
 module.exports = new Resource({
     url: "/people/:id",
@@ -39,23 +38,20 @@ module.exports = new Resource({
     cache: caching.minutes(5).publically(),
 
     respondsTo: [
-        {
-            get: function(id) {
-                associatedAddressLink = addressResource.getLink("address", { id: "5"});
+        http.get(function(id) {
+            associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
-                return {
-                    firstName : "Colin",
-                    secondName : "Jack",
-                    id : id,
-                    address: associatedAddressLink
-                };
-            }
-        },
-        {
-            put : function(id, body) {      
-                return body;
-            }
-        }
+            return {
+                firstName : "Colin",
+                secondName : "Jack",
+                id : id,
+                address: associatedAddressLink
+            };
+        }),
+        
+        http.put(function(id, body) {
+            return body;
+        })
     ]
 });
 ```
@@ -80,7 +76,34 @@ Note the link to the associated address in the response.
 
 You can also send a PUT request to the resource, the example shown just echoes the request body back in the response. The only interesting things to note about the put example are that the request body will be passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are cached currently).
 
-#### CoffeeScript
+##### Responds To Using Anonymous Objects
+Note if you want to you can specify the methods responded to using anonymous objects directly, this would be useful where you wanted to over-ride some aspect of the configuration:
+
+```js
+var Resource = require('resourced').Resource,
+    http = require('resourced').http;
+
+module.exports = new Resource({
+    url: "/people/:id",
+
+    cache: caching.minutes(5).publically(),
+
+    respondsTo: [
+        {
+            get: function(id) {
+                ...
+            }
+        },
+        {
+            put : function(id, body) {      
+                ...
+            }
+        }
+    ]
+});
+```
+
+### Resource Definition - CoffeeScript
 The following shows the address resource linked to by the person resource shown above:
 ```coffeescript
 module.exports = new Resource
@@ -89,19 +112,15 @@ module.exports = new Resource
   # We can cache for a long time because we never modify addresses.
   cache: cache.forever().publically(),
 
-  respondsTo: [{
-    get: (id) ->
+  respondsTo: [
+    http.get (id) ->
       address =
         "House Name/Number" : 72
         "Stree Name" : "Fox Lane"
         "Town" : "Edinburgh"
         "PostCode" :"EH99 7JJ"
-  }]
+  ]
 ```
-As with the person resource a GET request will result in the appropriate caching header being set:
-
-    Cache-Control:max-age:315360000, public
-
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
 
