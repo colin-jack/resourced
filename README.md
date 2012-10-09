@@ -31,7 +31,7 @@ The following samples show resource from the [runnable example](#example).
 #### JavaScript
 The following shows a simple person resource, where the JSON response includes a link to the associated address:
 ```js
-var Resource = require('restless').Resource;
+var Resource = require('resourced').Resource;
 
 module.exports = new Resource({
     url: "/people/:id",
@@ -80,6 +80,29 @@ Note the link to the associated address in the response.
 
 You can also send a PUT request to the resource, the example shown just echoes the request body back in the response. The only interesting things to note about the put example are that the request body will be passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are cached currently).
 
+Note in the example above you specified the responds to methods using anonymous objects but you can also call get/put/post/delete methods:
+
+```js
+var Resource = require('resourced').Resource,
+    http = require('resourced').http;
+
+module.exports = new Resource({
+    url: "/people/:id",
+
+    cache: caching.minutes(5).publically(),
+
+    respondsTo: [
+        http.get(function(id) {
+            ...
+        }),
+        
+        http.put(function(id, body) {
+            ...
+        })
+    ]
+});
+```
+
 #### CoffeeScript
 The following shows the address resource linked to by the person resource shown above:
 ```coffeescript
@@ -98,7 +121,7 @@ module.exports = new Resource
         "PostCode" :"EH99 7JJ"
   }]
 ```
-As with the person resource a GET request will result in the appropriate caching header being set:
+As with the person resource a GET request will result in the appropriate far future caching header being set:
 
     Cache-Control:max-age:315360000, public
 
