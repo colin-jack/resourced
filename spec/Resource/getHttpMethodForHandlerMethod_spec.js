@@ -1,6 +1,5 @@
 var vows = require('vows'),
     assert = require('assert'),
-    winston = require('winston'),
     getHttpMethodToUseForHandler = require('./../testFixture').require('getHttpMethodToUseForHandler');
 
 var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, httpMethod) {  
