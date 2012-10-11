@@ -1,6 +1,6 @@
 var vows = require('vows'),
     assert = require('assert'),
-    uriCreator = require('./../testFixture').require('uriCreator');
+    uriCreator = require('./testFixture').require('uriCreator');
 
 vows.describe('generating simple uri').addBatch({
     'when you generate a simple url': {
@@ -18,7 +18,7 @@ vows.describe('generating simple uri').addBatch({
             assert.equal(url, "/1/4/2?idThree=3&idFour=4&id=1");
         }
     },
-
+    
     'when you generate a simple url but miss optional parameters': {
         topic: function () {           
             var stubResource = {

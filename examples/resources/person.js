@@ -24,17 +24,13 @@ module.exports = new Resource({
             };
         }),
 
-        { 
-            delete: function(id) {
-                debugger;
-                log("deleted");
-                return;
-            }
-        },
+        http.delete(function(id) {
+            log("Resource deleted");
+            return;
+        }),
 
         http.post(function(id) {
-            debugger;
-            log("deleted");
+            log("Post accepted");
             return;
         }),
 
