@@ -126,12 +126,14 @@ You can run the sample application using the following command:
 
     node examples/web.js
     
-The output will end with a hard-coded URL that you can use to GET/PUT the first resource:
+The output will end with a hard-coded URL that you can use to interact with the first resource:
 
-    curl http://localhost:3050/people/5
-    curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty", "secondName": "Mouse", "id": 5}'
+GET ```curl http://localhost:3050/people/5```<br/>
+PUT ```curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty"}'```<br/>
+POST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>
+DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 
 ## Running Tests
 The tests use [vows](http://vowsjs.org/) and can be run using:
 
-    vows spec/**/*_spec.js spec/**/**/*_spec.js
+    vows spec/*_spec.js spec/**/*_spec.js spec/**/**/*_spec.js
