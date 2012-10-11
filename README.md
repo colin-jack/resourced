@@ -1,10 +1,7 @@
 # resourced
 NOTE - This is a very very early version of this project, definitely not ready for use.
-
-A simple DSL for building a resource-oriented design on top of express.js, each resource has the following associated with it:
-
 ## Philosophy
-A small HTTP focussed DSL on top of express that makes it easier to developer RESTful or resource oriented API's. Rather than seperatng our application into MVC with routing we thus focus on defining resources, each of which has the following:
+A small HTTP focussed DSL on top of express that makes it easier to develop RESTful or resource oriented API's. You structure your service layer using resources each of which has the following:
 
 * URL - The address of the resource.
 * Methods - One or more HTTP request handler methods.
