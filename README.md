@@ -76,33 +76,6 @@ Note the link to the associated address in the response.
 
 You can also send a PUT request to the resource, the example shown just echoes the request body back in the response. The only interesting things to note about the put example are that the request body will be passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are cached currently).
 
-##### Responds To Using Anonymous Objects
-Note if you want to you can specify the methods responded to using anonymous objects directly, this would be useful where you wanted to over-ride some aspect of the configuration:
-
-```js
-var Resource = require('resourced').Resource,
-    http = require('resourced').http;
-
-module.exports = new Resource({
-    url: "/people/:id",
-
-    cache: caching.minutes(5).publically(),
-
-    respondsTo: [
-        {
-            get: function(id) {
-                ...
-            }
-        },
-        {
-            put : function(id, body) {      
-                ...
-            }
-        }
-    ]
-});
-```
-
 ### Resource Definition - CoffeeScript
 The following shows the address resource linked to by the person resource shown above:
 ```coffeescript
@@ -134,6 +107,6 @@ POST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>
 DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 
 ## Running Tests
-The tests use [vows](http://vowsjs.org/) and can be run using:
+The tests should provide a reasonable spec for the framework. They use [vows](http://vowsjs.org/) and can be run using:
 
     vows spec/*_spec.js spec/**/*_spec.js spec/**/**/*_spec.js
