@@ -24,6 +24,20 @@ module.exports = new Resource({
             };
         }),
 
+        { 
+            delete: function(id) {
+                debugger;
+                log("deleted");
+                return;
+            }
+        },
+
+        http.post(function(id) {
+            debugger;
+            log("deleted");
+            return;
+        }),
+
         http.put(function(id, body) {
             var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
             log(message);
