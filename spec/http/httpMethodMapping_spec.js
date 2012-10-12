@@ -1,46 +1,36 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     HttpMethod = require('./../testFixture').require('HttpMethod');
 
-var resultEquals = function(expectedResponse) {
-    return function(err, result) {
-        assert.equal(result, expectedResponse);
-    }
+var resultEquals = function(result, expected) {
+    assert.equal(result, expected);
 };
 
-vows.describe('validating http requests').addBatch({
-    'when you ask if "get" can be handled': {
-        topic: HttpMethod.canHandle("get"),
-        'should get told it can be' : resultEquals(true)
-    },
+describe('validating http requests', function() {
+    describe('when you ask if "get" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("get"), true));
+    });
 
-    'when you ask if "GET" can be handled': {
-        topic: HttpMethod.canHandle("GET"),
-        'should get told it can be' : resultEquals(true)
-    },
+    describe('when you ask if "GET" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("GET"), true));
+    });
 
-    'when you ask if "put" can be handled': {
-        topic: HttpMethod.canHandle("put"),
-        'should get told it can be' : resultEquals(true)
-    },
+    describe('when you ask if "put" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("put"), true));
+    });
 
-    'when you ask if "post" can be handled': {
-        topic: HttpMethod.canHandle("post"),
-        'should get told it can be' : resultEquals(true)
-    },
+    describe('when you ask if "post" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("post"), true));
+    });
 
-    'when you ask if "delete" can be handled': {
-        topic: HttpMethod.canHandle("delete"),
-        'should get told it can be' : resultEquals(true)
-    },
+    describe('when you ask if "delete" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("delete"), true));
+    });
 
-    'when you ask if "foo" can be handled': {
-        topic: HttpMethod.canHandle("foo"),
-        'should get told it can be' : resultEquals(false)
-    },
+    describe('when you ask if "foo" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("foo"), false));
+    });
 
-    'when you ask if "head" can be handled': {
-        topic: HttpMethod.canHandle("head"),
-        'should get told it can be' : resultEquals(false)
-    }
-}).export(module);
+    describe('when you ask if "head" can be handled', function() {
+        it('should get told it can be', resultEquals(HttpMethod.canHandle("head"), false));
+    });
+});

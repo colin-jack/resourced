@@ -1,5 +1,4 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     sinon = require('sinon'),
     requestResponseBuilder = require('./../util/requestResponseBuilder'),
     createWrappedHandlerMethod = require('./../testFixture').require('createWrappedHandlerMethod');
@@ -10,9 +9,9 @@ var bodyFromRequest = {
 
 var callWrappedHandler = function(toWrap, httpMethod) {
     var fakeRequest = {
-        params: { 
+        params : function() { 
             "id" : 5
-        },
+        };
         body: bodyFromRequest
     };
 
@@ -45,36 +44,36 @@ var callWrappedHandlerAndReturnRequestBody = function (httpMethod) {
     return bodyInRequestInHandler;
 };
 
-vows.describe('wrapped handler method').addBatch({
-    'when you call a wrapped handler method associated with PUT' : {
+describe('wrapped handler method', function() {
+    describe('when you call a wrapped handler method associated with PUT' , function() {
         topic: callWrappedHandlerAndReturnBodyPassedIn("put"),
 
-        'should pass in response body as last argument' : function(bodySendToHandler) {
+        it('should pass in response body as last argument' : function(bodySendToHandler) {
             assert.equal(bodySendToHandler, bodyFromRequest);
         }
-    },
+    };
 
-    'when you call a wrapped handler method associated with PUT and access request body in handler' : {
+    describe('when you call a wrapped handler method associated with PUT and access request body in handler' , function() {
         topic: callWrappedHandlerAndReturnRequestBody("put"),
 
-        'should get appropriate value' : function(bodyInRequestInHandler) {
+        it('should get appropriate value' : function(bodyInRequestInHandler) {
             assert.equal(bodyInRequestInHandler, bodyFromRequest);
         }
-    },    
+    };    
 
-    'when you call a wrapped handler method associated with POST' : {
+    describe('when you call a wrapped handler method associated with POST' , function() {
         topic: callWrappedHandlerAndReturnBodyPassedIn("post"),
 
-        'should pass in response body as last argument' : function(bodySendToHandler) {
+        it('should pass in response body as last argument' : function(bodySendToHandler) {
             assert.equal(bodySendToHandler, bodyFromRequest);
         }
-    },
+    };
 
-    'when you call a wrapped handler method associated with POST and access request body in handler' : {
+    describe('when you call a wrapped handler method associated with POST and access request body in handler' , function() {
         topic: callWrappedHandlerAndReturnRequestBody("post"),
 
-        'should get appropriate value' : function(bodyInRequestInHandler) {
+        it('should get appropriate value' : function(bodyInRequestInHandler) {
             assert.equal(bodyInRequestInHandler, bodyFromRequest);
         }
     }
-}).export(module);
+});

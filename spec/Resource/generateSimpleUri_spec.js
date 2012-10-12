@@ -1,22 +1,23 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     resourceObjectMother = require('./../util/resourceObjectMother');
 
-vows.describe('generating relative link to resource').addBatch({
-    'when you generate a link to a simple resource': {
-        topic: function () {  
+describe('generating relative link to resource', function() {
+    describe('when you generate a link to a simple resource', function() {
+        var link;
+
+        beforeEach(function() {
             var resource = resourceObjectMother.createGetOnlyResource({ url: "/:id/:idTwo/:somethingElse"});
             
-            return resource.getLink("myRel", { id: 1, idTwo: 4, somethingElse: 2});
-        },
+            link = resource.getLink("myRel", { id: 1, idTwo: 4, somethingElse: 2});
+        });
 
-        'should not get an error' : function(topic) {
-            assert.isFalse(topic instanceof Error, topic.toString());
-        },
+        it('should not get an error', function() {
+            assert.isFalse(link instanceof Error, link.toString());
+        });
 
-        'should get expected value' : function(link) {
+        it('should get expected value', function() {
             assert.equal(link.url, "/1/4/2");
             assert.equal(link.rel, "myRel");
-        }
-    }
-}).export(module);
+        });
+    });
+});

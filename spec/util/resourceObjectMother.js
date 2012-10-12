@@ -29,7 +29,7 @@ var createGetOnlyResourceSpy = function() {
     var spyingGetMethod = function(third, second, first) {
         argumentsPassedToGetMethod.push(third);
         argumentsPassedToGetMethod.push(second);
-        argumentsPassedToGetMethod.push(first);
+        argumentsPassedToGetMethod.push(first); 
     };
 
     var resource = createGetOnlyResource({ getMethod: spyingGetMethod});
@@ -45,4 +45,4 @@ var createGetOnlyResourceSpy = function() {
 module.exports = {
     createGetOnlyResource : createGetOnlyResource,
     createGetOnlyResourceSpy : createGetOnlyResourceSpy
-};
+};  

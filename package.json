@@ -21,7 +21,8 @@
   },
 
   "devDependencies": {
-    "vows": "0.6.x",
+    "mocha": "*",
+    "chai": "*",
     "sinon": "*",
     "longjohn": "*",
     "express": "*"

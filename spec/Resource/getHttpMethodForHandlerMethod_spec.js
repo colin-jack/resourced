@@ -1,5 +1,4 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     getHttpMethodToUseForHandler = require('./../testFixture').require('getHttpMethodToUseForHandler');
 
 var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, httpMethod) {  
@@ -10,60 +9,60 @@ var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, http
     return getHttpMethodToUseForHandler(handlerObject, handlerMethodName);
 };
 
-var correctHttpMethodApplied = function(httpMethod) {
-    return function(err, result) {
-        assert.equal(result, httpMethod);
-    }
+var correctHttpMethodApplied = function(result, expected) {
+    assert.equal(result, expected);
 };
 
-var getHttpMethodForHandler = function(handlerMethodName) {
+var getHttpMethodForHandlerNoOverride = function(handlerMethodName) {
     return getHttpMethodToUseForHandler({}, handlerMethodName);
 }
 
-vows.describe('working out http method for a handler method').addBatch({
-    'when you ask for the http method for a method named GET but it has verb overloaded to be put': {
-        topic: getHttpMethodWhenOverriddenAtHandlerLevel("get", "put"),
+describe('working out http method for a handler method', function() {
+    describe('when you ask for the http method for a method named GET but it has verb overloaded to be put', function() {
+        it('should get overriden value', function() {
+            var httpMethod = getHttpMethodWhenOverriddenAtHandlerLevel("get", "put");
+            correctHttpMethodApplied(httpMethod, "put")
+        });
+    });
 
-        'should get overriden value' : correctHttpMethodApplied("put")
-    },
+    describe('when you ask for the http method for a method named put but it has verb overloaded to be post', function() {
+        it('should get overriden value', function() {
+            var httpMethod = getHttpMethodWhenOverriddenAtHandlerLevel("put", "post");
+            correctHttpMethodApplied(httpMethod, "post")
+        });
+    });
 
-    'when you ask for the http method for a method named put but it has verb overloaded to be post': {
-        topic: getHttpMethodWhenOverriddenAtHandlerLevel("put", "post"),
+    describe('when you ask for the http method for a method named put and there is no overload', function() {
+        it('should get overriden value', function() {
+            var httpMethod = getHttpMethodForHandlerNoOverride("put");
+            correctHttpMethodApplied(httpMethod, "put")
+        });
+    });
 
-        'should get overriden value' : correctHttpMethodApplied("post")
-    },
+    describe('when you ask for the http method for a method named delete and there is no overload', function() {
+        it('should work out value based on method name', function() {
+            var httpMethod = getHttpMethodForHandlerNoOverride("delete");
+            correctHttpMethodApplied(httpMethod, "delete")
+        });
+    });
 
-    'when you ask for the http method for a method named put and there is no overload': {
-        topic: getHttpMethodForHandler("put"),
+    describe('when you ask for the http method for a method named post and there is no overload', function() {
+        it('should work out value based on method name', function() {
+            var httpMethod = getHttpMethodForHandlerNoOverride("post");
+            correctHttpMethodApplied(httpMethod, "post")
+        });
+    });
 
-        'should work out value based on method name' : correctHttpMethodApplied("put")
-    },
+    describe('when you ask for the http method for a method named foo but it has verb overloaded to be post', function() {
+        it('should work out value based on method name', function() {
+            var httpMethod = getHttpMethodWhenOverriddenAtHandlerLevel("foo", "post");
+            correctHttpMethodApplied(httpMethod, "post")
+        });
+    });
 
-    'when you ask for the http method for a method named delete and there is no overload': {
-        topic: getHttpMethodForHandler("delete"),
-
-        'should work out value based on method name' : correctHttpMethodApplied("delete")
-    },
-
-    'when you ask for the http method for a method named post and there is no overload': {
-        topic: getHttpMethodForHandler("post"),
-
-        'should work out value based on method name' : correctHttpMethodApplied("post")
-    },
-
-    'when you ask for the http method for a method named foo but it has verb overloaded to be post': {
-        topic: getHttpMethodWhenOverriddenAtHandlerLevel("foo", "post"),
-
-        'should get overriden value' : correctHttpMethodApplied("post")
-    },
-
-    'when you ask for the http method for a method named foo and there is no overload': {
-        topic: function() {
-            return getHttpMethodToUseForHandler({}, "foo");
-        },
-
-        'should get an error' : function(err) {
-            assert.instanceOf(err, Error);
-        }
-    },    
-}).export(module);
+    describe('when you ask for the http method for a method named foo and there is no overload', function() {
+        it('should get an error', function() {
+            assert.throws(function() { getHttpMethodToUseForHandler({}, "foo") }, Error);
+        });
+    });   
+});

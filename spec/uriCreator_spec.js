@@ -1,37 +1,40 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     uriCreator = require('./testFixture').require('uriCreator');
 
-vows.describe('generating simple uri').addBatch({
-    'when you generate a simple url': {
-        topic: function () {           
+describe('generating simple uri', function() {
+    describe('when you generate a simple url', function() {
+        var url;
+
+        beforeEach(function () {           
             var stubResource = {
                 url: "/:id/:idTwo/:somethingElse?idThree=:idThree&idFour=:idFour&id=:id"
             };
 
-            var parameters = { id: 1, idTwo: 4, somethingElse: 2, idThree: 3, idFour: 4};
+            var uriParams = { id: 1, idTwo: 4, somethingElse: 2, idThree: 3, idFour: 4};
 
-            return uriCreator.createUri(stubResource, parameters);
-        },
+            url = uriCreator.createUri(stubResource, uriParams);
+        });
 
-        'should get expected url' : function(url) {
+        it('should get expected url', function() {
             assert.equal(url, "/1/4/2?idThree=3&idFour=4&id=1");
-        }
-    },
+        });
+    })
     
-    'when you generate a simple url but miss optional parameters': {
-        topic: function () {           
+    describe('when you generate a simple url but miss optional parameters', function() {
+        var url;
+
+        beforeEach(function () {                  
             var stubResource = {
                 url: "/:id/:somethingElse/:anotherThing"
             };
 
             var parameters = { id: 1, somethingElse: 2};
 
-            return uriCreator.createUri(stubResource, parameters);
-        },
+            url = uriCreator.createUri(stubResource, parameters);
+        });
 
-        'should get url with tokens still included' : function(url) {
+        it('should get url with tokens still included', function() {
             assert.equal(url, "/1/2/:anotherThing");
-        }
-    }
-}).export(module);
+        });
+    })
+});

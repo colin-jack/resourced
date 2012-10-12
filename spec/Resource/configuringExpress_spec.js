@@ -1,32 +1,30 @@
-var vows = require('vows'),
-	assert = require('assert'),
+var assert = require('chai').assert,
     sinon = require('sinon'),
     // TODO: - Use my namespace code for this.
     resourceObjectMother = require('./../util/resourceObjectMother'),
     expressConfigurationSpy = require('./../util/expressConfigurationSpy');
 
-vows.describe('resource with single get method').addBatch({
-    'when you use a get-only resource to configure a stubbed express': {
+describe('resource with single get method', function() {
+    describe('when you use a get-only resource to configure a stubbed express', function() {
+        var expressSpy;
         
-        topic: function () {  
+        beforeEach(function() {
             var resource = resourceObjectMother.createGetOnlyResource();
-            var spy = expressConfigurationSpy("get");
+            expressSpy = expressConfigurationSpy("get");
 
-            resource.configureExpress(spy.stubExpress);
+            resource.configureExpress(expressSpy.stubExpress);
+        });
 
-            return spy;
-        },
+        it('should not get an error', function() {
+            assert.isFalse(expressSpy instanceof Error, expressSpy.toString());
+        });
 
-        'should not get an error' : function(returned) {
-            assert.isFalse(returned instanceof Error, returned.toString());
-        },
-
-        'should notify express of the new GET method' : function(expressSpy) {
+        it('should notify express of the new GET method', function() {
             expressSpy.assertCalledOnce();
-        },
+        });
 
-        'should use correct URL when configuring express': function(expressSpy) {
+        it('should use correct URL when configuring express', function() {
             expressSpy.assertUrlRegisteredWithIs("/things/:third/:first/:second");
-        },
-    }
-}).export(module);
+        })
+    });
+});

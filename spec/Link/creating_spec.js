@@ -1,35 +1,27 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     Link = require('./../testFixture').require('Link');
 
-vows.describe('errors specifying resource').addBatch({
-    'when you provide all values when creating a link': {
-        topic: function () {           
-            return new Link("linkRel", "foo.com");
-        },
+describe('errors specifying resource', function() {
+    describe('when you provide all values when creating a link', function() {
+        it('should not get an error', function() {
+            var link = new Link("linkRel", "foo.com");
+            assert.isFalse(link instanceof Error, link.toString());
+        });
+    });
 
-        'should not get an error' : function(returned) {
-            assert.isFalse(returned instanceof Error, returned.toString());
-        }
-    },
+    describe('when you only provide rel value when creating a link', function() {
+        it('should get an error', function() {
+            assert.throws(function() { 
+                new Link("bob") 
+            }, Error);
+        });
+    });
 
-    'when you only provide rel value when creating a link': {
-        topic: function () {           
-            return new Link("bob");
-        },
-
-        'should get an error' : function(error) {
-            assert.instanceOf(error, Error);
-        }
-    },
-
-    'when you only provide url value when creating a link': {
-        topic: function () {           
-            return new Link(undefined, "foo.com");
-        },
-
-        'should get an error' : function(error) {
-            assert.instanceOf(error, Error);
-        }
-    },
-}).export(module);
+    describe('when you only provide url value when creating a link', function() {
+        it('should get an error', function() {
+            assert.throws(function() { 
+                new Link(undefined, "foo.com") },
+            Error);
+        });
+    });
+});

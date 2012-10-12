@@ -1,18 +1,19 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     sinon = require('sinon'),
     resourceObjectMother = require('./../util/resourceObjectMother'),
     expressConfigurationSpy = require('./../util/expressConfigurationSpy');
 
-vows.describe('resource with single get method').addBatch({
-    'when you trigger the wrapped handler method': {        
-        topic: function () { 
-            var resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
+describe('resource with single get method', function() {
+    describe('when you trigger the wrapped handler method', function() {        
+        var resourceSpy;
+
+        beforeEach(function () { 
+            resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
             var expressSpy = expressConfigurationSpy("get", resourceSpy);
 
             // NOTE - These are mapped to the arguments of the wrapped handler method
             var stubRequest =  {
-                params: {
+                params : {
                     "first" : 1,
                     "second" : 2,
                     "third" : 3
@@ -24,14 +25,14 @@ vows.describe('resource with single get method').addBatch({
             expressSpy.triggerWrappedHandlerMethod(stubRequest);
 
             return resourceSpy;
-        },
+        });
 
-        'should not get an error' : function(returned) {
-            assert.isFalse(returned instanceof Error, returned.toString());
-        },
+        it('should not get an error', function() {
+            assert.isFalse(resourceSpy instanceof Error, resourceSpy.toString());
+        });
 
-        'should populate handler arguments with request parameters, matching on name': function (resourceSpy) {
+        it('should populate handler arguments with request parameters, matching on name', function () {
             assert.deepEqual(resourceSpy.getArgumentsPassedToGetMethod(), [3, 2, 1]);
-        },
-    }
-}).export(module);
+        });
+    });
+});

@@ -1,74 +1,73 @@
-var vows = require('vows'),
-    assert = require('assert'),
+var assert = require('chai').assert,
     sinon = require('sinon'),
     fixture = require('./../testFixture'),
     getResponseCachingMiddleware = fixture.require('getResponseCachingMiddleware'),
     cache = fixture.require('cache');
 
-vows.describe('cache definitions').addBatch({
-    'when you say a resource can be cached privately for five minutes and make a GET request': {
+describe('cache definitions', function() {
+    describe('when you say a resource can be cached privately for five minutes and make a GET request', function() {
         topic: applyCachingAndSpyOnReponseHeaderSet(cache.minutes(5).privately(), "get"),
 
-        'should update response header max-age' : corectCacheControlValuesSet(300, "private")
-    },
+        it('should update response header max-age' : corectCacheControlValuesSet(300, "private")
+    };
 
-    'when you say a resource can be cached publically for ten days and make a GET request': {
+    describe('when you say a resource can be cached publically for ten days and make a GET request', function() {
         topic: applyCachingAndSpyOnReponseHeaderSet(cache.hours(10).publically(), "get"),
 
-        'should update response header max-age' : corectCacheControlValuesSet(36000, "public")
-    },
+        it('should update response header max-age' : corectCacheControlValuesSet(36000, "public")
+    };
 
-    'when you say a resource can be cached publically for two days and make a GET request': {
+    describe('when you say a resource can be cached publically for two days and make a GET request', function() {
         topic: applyCachingAndSpyOnReponseHeaderSet(cache.days(2).publically(), "get"),
 
-        'should update response header max-age' : corectCacheControlValuesSet(172800, "public")
-    },
+        it('should update response header max-age' : corectCacheControlValuesSet(172800, "public")
+    };
 
-    'when you say a resource can be cached forever and make a GET request': {
+    describe('when you say a resource can be cached forever and make a GET request', function() {
         topic: applyCachingAndSpyOnReponseHeaderSet(cache.forever().publically(), "get"),
-        'should update response header max-age to be ten years' : corectCacheControlValuesSet(315360000, "public")
-    },
+        it('should update response header max-age to be ten years' : corectCacheControlValuesSet(315360000, "public")
+    };
 
-    'when you specify a resource should not be cached and make a GET request': {
+    describe('when you specify a resource should not be cached and make a GET request', function() {
         topic: applyCachingAndSpyOnReponseHeaderSet(cache.no(), "get"),
-        'should say so in cache-control header in response' : function(err, responseHeaderSpy) {
+        it('should say so in cache-control header in response' : function(err, responseHeaderSpy) {
             assert.equal(responseHeaderSpy.firstCall.args[0], 'Cache-Control');
             assert.equal(responseHeaderSpy.firstCall.args[1], 'no-cache');
-        },
-        // 'should say so in pragma header in response' : function(err, responseHeaderSpy) {
+        };
+        // it('should say so in pragma header in response' : function(err, responseHeaderSpy) {
         //     assert.equal(responseHeaderSpy.secondCall.args[0], 'Pragma');
         //     assert.equal(responseHeaderSpy.secondCall.args[1], 'no-cache');
-        // },
-    },
+        // };
+    };
 
-    'when you say a resource can be cached publically for two days and make a POST request': {
+    describe('when you say a resource can be cached publically for two days and make a POST request', function() {
         topic: createCachingMiddleware(cache.days(2).publically(), "post"),
 
-        'should not get any response caching middleware': assertNoCachingMiddlewareCreated
-    },
+        it('should not get any response caching middleware': assertNoCachingMiddlewareCreated
+    };
 
-    'when you say a resource can be cached publically for two days and make a DELETE request': {
+    describe('when you say a resource can be cached publically for two days and make a DELETE request', function() {
         topic: createCachingMiddleware(cache.days(2).publically(), "delete"),
 
-        'should not get any response caching middleware': assertNoCachingMiddlewareCreated
-    },
+        it('should not get any response caching middleware': assertNoCachingMiddlewareCreated
+    };
 
-    'when you say a resource can be cached publically for two days and make a PUT request': {
+    describe('when you say a resource can be cached publically for two days and make a PUT request', function() {
         topic: createCachingMiddleware(cache.days(2).publically(), "put"),
 
-        'should not get any response caching middleware': assertNoCachingMiddlewareCreated
-    },
+        it('should not get any response caching middleware': assertNoCachingMiddlewareCreated
+    };
 
-    'when the caching information exists but its a POST request' : 'NYI - Do not cache',
-    'when the caching information exists but its a DELETE request' : 'NYI - Do not cache',
-    'when the caching information has negative value for years' : 'NYI - Consider flatiron / revalidator',
-    'when the caching information has negative value for months' : 'NYI - Consider flatiron / revalidator',
-    'when the caching information has negative value for seconds' : 'NYI - Consider flatiron / revalidator',
-    'when the caching information is not specified' : 'NYI - No caching',
-    'when the caching information is specified multiple times' : 'NYI - error',
-    'when you override the caching definition for a specific method': 'NYI'
+    describe('when the caching information exists but its a POST request' : 'NYI - Do not cache',
+    describe('when the caching information exists but its a DELETE request' : 'NYI - Do not cache',
+    describe('when the caching information has negative value for years' : 'NYI - Consider flatiron / revalidator',
+    describe('when the caching information has negative value for months' : 'NYI - Consider flatiron / revalidator',
+    describe('when the caching information has negative value for seconds' : 'NYI - Consider flatiron / revalidator',
+    describe('when the caching information is not specified' : 'NYI - No caching',
+    describe('when the caching information is specified multiple times' : 'NYI - error',
+    describe('when you override the caching definition for a specific method': 'NYI'
 
-}).export(module);
+});
 
 function createCachingMiddleware(cachingDefinition, httpMethodForRequest) {
     var fakeResource = {
@@ -99,7 +98,7 @@ function applyCachingAndSpyOnReponseHeaderSet(cachingDefinition, httpMethodForRe
 
         var responseHeaderSpy = sinon.spy(response, "header");
 
-        underTest({}, response, function() {});
+        underTest({}; response, function() {});
 
         this.callback(null, responseHeaderSpy);
     };
