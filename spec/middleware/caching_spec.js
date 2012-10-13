@@ -7,8 +7,10 @@ var assert = require('chai').assert,
 describe('cache definitions', function() {
     describe('when you say a resource can be cached privately for five minutes and make a GET request', function() {
         it('should update response header max-age', function() {
+            debugger;
             var spy = applyCachingAndSpyOnReponseHeaderSet(cache.minutes(5).privately(), "get");
-            correctCacheControlValuesSet(300, "private")
+            debugger;
+            correctCacheControlValuesSet(300, "private", spy)
         });
     });
 
@@ -95,17 +97,15 @@ function correctCacheControlValuesSet(expectedMaxAge, location, responseHeaderSp
 }
 
 function applyCachingAndSpyOnReponseHeaderSet(cachingDefinition, httpMethodForRequest) {
-    return function() {
-        var underTest = createCachingMiddleware(cachingDefinition, httpMethodForRequest);
+    var underTest = createCachingMiddleware(cachingDefinition, httpMethodForRequest);
 
-        var response = {
-            header: function(name, value) {}
-        };
-
-        var responseHeaderSpy = sinon.spy(response, "header");
-
-        underTest({}, response, function() {});
-
-        this.callback(null, responseHeaderSpy);
+    var response = {
+        header: function(name, value) {}
     };
+
+    var responseHeaderSpy = sinon.spy(response, "header");
+
+    underTest({}, response, function() {});
+
+    return responseHeaderSpy;
 }
