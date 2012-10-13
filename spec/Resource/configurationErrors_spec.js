@@ -14,7 +14,7 @@ describe('errors specifying resource', function() {
                 });
             }
 
-            assert.instanceOf(createResource, Error);
+            assert.throws(createResource, Error);
         });
     });
 
@@ -31,7 +31,7 @@ describe('errors specifying resource', function() {
                 });
             };
 
-            assert.instanceOf(createResource, Error);
+            assert.throws(createResource, Error);
         });
     });
 

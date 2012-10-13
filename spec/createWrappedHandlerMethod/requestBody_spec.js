@@ -54,7 +54,7 @@ describe('wrapped handler method', function() {
     });
 
     describe('when you call a wrapped handler method associated with PUT and access request body in handler', function() {
-        it('should get appropriate value', function(bodyInRequestInHandler) {
+        it('should get appropriate value', function() {
             var bodyInRequestInHandler = callWrappedHandlerAndReturnRequestBody("put");
             assert.equal(bodyInRequestInHandler, bodyFromRequest);
         });

@@ -7,9 +7,7 @@ var assert = require('chai').assert,
 describe('cache definitions', function() {
     describe('when you say a resource can be cached privately for five minutes and make a GET request', function() {
         it('should update response header max-age', function() {
-            debugger;
             var spy = applyCachingAndSpyOnReponseHeaderSet(cache.minutes(5).privately(), "get");
-            debugger;
             correctCacheControlValuesSet(300, "private", spy)
         });
     });

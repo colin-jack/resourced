@@ -106,4 +106,4 @@ DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 ## Running Tests
 The tests should provide a reasonable spec for the framework. They use [vows](http://vowsjs.org/) and can be run using:
 
-    vows spec/*_spec.js spec/**/*_spec.js spec/**/**/*_spec.js
+    mocha -R spec spec/ -w -G --recursive
