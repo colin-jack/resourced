@@ -2,7 +2,7 @@ var assert = require('assert');
 
 // TODO: Fill in.
 describe('wrapped handler method', function() {
-    describe('when you call a wrapped handler method': 'NYI'/*{
+    describe('when you call a wrapped handler method', function() { }); /*{
         
         topic: function () {  
         };

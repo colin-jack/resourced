@@ -13,6 +13,7 @@
 var assert = require('assert');
 
 describe('configuring resources from a directory with a range of files in it', function() {
-    describe('when you ask restless to load in from a directory with a range of files': function() {
+    describe('when you ask restless to load in from a directory with a range of files', function() {
+        // TODO - Populate
     });
 });
