@@ -1,5 +1,5 @@
 # resourced
-NOTE - This is a very very early version of this project, definitely not ready for use.
+NOTE - This is a very very early version of this project, definitely not ready for use but I am very interested in any feedback.
 ## Philosophy
 A small HTTP focussed DSL on top of express that makes it easier to develop RESTful or resource oriented API's. You structure your service layer using resources each of which has the following:
 
@@ -104,6 +104,10 @@ POST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>
 DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 
 ## Running Tests
-The tests should provide a reasonable spec for the framework. They use [vows](http://vowsjs.org/) and can be run using:
+The tests should provide a reasonable spec for the framework. They use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
+
+  npm install -g mocha
+
+You can then run the tests using:
 
     mocha -R spec spec/ -w -G --recursive
