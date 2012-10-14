@@ -38,8 +38,21 @@ describe('populating arguments from request', function() {
     });
 
     describe('when you populate arguments from a request containing only query values', function() {
+         it('should populate appropriate arguments', function() {
+            var query = {id : 5, name: 6};
+            var handlerArguments = getHandlerArguments([], query);
+
+            assert.deepEqual(handlerArguments, [5, 6, undefined, undefined, undefined]);
+        });
     });
 
     describe('when you populate arguments from a request containing query and parameter values', function() {
+        it('should populate appropriate arguments giving precedence to values from params', function() {
+            var params = {id : 5, name: 6};
+            var query = {id: 89, foe: true}
+            var handlerArguments = getHandlerArguments(params, query);
+
+            assert.deepEqual(handlerArguments, [5, 6, undefined, undefined, undefined, true]);
+        });
     });
 });

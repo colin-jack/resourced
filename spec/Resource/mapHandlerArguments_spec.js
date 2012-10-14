@@ -24,7 +24,8 @@ describe('resource with single get method', function() {
                     "first" : 1,
                     "second" : 2,
                     "third" : 3
-                }
+                },
+                query: []
             };
 
             resourceSpy.configureExpress(expressSpy.stubExpress);
