@@ -106,7 +106,7 @@ DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 ## Running Tests
 The tests should provide a reasonable spec for the framework. They use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
 
-  npm install -g mocha
+    npm install -g mocha
 
 You can then run the tests using:
 
