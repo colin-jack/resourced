@@ -39,4 +39,5 @@ describe('errors specifying resource', function() {
     // describe('when the resource URL is an absolute URL') //'NYI - Consider flatiron / revalidator',    
     // describe('when the resource cache value is not a caching definition object') //'NYI - Consider flatiron / revalidator',    
     // describe('when you have multiple methods using same HTTP verb') // 'NYI'
+    // describe('when the url ends with a /') // warning
 });

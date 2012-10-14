@@ -3,6 +3,7 @@ express = require('express')
 async = require('async')
 winston = require('winston')
 restless = require('../index')
+inspect = require('util').inspect
 require('longjohn') # Might as well get long stack traces as this is an example app
 
 # TODO - Key aspects
@@ -15,7 +16,6 @@ createExpress = (done) ->
   global.app = express()
 
   app.use(express.logger())
-  app.use(app.router)
 
   app.configure 'development', ->
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -32,11 +32,14 @@ configureRestless = (done) ->
 startExpress = (done) ->
   winston.info "Express is now starting."
 
-  port = process.env.PORT || 3050;
+  port = process.env.PORT || 3050;  
+
+  winston.info "Routes: " +  inspect(app.routes)
 
   app.listen port, ->
     winston.info "Express server listening on port #{port} in #{app.settings.env} mode."
     winston.info 'Please go to "http://localhost:3050/people/0" to start your exciting journey.'
+
     done()
 
 configureLogging = (done) ->
