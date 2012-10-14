@@ -48,6 +48,7 @@ var callWrappedHandlerAndReturnRequestBody = function (httpMethod) {
 describe('wrapped handler method', function() {
     describe('when you call a wrapped handler method associated with PUT', function() {
         it('should pass in response body as last argument', function() {
+            debugger;
             var bodySentToHandler = callWrappedHandlerAndReturnBodyPassedIn("put");
             assert.equal(bodySentToHandler, bodyFromRequest);
         });

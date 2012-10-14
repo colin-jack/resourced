@@ -5,10 +5,17 @@ var assert = require('chai').assert,
 
 describe('resource with single get method', function() {
     describe('when you trigger the wrapped handler method', function() {        
-        var resourceSpy;
+        var argumentsPassedToGetMethod = [];
 
         beforeEach(function () { 
-            resourceSpy = resourceObjectMother.createGetOnlyResourceSpy();
+            var spyingGetMethod = function(third, second, first) {
+                argumentsPassedToGetMethod.push(third);
+                argumentsPassedToGetMethod.push(second);
+                argumentsPassedToGetMethod.push(first); 
+            };
+
+            var resourceSpy = resourceObjectMother.createGetOnlyResource({ getMethod: spyingGetMethod});
+
             var expressSpy = expressConfigurationSpy("get", resourceSpy);
 
             // NOTE - These are mapped to the arguments of the wrapped handler method
@@ -27,12 +34,8 @@ describe('resource with single get method', function() {
             return resourceSpy;
         });
 
-        it('should not get an error', function() {
-            assert.isFalse(resourceSpy instanceof Error, resourceSpy.toString());
-        });
-
         it('should populate handler arguments with request parameters, matching on name', function () {
-            assert.deepEqual(resourceSpy.getArgumentsPassedToGetMethod(), [3, 2, 1]);
+            assert.deepEqual(argumentsPassedToGetMethod, [3, 2, 1]);
         });
     });
 });

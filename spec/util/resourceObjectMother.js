@@ -22,27 +22,6 @@ var createGetOnlyResource = function(options) {
     });
 };
 
-// Resource with a get method that spies on calls to that method.
-var createGetOnlyResourceSpy = function() {
-    var argumentsPassedToGetMethod = [];
-
-    var spyingGetMethod = function(third, second, first) {
-        argumentsPassedToGetMethod.push(third);
-        argumentsPassedToGetMethod.push(second);
-        argumentsPassedToGetMethod.push(first); 
-    };
-
-    var resource = createGetOnlyResource({ getMethod: spyingGetMethod});
-
-    // Used to return record of arguments passed to get method, making spying simple.
-    resource.getArgumentsPassedToGetMethod = function() {
-        return argumentsPassedToGetMethod;
-    }
-
-    return resource;
-};
-
 module.exports = {
-    createGetOnlyResource : createGetOnlyResource,
-    createGetOnlyResourceSpy : createGetOnlyResourceSpy
+    createGetOnlyResource : createGetOnlyResource
 };  
