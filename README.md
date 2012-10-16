@@ -26,8 +26,9 @@ app.use(express.bodyParser())
 ### Resource Definition - JavaScript
 The following shows a simple person resource, where the JSON response includes a link to the associated address:
 ```js
-var Resource = require('resourced').Resource,
-    http = require('resourced').http;
+var Resource = require('resourced').Resource
+    http = require('resourced').http,
+    cache = require('resourced').cache;
 
 module.exports = new Resource({
     url: "/people/:id",
