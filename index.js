@@ -1,11 +1,13 @@
 var winston = require('winston');
-var libNamespace = require('./lib/namespace');
+global.lib = require('./lib/namespace');
+
+var Resource = require('./lib/resource/Resource');
+var cache = require('./lib/caching/cache');
+var http = require('./lib/resource/http');
 
 var configureResourcesInDirectory = function(directoryPath, done) {
     try {
-        global.lib = libNamespace;
-
-        var registerAllResourcesInDirectory = libNamespace.require('registerAllResourcesInDirectory');
+        var registerAllResourcesInDirectory = lib.require('registerAllResourcesInDirectory');
         registerAllResourcesInDirectory(directoryPath, app, done);
     } catch (ex) {
         winston.error("Failed to configure resources due to error: " + ex);
@@ -14,5 +16,8 @@ var configureResourcesInDirectory = function(directoryPath, done) {
 };
 
 module.exports = { 
-    configureResourcesInDirectory : configureResourcesInDirectory
+    configureResourcesInDirectory : configureResourcesInDirectory,
+    Resource: Resource,
+    cache: cache,
+    http: http
 }

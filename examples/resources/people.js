@@ -41,6 +41,13 @@
     cache: caching.minutes(5).publically(),
     respondsTo: [
       http.get(function(from, to) {
+        ensure(from).populated().numeric({
+          greaterThanOrEqualTo: 0
+        });
+        ensure(to).populated().numeric({
+          greaterThan: from,
+          message: "The from value must be less than the to value."
+        });
         require('util').log("From: " + from);
         return " ************** OK *************** ";
       })

@@ -14,6 +14,8 @@ people = [
     { firstName: "dorothy", lastName: "fibbers" },
 ]
 
+
+
 # This is a work in progress...
 # Requests to try:
 #   curl http://localhost/3050/people?from=0&to=5
@@ -24,6 +26,10 @@ module.exports = new Resource({
 
     respondsTo: [
         http.get (from, to) ->
+            ensure(from).populated().numeric( greaterThanOrEqualTo: 0 )
+            ensure(to).populated().numeric( greaterThan: from, message: "The from value must be less than the to value." )
+
+
             require('util').log("From: " + from)
             return " ************** OK *************** "
 

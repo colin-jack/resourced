@@ -9,6 +9,7 @@ require('longjohn') # Might as well get long stack traces as this is an example 
 # TODO - Key aspects
 # [1] Body parse is required
 # [2] Call to configure restless, it will scan the specified directory for resource files.
+# [3] Uncomment if you want to see the routes being used
 
 createExpress = (done) ->
   winston.info "Creating express."
@@ -34,7 +35,8 @@ startExpress = (done) ->
 
   port = process.env.PORT || 3050;  
 
-  winston.info "Routes: " +  inspect(app.routes)
+  #[3]
+  #winston.info "Routes: " +  inspect(app.routes)
 
   app.listen port, ->
     winston.info "Express server listening on port #{port} in #{app.settings.env} mode."

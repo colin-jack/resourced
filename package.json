@@ -1,6 +1,6 @@
 {
   "name": "resourced",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A resource oriented DSL for configuring express.js (REST).",
   "main": "index",
 
@@ -25,7 +25,8 @@
     "chai": "*",
     "sinon": "*",
     "longjohn": "*",
-    "express": "*"
+    "express": "*",
+    "validatron": "*"
   },
 
   "engines": {
@@ -37,11 +38,10 @@
     "email": "colin.jack@gmail.com"
   },
 
-  "_id": "resourced@0.2.0",
+  "_id": "resourced@0.3.0",
   "optionalDependencies": {},
   "_engineSupported": true,
   "_npmVersion": "1.1.16",
   "_nodeVersion": "v0.6.4",
-  "_defaultsLoaded": true,
-  "_from": "restless@>= 0.0.0"
+  "_defaultsLoaded": true
 }
