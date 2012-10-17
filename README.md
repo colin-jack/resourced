@@ -1,7 +1,9 @@
 # resourced
-NOTE - This is an early version of this project, definitely not ready for use but I am very interested in any feedback.
+NOTE - This is an early version of this project and is not yet fully featured but I am very interested in any feedback.
 ## Philosophy
-A small HTTP focussed DSL on top of express that makes it easy to define JSON services. Your service layer will be made up of one or more resources, each containing:
+It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources. 
+
+This lightweight DSL thus introduces abstractions that make it easy to design in a resource-oriented (RESTful) style. Each resource contains:
 * URL - The address of the resource.
 * Methods - One or more HTTP request handler methods.
 * Caching - Where and how long to cache responses from the resource (optional).
