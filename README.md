@@ -1,4 +1,4 @@
-# resourced
+# resourced (node.js)
 NOTE - This is an early version of this project and is not yet fully featured but I am very interested in any feedback.
 ## Philosophy
 It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources. 
