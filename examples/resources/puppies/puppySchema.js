@@ -10,10 +10,6 @@
     name: mustBe().populated().string({
       maxLength: 50
     }),
-    dateOfBirth: mustBe().date({
-      before: now()
-    }),
-    neutered: mustBe().boolean(),
     cell: mustBe().string()
   };
 

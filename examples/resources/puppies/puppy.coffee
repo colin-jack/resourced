@@ -6,7 +6,7 @@ ensureNumericId = require('./ensureNumericId')
 puppySchema = require('./puppySchema')
 puppyChangeProcessor = require('./puppyChangeProcessor')
 
-module.exports = new Resource(
+module.exports = new Resource({
   url: "/puppies/:id",
 
   cache: caching.minutes(5).publically(),
@@ -26,10 +26,4 @@ module.exports = new Resource(
 
       body: puppySchema
   ]
-)
-
-
-
-
-
-    
+})
