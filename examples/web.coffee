@@ -2,13 +2,13 @@ namespace = require('require-namespace')
 express = require('express')
 async = require('async')
 winston = require('winston')
-restless = require('../index')
+resourced = require('../index')
 inspect = require('util').inspect
 require('longjohn') # Might as well get long stack traces as this is an example app
 
 # TODO - Key aspects
 # [1] Body parse is required
-# [2] Call to configure restless, it will scan the specified directory for resource files.
+# [2] Call to configure resourced, it will scan the specified directory for resource files.
 # [3] Uncomment if you want to see the routes being used
 
 createExpress = (done) ->
@@ -28,7 +28,7 @@ createExpress = (done) ->
 
 configureRestless = (done) ->
   # [2]
-  restless.configureResourcesInDirectory(__dirname + '/resources', done)
+  resourced.configureResourcesInDirectory(__dirname + '/resources', done)
 
 startExpress = (done) ->
   winston.info "Express is now starting."

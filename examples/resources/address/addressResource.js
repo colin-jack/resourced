@@ -2,11 +2,11 @@
 (function() {
   var Resource, cache, http;
 
-  Resource = require('../../lib/resource/Resource');
+  Resource = require('../../../lib/resource/Resource');
 
-  http = require('../../lib/resource/http');
+  http = require('../../../lib/resource/http');
 
-  cache = require('../../lib/caching/cache');
+  cache = require('../../../lib/caching/cache');
 
   module.exports = new Resource({
     url: "/address/:id",

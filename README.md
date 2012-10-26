@@ -17,7 +17,7 @@ To configure restless you need to tell it which directory to look for resources 
 
 ```js
 var resourcesDirectory = __dirname + '/resources';
-restless.configureResourcesInDirectory(resourcesDirectory, done);
+resourced.configureResourcesInDirectory(resourcesDirectory, done);
 ```
 The directory will be scanned for files including resources. You must also tell express to use the body parser:
 ```js

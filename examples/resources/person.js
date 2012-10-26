@@ -2,7 +2,7 @@
 var Resource = require('../../lib/resource/Resource'),
     http = require('../../lib/resource/http'),
     caching = require('../../lib/caching/cache'),
-    addressResource = require('./addressResource'),
+    addressResource = require('./address/addressResource'),
     log = require('util').log,
     format = require('util').format,
     inspect = require('util').inspect;

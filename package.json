@@ -1,8 +1,11 @@
 {
-  "name": "resourced",
   "version": "0.3.0",
+
+  "name": "resourced",
   "description": "A resource oriented DSL for configuring express.js (REST).",
   "main": "index",
+
+  "preferGlobal": false,
 
   "author": {
     "name": "Colin Jack"
@@ -17,8 +20,21 @@
     "winston": "*",
     "async": "*",
     "underscore": "*",
-    "require-namespace": "*"
+    "require-namespace": "*",
+    "rules" : "*"
   },
+
+  "scripts": {
+    "test": "mocha -R spec spec/testFixture spec/ -w -G --recursive"
+  },
+
+  "keywords": [
+    "REST",
+    "HTTP",
+    "RESTful",
+    "resource oriented",
+    "ROA"
+  ],
 
   "devDependencies": {
     "mocha": "*",
@@ -26,11 +42,9 @@
     "sinon": "*",
     "longjohn": "*",
     "express": "*",
-    "validatron": "*"
-  },
-
-  "engines": {
-    "node": ">= 0.4.0"
+    "coffee-script": "*",
+    "objectcompare" : "*",
+    "changeprocessor": "*"
   },
 
   "_npmUser": {
@@ -38,10 +52,9 @@
     "email": "colin.jack@gmail.com"
   },
 
-  "_id": "resourced@0.3.0",
-  "optionalDependencies": {},
-  "_engineSupported": true,
-  "_npmVersion": "1.1.16",
-  "_nodeVersion": "v0.6.4",
-  "_defaultsLoaded": true
+  "license": "MIT",
+  
+  "engines": {
+    "node": ">=0.6"
+  }
 }
