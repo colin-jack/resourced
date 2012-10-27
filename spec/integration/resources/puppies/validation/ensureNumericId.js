@@ -1,5 +1,5 @@
 var mustBe = require('rules').mustBe;
 
 module.exports = {
-id: mustBe().numeric().populated()
+    id: mustBe().numeric().populated()
 };

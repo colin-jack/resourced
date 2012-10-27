@@ -2,8 +2,8 @@ var Resource = lib.require('Resource');
 var http = lib.require('http');
 var cache = lib.require('cache');
 
-var ensureNumericId = require('./ensureNumericId');
-var puppySchema = require('./puppySchema');
+var ensureNumericId = require('./validation/ensureNumericId');
+var puppySchema = require('./validation/puppySchema');
 var puppyChangeProcessor = require('./puppyChangeProcessor');
 
 module.exports = new Resource({
