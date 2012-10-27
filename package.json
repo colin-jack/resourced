@@ -45,7 +45,8 @@
     "express": "*",
     "coffee-script": "*",
     "objectcompare" : "*",
-    "changeprocessor": "*"
+    "changeprocessor": "*",
+    "supertest": "*"
   },
 
   "_npmUser": {

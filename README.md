@@ -110,7 +110,7 @@ The tests should provide a reasonable spec for the framework. They use [mocha](h
 
     npm install -g mocha
 
-You can then run the tests using:
+You can then run the tests using ```npm test``` or:
 
     mocha -R spec spec/unit/testFixture spec/unit -w -G --recursive -b
     mocha -R spec spec/integration/testFixture spec/integration -w -G --recursive -b
