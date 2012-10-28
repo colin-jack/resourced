@@ -1,27 +1,20 @@
-var request = require('supertest'), 
+var superTest = require('supertest'), 
     underTest = require('testresources'), 
     express = require('express');
 
 describe('GET /users', function(){
-    var app;
+    var app,
+        body = { name: 'tobi' };
 
     beforeEach(function() {
         app = express();
 
         app.get('/user', function(req, res){
-          res.send(200, { name: 'tobi' });
+          res.send(200, body);
         });
     })
 
-    it('respond with json', function(done){
-        // request(app)
-        //     .get('/user')
-        //     .set('Accept', 'application/json')
-        //     .expect('Content-Type', /json/)
-        //     .expect(200, done);
-        debugger;
-        //request(app)
-        underTest(app).get('/user')
-        done();
+    it('respond with json', function(){
+        underTest(app).get('/user').expectBody(body)
     })
 })
