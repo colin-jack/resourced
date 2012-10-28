@@ -13,7 +13,8 @@ module.exports = new Resource({
     {
       get: function(id) {
         return {
-          name: "spot"
+          name: "spot",
+          id: id
         };
       },
 
