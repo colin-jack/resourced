@@ -1,5 +1,5 @@
 {
-  "version": "0.3.1",
+  "version": "0.3.2",
 
   "name": "resourced",
   "description": "A resource oriented DSL for configuring express.js (REST).",

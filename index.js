@@ -9,7 +9,7 @@ var configureResourcesInDirectory = function(directoryPath, done) {
     try {
         var wrappingDone = function() {
             if (done) {
-                winston.info("******************* DONE ********************************");
+                winston.info("Completed resources registration.");
                 done();
             }
         }
