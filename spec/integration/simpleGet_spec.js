@@ -14,6 +14,7 @@ describe('GET /users', function(){
     })
 
     it('respond with json', function() {
-        request(app).get('/puppy/5').end();
+        request(app).get('/puppy/5').expectBody(body).end();
+        
     })
 })
