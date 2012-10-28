@@ -10,11 +10,11 @@ describe('GET /users', function(){
         app = express();
 
         app.get('/user', function(req, res){
-          res.send(200, body);
+          res.send(201, body);
         });
     })
 
-    it('respond with json', function(){
-        underTest(app).get('/user').expectBody(body)
+    it('respond with json', function() {
+        underTest(app).get('/user').end();
     })
 })
