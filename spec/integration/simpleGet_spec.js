@@ -1,5 +1,4 @@
-var superTest = require('supertest'), 
-    underTest = require('testresources'), 
+var request = require('testresources'), 
     express = require('express');
 
 describe('GET /users', function(){
@@ -15,6 +14,6 @@ describe('GET /users', function(){
     })
 
     it('respond with json', function() {
-        underTest(global.app).get('/puppy/5').end();
+        request(app).get('/puppy/5').end();
     })
 })
