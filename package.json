@@ -46,7 +46,7 @@
     "coffee-script": "*",
     "objectcompare" : "*",
     "changeprocessor": "*",
-    "supertest": "*"
+    "testresources": "0.0.5"
   },
 
   "_npmUser": {

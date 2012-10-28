@@ -16,13 +16,15 @@ module.exports = new Resource({
           name: "spot"
         };
       },
-      "arguments": ensureNumericId
+
+      arguments: ensureNumericId
     }, 
     {
       put: function(id, body) {
         return puppyChangeProcessor(original, body, this.populateResponse);
       },
-      "arguments": ensureNumericId,
+
+      arguments: ensureNumericId,
       body: puppySchema
     }
   ]
