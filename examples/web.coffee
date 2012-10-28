@@ -33,14 +33,14 @@ configureRestless = (done) ->
 startExpress = (done) ->
   winston.info "Express is now starting."
 
-  port = process.env.PORT || 3050;  
+  port = process.env.PORT || 3051;  
 
   #[3]
   #winston.info "Routes: " +  inspect(app.routes)
 
   app.listen port, ->
     winston.info "Express server listening on port #{port} in #{app.settings.env} mode."
-    winston.info 'Please go to "http://localhost:3050/people/0" to start your exciting journey.'
+    winston.info 'Please go to "http://localhost:3051/people/0" to start your exciting journey.'
 
     done()
 

@@ -8,15 +8,14 @@ var http = require('./lib/resource/http');
 var configureResourcesInDirectory = function(directoryPath, done) {
     try {
         var wrappingDone = function() {
-            winston.info("******************* DONE ********************************");
             if (done) {
+                winston.info("******************* DONE ********************************");
                 done();
             }
         }
 
         var registerAllResourcesInDirectory = lib.require('registerAllResourcesInDirectory');
         registerAllResourcesInDirectory(directoryPath, app, wrappingDone);
-        winston.info("******************* OUT ********************************");
     } catch (ex) {
         winston.error("Failed to configure resources due to error: " + ex);
         done(ex);
