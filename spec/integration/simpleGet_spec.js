@@ -4,17 +4,17 @@ var superTest = require('supertest'),
 
 describe('GET /users', function(){
     var app,
-        body = { name: 'tobi' };
+        body = { name: "spot" };
 
     beforeEach(function() {
-        app = express();
+        // app = express();
 
-        app.get('/user', function(req, res){
-          res.send(201, body);
-        });
+        // app.get('/user', function(req, res){
+        //   res.send(201, body);
+        // });
     })
 
     it('respond with json', function() {
-        underTest(app).get('/user').end();
+        underTest(global.app).get('/puppy/5').end();
     })
 })

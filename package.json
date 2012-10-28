@@ -20,7 +20,7 @@
     "winston": "*",
     "async": "*",
     "underscore": "*",
-    "require-namespace": "*",
+    "require-namespace": "0.1*",
     "rules" : "*"
   },
 
@@ -44,9 +44,10 @@
     "longjohn": "*",
     "express": "*",
     "coffee-script": "*",
-    "objectcompare" : "*",
+    "objectcompare": "*",
     "changeprocessor": "*",
-    "testresources": "0.0.73"
+    "testresources": "0.0.*",
+    "supertest": "*"
   },
 
   "_npmUser": {
