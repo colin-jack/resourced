@@ -2,4 +2,5 @@
 // under control so  we don't end up with paths like ../../../../lib/Resource
 var testFixture = require('./../unit/testFixture');
 
+// Althoug tests should try to register too we might as well kick off the registration immediately.
 require('./registerTestResources')();
