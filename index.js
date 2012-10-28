@@ -9,7 +9,9 @@ var configureResourcesInDirectory = function(directoryPath, done) {
     try {
         var wrappingDone = function() {
             winston.info("******************* DONE ********************************");
-            done();
+            if (done) {
+                done();
+            }
         }
 
         var registerAllResourcesInDirectory = lib.require('registerAllResourcesInDirectory');
