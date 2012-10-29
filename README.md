@@ -58,7 +58,7 @@ The response to a GET request for the associated URI (for example /people/5) wou
 
     HTTP/1.1 200 OK
     X-Powered-By: Express
-    Cache-Control: max-age:300, public
+    Cache-Control: max-age=300, public
     Content-Type: application/json; charset=utf-8
     Content-Length: 129
     ...

@@ -91,7 +91,7 @@ function assertNoCachingMiddlewareCreated(cachingMiddleware) {
 
 function correctCacheControlValuesSet(expectedMaxAge, location, responseHeaderSpy) {
     assert.equal(responseHeaderSpy.firstCall.args[0], 'Cache-Control');
-    assert.equal(responseHeaderSpy.firstCall.args[1], 'max-age:' + expectedMaxAge + ', ' + location);
+    assert.equal(responseHeaderSpy.firstCall.args[1], 'max-age=' + expectedMaxAge + ', ' + location);
 }
 
 function applyCachingAndSpyOnReponseHeaderSet(cachingDefinition, httpMethodForRequest) {
