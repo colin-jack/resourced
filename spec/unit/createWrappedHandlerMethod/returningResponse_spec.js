@@ -1,24 +1,25 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    fixture = require('./../testFixture');
-var createWrappedHandlerMethod = fixture.require('createWrappedHandlerMethod');
-
-var returnedFromWrapped = {
-};
+    fixture = require('./../testFixture'),
+    testUtil = require('./testUtil'),
+    createWrappedHandlerMethod = fixture.require('createWrappedHandlerMethod');
 
 describe('wrapped handler method', function() {
     describe('when you return an object from a GET handler method and do not otherwise set response body', function() {
-        var responseSendSpy;
+        var responseSendSpy, 
+            returnedFromWrapped = {};
 
         beforeEach(function() {  
             var fakeResponse = { send: function() {} };
             responseSendSpy = sinon.spy(fakeResponse, "send");
 
-            var toWrap = function() {
-                return returnedFromWrapped;
-            };
+            var handlerMethodDefinition = testUtil.createGetHandlerMethodDefinition(returnedFromWrapped);
 
-            var wrapped = createWrappedHandlerMethod("get", toWrap);
+            var fakeResourceDefinition = {};
+
+            debugger;
+
+            var wrapped = createWrappedHandlerMethod("get", handlerMethodDefinition, "get", fakeResourceDefinition);
 
             wrapped({}, fakeResponse);
         });

@@ -2,21 +2,6 @@ var assert = require('chai').assert,
              fixture = require('./../testFixture'),
              populateArgumentsFromRequest = fixture.require('populateArgumentsFromRequest');
 
-var createRequest = function(params, query) {
-    return {
-        params: params,
-        query: query
-    };
-}
-
-var handlerMethod = function(id, name, from, to, friend, foe) {
-}
-
-var getHandlerArguments = function(params, query) {
-    var request = createRequest(params, query);
-    return populateArgumentsFromRequest(request, handlerMethod);
-}
-
 // TODO: Fill in.
 describe('populating arguments from request', function() {
     describe('when you populate arguments from a request containing parameters for some values', function() {
@@ -55,4 +40,19 @@ describe('populating arguments from request', function() {
             assert.deepEqual(handlerArguments, [5, 6, undefined, undefined, undefined, true]);
         });
     });
+
+    function createRequest(params, query) {
+        return {
+            params: params,
+            query: query
+        };
+    }
+
+    function handlerMethod(id, name, from, to, friend, foe) {
+    }
+
+    function getHandlerArguments(params, query) {
+        var request = createRequest(params, query);
+        return populateArgumentsFromRequest(request, handlerMethod);
+    }
 });

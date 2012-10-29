@@ -16,7 +16,13 @@ var callWrappedHandler = function(toWrap, httpMethod) {
         body: bodyFromRequest
     };
 
-    var wrapped = createWrappedHandlerMethod(httpMethod, toWrap);
+    var resourceDefinition = {};
+
+    var handlerMethodDefinition = {
+        get: toWrap
+    };
+
+    var wrapped = createWrappedHandlerMethod(httpMethod, handlerMethodDefinition, "get", resourceDefinition);
 
     wrapped(fakeRequest, requestResponseBuilder.createFakeResponse());
 };

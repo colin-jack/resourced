@@ -14,7 +14,7 @@ describe('When you send get request to simple resource', function(){
             .end(testUtil.assertNoError(done));
     })
 
-    // it('should raise appropriate error if argument does not match expectations', function(done) {
-    //     request(app).get('/puppies/bob').expectStatus(400).end(done);
-    // })
+    it('should raise appropriate error if argument does not match expectations', function(done) {
+        request(app).get('/puppies/bob').expectStatus(400).end(done);
+    })
 })
