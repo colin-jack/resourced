@@ -17,8 +17,6 @@ describe('wrapped handler method', function() {
 
             var fakeResourceDefinition = {};
 
-            debugger;
-
             var wrapped = createWrappedHandlerMethod("get", handlerMethodDefinition, "get", fakeResourceDefinition);
 
             wrapped({}, fakeResponse);
