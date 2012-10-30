@@ -10,6 +10,20 @@ var createGetHandlerMethodDefinition = function(toReturn) {
     return handlerMethodDefinition;
 }
 
+var createFakeResponse = function() {
+    return { send: function() {} };
+};
+
+var createFakeRequest  = function() {
+   return {
+        params: {
+            id: "bob"
+        }
+    }
+}
+
 module.exports = {
-    createGetHandlerMethodDefinition : createGetHandlerMethodDefinition
+    createGetHandlerMethodDefinition : createGetHandlerMethodDefinition,
+    createFakeResponse : createFakeResponse,
+    createFakeRequest : createFakeRequest
 }
