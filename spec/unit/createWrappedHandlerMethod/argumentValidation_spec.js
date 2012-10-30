@@ -6,24 +6,34 @@ var assert = require('chai').assert,
     createWrappedHandlerMethod = fixture.require('createWrappedHandlerMethod');
 
 describe('wrapped handler method - validating arguments', function() {
+    var wrappedHandler;
+
+    beforeEach(function() {  
+        var handlerDefinition = {
+            get: function(id) {
+            },
+            arguments: {
+                id: mustBe().numeric()
+            }
+        };
+
+        wrappedHandler = createWrappedHandlerMethod("get", handlerDefinition, "get", {});
+    });
+
     describe('when the method has argument validation applied', function() {
-        var responseSendSpy;
+        var fakeResponse;
 
         beforeEach(function() {  
-            var handlerDefinition = {
-                get: function(id) {
-                },
-                arguments: {
-                    id: mustBe().numeric()
-                }
-            };
+            fakeResponse = testUtil.createResponseSpy();
+            
+            var invalidParams = { id: "bob" };
+            var fakeRequest = testUtil.createFakeRequest(invalidParams);
 
-            var wrapped = createWrappedHandlerMethod("get", handlerDefinition, "get", {});
+            wrappedHandler(fakeRequest, fakeResponse);
         });
 
-        it('should fail if the passed in argument value is not suitable', function() {
-            // assert.isTrue(responseSendSpy.calledOnce);
-            // assert.equal(returnedFromWrapped, responseSendSpy.firstCall.args[0]);
+        it('should set response as 400 if the passed in argument value is not suitable', function() {
+            assert.equal(fakeResponse.setStatus, 400);
         });
     });
 

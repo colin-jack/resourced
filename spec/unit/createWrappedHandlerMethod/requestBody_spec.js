@@ -24,7 +24,7 @@ var callWrappedHandler = function(toWrap, httpMethod) {
 
     var wrapped = createWrappedHandlerMethod(httpMethod, handlerMethodDefinition, "get", resourceDefinition);
 
-    wrapped(fakeRequest, requestResponseBuilder.createFakeResponse());
+    wrapped(fakeRequest, requestResponseBuilder.createResponseSpy());
 };
 
 var callWrappedHandlerAndReturnBodyPassedIn = function (httpMethod) {

@@ -1,11 +1,11 @@
-var createFakeResponse = function() {
+var createResponseSpy = function() {
     return {
         send: function() {}
     };
 }
 
 var requestResponseBuilder = {
-    createFakeResponse : createFakeResponse
+    createResponseSpy : createResponseSpy
 
 }
 

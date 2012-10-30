@@ -10,7 +10,7 @@ describe('wrapped handler method', function() {
             returnedFromWrapped = {};
 
         beforeEach(function() {  
-            var fakeResponse = testUtil.createFakeResponse();
+            var fakeResponse = testUtil.createResponseSpy();
             responseSendSpy = sinon.spy(fakeResponse, "send");
 
             var handlerMethodDefinition = testUtil.createGetHandlerMethodDefinition(returnedFromWrapped);
