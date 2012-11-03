@@ -18,7 +18,7 @@ module.exports = new Resource({
         };
       },
 
-      argumentValidation: ensureNumericId
+      argumentRules: ensureNumericId
     }, 
     {
       put: function(id, body) {

@@ -2,6 +2,7 @@ var assert = require('chai').assert,
     sinon = require('sinon'),
     fixture = require('./../../testFixture'),
     testUtil = require('./../testUtil'),
+    responseTestUtil = require('./../responseTestUtil'),
     argumentValidationTestUtil = require('./argumentValidationTestUtil')
     createRequestHandler = fixture.require('createRequestHandler');
 
@@ -18,7 +19,7 @@ describe('handling request - validating arguments', function() {
         var fakeResponse;
 
         beforeEach(function() {  
-            fakeResponse = testUtil.createResponseSpy();
+            fakeResponse = responseTestUtil.createResponseSpy();
             
             var invalidParams = { id: "bob" };
             var fakeRequest = testUtil.createFakeRequest(invalidParams);
@@ -27,7 +28,7 @@ describe('handling request - validating arguments', function() {
         });
 
         it('should set response as 400 if the passed in argument value is not suitable', function() {
-            assert.equal(fakeResponse.setStatus, 400);
+            assert.equal(fakeResponse.spiedStatus, 400);
         });
     });
 });

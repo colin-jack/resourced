@@ -10,7 +10,7 @@ describe('handling request', function() {
             returnedFromWrapped = {};
 
         beforeEach(function() {  
-            var fakeResponse = testUtil.createResponseSpy();
+            var fakeResponse = require('./responseTestUtil').createResponseSpy();
             responseSendSpy = sinon.spy(fakeResponse, "send");
 
             var handlerMethodDefinition = testUtil.createGetHandlerMethodDefinition(returnedFromWrapped);
