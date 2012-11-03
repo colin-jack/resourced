@@ -1,8 +1,8 @@
 var assert = require('assert');
 
 // TODO: Fill in.
-describe('wrapped handler method', function() {
-    /*describe('when there is a generic error from the the logic called by the wrapped handler method': 'NYI' /*{        
+describe('handling request', function() {
+    /*describe('when there is a generic error from the the logic called by the handling request': 'NYI' /*{        
         topic: function () {  
         };
 
@@ -11,7 +11,7 @@ describe('wrapped handler method', function() {
         };
     },
 
-    describe('when there is a custom error from the the logic called by the wrapped handler method': 'NYI'/*{        
+    describe('when there is a custom error from the the logic called by the handling request': 'NYI'/*{        
         topic: function () {  
         };
 

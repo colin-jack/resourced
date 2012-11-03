@@ -51,29 +51,29 @@ var callWrappedHandlerAndReturnRequestBody = function (httpMethod) {
     return bodyInRequestInHandler;
 };
 
-describe('wrapped handler method', function() {
-    describe('when you call a wrapped handler method associated with PUT', function() {
+describe('handling request', function() {
+    describe('when you call a handling request associated with PUT', function() {
         it('should pass in response body as last argument', function() {
             var bodySentToHandler = callWrappedHandlerAndReturnBodyPassedIn("put");
             assert.equal(bodySentToHandler, bodyFromRequest);
         });
     });
 
-    describe('when you call a wrapped handler method associated with PUT and access request body in handler', function() {
+    describe('when you call a handling request associated with PUT and access request body in handler', function() {
         it('should get appropriate value', function() {
             var bodyInRequestInHandler = callWrappedHandlerAndReturnRequestBody("put");
             assert.equal(bodyInRequestInHandler, bodyFromRequest);
         });
     });
 
-    describe('when you call a wrapped handler method associated with POST', function() {
+    describe('when you call a handling request associated with POST', function() {
         it('should pass in response body as last argument', function() {
             var bodySentToHandler = callWrappedHandlerAndReturnBodyPassedIn("post");
             assert.equal(bodySentToHandler, bodyFromRequest);
         });
     });
 
-    describe('when you call a wrapped handler method associated with POST and access request body in handler', function() {
+    describe('when you call a handling request associated with POST and access request body in handler', function() {
         it('should get appropriate value', function() {
             var bodyInRequestInHandler = callWrappedHandlerAndReturnRequestBody("post");
             assert.equal(bodyInRequestInHandler, bodyFromRequest);

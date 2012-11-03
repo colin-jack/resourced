@@ -4,7 +4,7 @@ var assert = require('chai').assert,
     testUtil = require('./testUtil'),
     createRequestHandler = fixture.require('createRequestHandler');
 
-describe('wrapped handler method', function() {
+describe('handling request', function() {
     describe('when you return an object from a GET handler method and do not otherwise set response body', function() {
         var responseSendSpy, 
             returnedFromWrapped = {};

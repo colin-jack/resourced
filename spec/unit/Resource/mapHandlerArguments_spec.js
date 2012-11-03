@@ -4,7 +4,7 @@ var assert = require('chai').assert,
     expressConfigurationSpy = require('./../util/expressConfigurationSpy');
 
 describe('resource with single get method', function() {
-    describe('when you trigger the wrapped handler method', function() {        
+    describe('when you trigger the handling request', function() {        
         var argumentsPassedToGetMethod = [];
 
         beforeEach(function () { 
@@ -18,7 +18,7 @@ describe('resource with single get method', function() {
 
             var expressSpy = expressConfigurationSpy("get", resourceSpy);
 
-            // NOTE - These are mapped to the arguments of the wrapped handler method
+            // NOTE - These are mapped to the arguments of the handling request
             var stubRequest =  {
                 params : {
                     "first" : 1,
