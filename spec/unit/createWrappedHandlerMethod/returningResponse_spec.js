@@ -2,7 +2,7 @@ var assert = require('chai').assert,
     sinon = require('sinon'),
     fixture = require('./../testFixture'),
     testUtil = require('./testUtil'),
-    createWrappedHandlerMethod = fixture.require('createWrappedHandlerMethod');
+    createRequestHandler = fixture.require('createRequestHandler');
 
 describe('wrapped handler method', function() {
     describe('when you return an object from a GET handler method and do not otherwise set response body', function() {
@@ -17,7 +17,7 @@ describe('wrapped handler method', function() {
 
             var fakeResourceDefinition = {};
 
-            var wrapped = createWrappedHandlerMethod("get", handlerMethodDefinition, "get", fakeResourceDefinition);
+            var wrapped = createRequestHandler("get", handlerMethodDefinition, "get", fakeResourceDefinition);
 
             wrapped({}, fakeResponse);
         });

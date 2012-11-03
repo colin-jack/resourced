@@ -21,7 +21,7 @@
     "async": "*",
     "underscore": "*",
     "require-namespace": "0.1*",
-    "rules" : "*"
+    "rules" : "0.6*"
   },
 
   "scripts": {

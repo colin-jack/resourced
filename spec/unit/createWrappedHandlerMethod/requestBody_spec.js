@@ -1,7 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
     requestResponseBuilder = require('./../util/requestResponseBuilder'),
-    createWrappedHandlerMethod = require('./../testFixture').require('createWrappedHandlerMethod');
+    createRequestHandler = require('./../testFixture').require('createRequestHandler');
 
 var bodyFromRequest = {
     foo: "bar"
@@ -22,7 +22,7 @@ var callWrappedHandler = function(toWrap, httpMethod) {
         get: toWrap
     };
 
-    var wrapped = createWrappedHandlerMethod(httpMethod, handlerMethodDefinition, "get", resourceDefinition);
+    var wrapped = createRequestHandler(httpMethod, handlerMethodDefinition, "get", resourceDefinition);
 
     wrapped(fakeRequest, requestResponseBuilder.createResponseSpy());
 };
