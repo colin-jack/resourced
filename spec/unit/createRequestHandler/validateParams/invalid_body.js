@@ -5,7 +5,7 @@ var fixture = require('./../../testFixture'),
     validationTestUtil = require('./validationTestUtil'),
     underTest = fixture.require('validateParams');
 
-describe('handling request - validating body', function() {
+describe('handling request - body', function() {
     describe("When the request body is validated", function() {
         var responseSpy, handlerDefinition, returned;
 
