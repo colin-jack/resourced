@@ -6,26 +6,54 @@ var assert = require('chai').assert,
     validateParams = fixture.require('validateParams');
 
 describe('handling request - validating parameters', function() {
-    describe("When the parameters are invalid", function() {
-        var responseSpy;
+    describe("When argument validation is applied to parameters", function() {
+        var responseSpy, handlerMethodDefinition;
 
         beforeEach(function() {  
-            var invalidParams = { id: "bob" };
-
             responseSpy = responseTestUtil.createResponseSpy();
-            var handlerMethodDefinition = argumentValidationTestUtil.createHandlerDefinitionWithRules();
-            var fakeRequest = testUtil.createFakeRequest(invalidParams);           
-
-            validateParams(fakeRequest, responseSpy, handlerMethodDefinition);
+            handlerMethodDefinition = argumentValidationTestUtil.createHandlerDefinitionWithRules();
         });
 
-        it('should set response as 400', function() {
-            assert.equal(responseSpy.spiedStatus, 400);
+        describe("and a query string is invalid", function() {
+            beforeEach(function() {  
+                var invalidNameQuery =  { name: undefined };
+                var fakeRequest = testUtil.createFakeRequest(null, invalidNameQuery);           
+
+                validateParams(fakeRequest, responseSpy, handlerMethodDefinition);
+            });
+
+            it('should set response as 400 and populate body with reason', function() {
+                var expectedBody = { 
+                    message: "The value must be populated.",
+                    property: "name"
+                };
+                
+                shouldCorrectlyFailValidation(responseSpy, expectedBody);
+            });
         });
 
-        it('should put description of issue in body', function() {
-            assert.equal(responseSpy.spiedStatus, 400);
+       describe("and a params value is invalid", function() {
+            beforeEach(function() {  
+                var invalidIdParams =  { id: "bob" };
+                var fakeRequest = testUtil.createFakeRequest(invalidIdParams);           
+
+                validateParams(fakeRequest, responseSpy, handlerMethodDefinition);
+            });
+
+             it('should set response as 400 and populate body with reason', function() {
+                var expectedBody = { 
+                    message: "The value must be numeric.",
+                    property: "id"
+                };
+                
+                shouldCorrectlyFailValidation(responseSpy, expectedBody);
+            });
         });
+
+        function shouldCorrectlyFailValidation(responseSpy, expectedBody) {
+            assert.equal(responseSpy.spiedStatus, 400);   
+            assert.deepEqual(responseSpy.spiedBody, expectedBody);
+        }
     });
 
     // TODO: No body argument but request body invalid

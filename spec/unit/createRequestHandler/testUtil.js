@@ -10,11 +10,12 @@ var createGetHandlerMethodDefinition = function(toReturn) {
     return handlerMethodDefinition;
 }
 
-var createFakeRequest  = function(params) {
+var createFakeRequest  = function(params, query) {
     params = params || { id: 5 }
 
     return {
-        params: params
+        params: params,
+        query: query
     }
 }
 

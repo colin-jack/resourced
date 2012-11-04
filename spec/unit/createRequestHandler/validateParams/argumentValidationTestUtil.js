@@ -5,10 +5,11 @@ var createHandlerDefinitionWithRules = function() {
             get: function(id) {
             },
             argumentRules: {
-                id: mustBe().numeric()
+                id: mustBe().numeric(),
+                name: mustBe().populated().string()
             },
             bodyRules: {
-                name: mustBe().populated().string()
+                
             }
         };
 }
