@@ -1,8 +1,7 @@
-var assert = require('chai').assert,
-    fixture = require('./../../testFixture'),
+var fixture = require('./../../testFixture'),
     testUtil = require('./../testUtil'),
     responseTestUtil = require('./../responseTestUtil'),
-    argumentValidationTestUtil = require('./argumentValidationTestUtil'),
+    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validateParams = fixture.require('validateParams');
 
 describe('handling request - validating parameters', function() {
@@ -11,7 +10,7 @@ describe('handling request - validating parameters', function() {
 
         beforeEach(function() {  
             responseSpy = responseTestUtil.createResponseSpy();
-            handlerMethodDefinition = argumentValidationTestUtil.createHandlerDefinitionWithRules();
+            handlerMethodDefinition = handlerDefinitionObjectMother.createWithNameIdRules();
         });
 
         describe("and a query string is invalid", function() {
@@ -55,8 +54,4 @@ describe('handling request - validating parameters', function() {
             assert.deepEqual(responseSpy.spiedBody, expectedBody);
         }
     });
-
-    // TODO: No body argument but request body invalid
-    // TODO: Body included and invalid
-    // TODO: Body included and previous argument undefined
 });

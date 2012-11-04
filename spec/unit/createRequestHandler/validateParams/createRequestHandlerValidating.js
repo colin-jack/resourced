@@ -3,14 +3,14 @@ var assert = require('chai').assert,
     fixture = require('./../../testFixture'),
     testUtil = require('./../testUtil'),
     responseTestUtil = require('./../responseTestUtil'),
-    argumentValidationTestUtil = require('./argumentValidationTestUtil')
+    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother')
     createRequestHandler = fixture.require('createRequestHandler');
 
 describe('handling request - validating arguments', function() {
     var wrappedHandler;
 
     beforeEach(function() {  
-        var handlerDefinition = argumentValidationTestUtil.createHandlerDefinitionWithRules();
+        var handlerDefinition = handlerDefinitionObjectMother.createWithNameIdRules();
 
         wrappedHandler = createRequestHandler("get", handlerDefinition, "get", {});
     });
