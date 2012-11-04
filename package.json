@@ -48,7 +48,9 @@
     "objectcompare": "*",
     "changeprocessor": "*",
     "testresources": "0.0.75",
-    "supertest": "*"
+    "supertest": "*",
+
+    "grunt" : "*"
   },
 
   "_npmUser": {
