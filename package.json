@@ -25,7 +25,7 @@
   },
 
   "scripts": {
-    "test": "mocha -R spec spec/unit/testFixture spec/unit --recursive"
+    "test": "mocha -R spec spec/unit/testFixture spec/unit --recursive & mocha -R spec spec/integration/testFixture spec/integration --recursive"
   },
 
   "keywords": [
@@ -43,7 +43,7 @@
     "sinon": "*",
     "longjohn": "*",
     "moment": "*",
-    "express": "2*",
+    "express": "3*",
     "coffee-script": "*",
     "objectcompare": "*",
     "changeprocessor": "*",

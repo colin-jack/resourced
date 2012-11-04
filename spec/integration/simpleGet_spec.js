@@ -15,6 +15,14 @@ describe('When you send get request to simple resource', function(){
     })
 
     it('should raise appropriate error if argument does not match expectations', function(done) {
-        request(app).get('/puppies/bob').expectStatus(400).end(done);
+        var expectedBody = {
+            property: "id",
+            message: "The value must be numeric."
+        };
+
+        request(app).get('/puppies/bob')
+            .expectStatus(400)
+            .expectBody(expectedBody)
+            .end(done); // testUtil.assertError(done)
     })
 })
