@@ -4,7 +4,7 @@ var testUtil = require('./../testUtil'),
     validationTestUtil = require('./validationTestUtil'),
     underTest = fixture.require('validateParams');
 
-describe('handling request - validating parameters', function() {
+describe('validateParams', function() {
     describe("When argument validation is applied to parameters", function() {
         var responseSpy, handlerMethodDefinition, returned;
 

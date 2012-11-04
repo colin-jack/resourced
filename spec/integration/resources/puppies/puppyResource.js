@@ -25,8 +25,8 @@ module.exports = new Resource({
         return puppyChangeProcessor(original, body, this.populateResponse);
       },
 
-      arguments: ensureNumericId,
-      body: puppySchema
+      argumentRules: ensureNumericId,
+      bodyRules: puppySchema
     }
   ]
 });
