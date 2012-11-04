@@ -61,7 +61,5 @@ describe('handling request - validating body', function() {
         });
     });
 
-    // TODO: No body argument but request body invalid
-    // TODO: Body included and invalid
     // TODO: Body included and previous argument undefined
 });

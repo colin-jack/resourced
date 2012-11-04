@@ -39,7 +39,7 @@ describe('handling request - validating parameters', function() {
                 underTest(fakeRequest, responseSpy, handlerMethodDefinition);
             });
 
-             it('should set response as 400 and populate body with reason', function() {
+            it('should set response as 400 and populate body with reason', function() {
                 var expectedBody = { 
                     message: "The value must be numeric.",
                     property: "id"

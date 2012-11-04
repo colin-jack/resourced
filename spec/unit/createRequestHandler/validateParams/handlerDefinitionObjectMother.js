@@ -1,8 +1,16 @@
 var mustBe = require('rules').mustBe;
 
 var createWithNameIdRules = function() {
+    var wasCalled = false;
+
     return {
             get: function(id) {
+                require('util').log("**** Called");
+                wasCalled = true;
+            },
+            handlerWasCalled : function() {
+                require('util').log("****Was called: " + wasCalled);
+                return wasCalled;
             },
             argumentRules: {
                 id: mustBe().numeric(),
@@ -17,6 +25,7 @@ var createWithNameIdRules = function() {
 var createWithIdBodyRules = function() {
     return {
             get: function(id) {
+                this.wasCalled = true;
             },
             argumentRules: {
                 id: mustBe().numeric()
