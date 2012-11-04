@@ -1,12 +1,12 @@
-var fixture = require('./../../testFixture'),
-    testUtil = require('./../testUtil'),
+var testUtil = require('./../testUtil'),
     responseTestUtil = require('./../responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
-    validateParams = fixture.require('validateParams');
+    validationTestUtil = require('./validationTestUtil'),
+    underTest = fixture.require('validateParams');
 
 describe('handling request - validating parameters', function() {
     describe("When argument validation is applied to parameters", function() {
-        var responseSpy, handlerMethodDefinition;
+        var responseSpy, handlerMethodDefinition, returned;
 
         beforeEach(function() {  
             responseSpy = responseTestUtil.createResponseSpy();
@@ -18,7 +18,7 @@ describe('handling request - validating parameters', function() {
                 var invalidNameQuery =  { name: undefined };
                 var fakeRequest = testUtil.createFakeRequest(null, invalidNameQuery);           
 
-                validateParams(fakeRequest, responseSpy, handlerMethodDefinition);
+                returned = underTest(fakeRequest, responseSpy, handlerMethodDefinition);
             });
 
             it('should set response as 400 and populate body with reason', function() {
@@ -27,7 +27,7 @@ describe('handling request - validating parameters', function() {
                     property: "name"
                 };
                 
-                shouldCorrectlyFailValidation(responseSpy, expectedBody);
+                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
             });
         });
 
@@ -36,7 +36,7 @@ describe('handling request - validating parameters', function() {
                 var invalidIdParams =  { id: "bob" };
                 var fakeRequest = testUtil.createFakeRequest(invalidIdParams);           
 
-                validateParams(fakeRequest, responseSpy, handlerMethodDefinition);
+                underTest(fakeRequest, responseSpy, handlerMethodDefinition);
             });
 
              it('should set response as 400 and populate body with reason', function() {
@@ -45,13 +45,8 @@ describe('handling request - validating parameters', function() {
                     property: "id"
                 };
                 
-                shouldCorrectlyFailValidation(responseSpy, expectedBody);
+                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
             });
         });
-
-        function shouldCorrectlyFailValidation(responseSpy, expectedBody) {
-            assert.equal(responseSpy.spiedStatus, 400);   
-            assert.deepEqual(responseSpy.spiedBody, expectedBody);
-        }
     });
 });

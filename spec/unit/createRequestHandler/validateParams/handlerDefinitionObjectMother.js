@@ -14,7 +14,7 @@ var createWithNameIdRules = function() {
         };
 }
 
-var createWithIdBodyRulesButNoBodyArgument = function() {
+var createWithIdBodyRules = function() {
     return {
             get: function(id) {
             },
@@ -22,12 +22,13 @@ var createWithIdBodyRulesButNoBodyArgument = function() {
                 id: mustBe().numeric()
             },
             bodyRules: {
-                status: mustBe().populated().string()
+                status: mustBe().populated().string(),
+                age: mustBe().populated().numeric()
             }
         };
 }
 
 module.exports = {
     createWithNameIdRules : createWithNameIdRules,
-    createWithIdBodyRulesButNoBodyArgument: createWithIdBodyRulesButNoBodyArgument
+    createWithIdBodyRules: createWithIdBodyRules
 }

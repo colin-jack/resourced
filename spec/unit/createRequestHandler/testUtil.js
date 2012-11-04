@@ -11,7 +11,8 @@ var createGetHandlerMethodDefinition = function(toReturn) {
 }
 
 var createFakeRequest  = function(params, query) {
-    params = params || { id: 5 }
+    params = params || {};
+    query = query || {};
 
     return {
         params: params,

@@ -7,4 +7,6 @@ var libNamespace = require('./../../lib/namespace');
 global.lib = libNamespace;
 module.exports = libNamespace;
 
+// setup a few globals so we don't need to keep importing things into the test files
 global.assert = require('chai').assert
+fixture = module.exports

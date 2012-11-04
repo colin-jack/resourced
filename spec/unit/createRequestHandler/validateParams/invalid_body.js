@@ -1,42 +1,67 @@
-// var fixture = require('./../../testFixture'),
-//     testUtil = require('./../testUtil'),
-//     responseTestUtil = require('./../responseTestUtil'),
-//     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
-//     validateParams = fixture.require('validateParams');
+var fixture = require('./../../testFixture'),
+    testUtil = require('./../testUtil'),
+    responseTestUtil = require('./../responseTestUtil'),
+    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
+    validationTestUtil = require('./validationTestUtil'),
+    underTest = fixture.require('validateParams');
 
-// describe('handling request - validating body', function() {
-//     describe("When argument validation is applied to the body", function() {
-//         var responseSpy, handlerMethodDefinition;
+describe('handling request - validating body', function() {
+    describe("When the request body is validated", function() {
+        var responseSpy, handlerDefinition, returned;
 
-//         beforeEach(function() {  
-//             responseSpy = responseTestUtil.createResponseSpy();
-//             handlerMethodDefinition = handlerDefinitionObjectMother.createWithNameIdRules();
-//         });
+        beforeEach(function() {  
+            responseSpy = responseTestUtil.createResponseSpy();
+        });
 
-//         describe("and a query string is invalid", function() {
-//             beforeEach(function() {  
-//                 var invalidNameQuery =  { name: undefined };
-//                 var fakeRequest = testUtil.createFakeRequest(null, invalidNameQuery);           
+        describe("and it is invalid but a parameter string value is also invalid", function() {
+            beforeEach(function() {  
+                var invalidIdParams =  { id: "bob" };
+                var fakeRequest = testUtil.createFakeRequest(invalidIdParams);           
+                var handlerDefinition = handlerDefinitionObjectMother.createWithIdBodyRules();
 
-//                 validateParams(fakeRequest, responseSpy, handlerMethodDefinition);
-//             });
+                returned = underTest(fakeRequest, responseSpy, handlerDefinition);
+            });
 
-//             it('should set response as 400 and populate body with reason', function() {
-//                 var expectedBody = { 
-//                     message: "The value must be populated.",
-//                     property: "name"
-//                 };
+            it('should fail because of invalid query string', function() {
+                var expectedBody = { 
+                    message: "The value must be numeric.",
+                    property: "id"
+                };
+
+                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+            });
+        });
+
+        describe("and it is invalid", function() {
+            var returned;
+
+            beforeEach(function() {  
+                var fakeRequest = testUtil.createFakeRequest();           
                 
-//                 shouldCorrectlyFailValidation(responseSpy, expectedBody);
-//             });
-//         });
-//         function shouldCorrectlyFailValidation(responseSpy, expectedBody) {
-//             assert.equal(responseSpy.spiedStatus, 400);   
-//             assert.deepEqual(responseSpy.spiedBody, expectedBody);
-//         }
-//     });
+                fakeRequest.body = {
+                    status: 5,
+                    age: null
+                };
 
-//     // TODO: No body argument but request body invalid
-//     // TODO: Body included and invalid
-//     // TODO: Body included and previous argument undefined
-// });
+                fakeRequest.params = {id: 5};
+
+                var handlerDefinition = handlerDefinitionObjectMother.createWithIdBodyRules();
+
+                returned = underTest(fakeRequest, responseSpy, handlerDefinition);
+            });
+
+            it('should fail because of invalid query string', function() {
+                var expectedBody = { 
+                    message: "The value must be numeric.",
+                    property: "id"
+                };
+                
+                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+            });
+        });
+    });
+
+    // TODO: No body argument but request body invalid
+    // TODO: Body included and invalid
+    // TODO: Body included and previous argument undefined
+});
