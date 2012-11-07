@@ -14,7 +14,7 @@ describe('When you send get request to simple resource', function(){
             .run(testUtil.assertNoError(done));
     })
 
-    it.only('should raise appropriate error if argument does not match expectations', function(done) {
+    it('should raise appropriate error if argument does not match expectations', function(done) {
         var expectedBody = {
             property: "id",
             message: "The value must be numeric."
