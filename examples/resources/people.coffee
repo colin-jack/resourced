@@ -31,7 +31,6 @@ module.exports = new Resource({
 
 
             require('util').log("From: " + from)
-            return " ************** OK *************** "
 
         # http.delete (id) ->
         #     log("Resource deleted");

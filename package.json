@@ -47,7 +47,7 @@
     "coffee-script": "*",
     "objectcompare": "*",
     "changeprocessor": "*",
-    "testresources": "0.0.77",
+    "testresources": "0.0.8",
     "supertest": "*",
 
     "grunt" : "*"

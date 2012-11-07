@@ -48,7 +48,7 @@ describe('createRequestHandler', function() {
         });
     });
 
-  describe('when the resource has body validation applied and the body as well as a parameter are invalid', function() {
+    describe('when the resource has body validation applied and the body as well as a parameter are invalid', function() {
         var wrappedHandler, handlerMethodDefinition;
 
         beforeEach(function() {  
@@ -74,7 +74,7 @@ describe('createRequestHandler', function() {
                 property: "id"
             };
 
-            assert.deepEqual(fakeResponse.spiedBody, expectedBody, 'Actual: ' + require('util').inspect(fakeResponse.spiedBody));
+            assert.deepEqual(fakeResponse.spiedBody, expectedBody, "Expected: " + require('util').inspect(expectedBody) +  "Actual: " + require('util').inspect(fakeResponse.spiedBody));
         });
     });
 

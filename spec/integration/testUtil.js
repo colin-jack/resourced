@@ -9,6 +9,7 @@ module.exports = {
             }
             else {
                 expectedMessage();
+                assert.isFalse(true, "You must provide an expected message. Error was: " + err)
             }
             
         }

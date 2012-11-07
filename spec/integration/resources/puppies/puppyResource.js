@@ -22,7 +22,7 @@ module.exports = new Resource({
     }, 
     {
       put: function(id, body) {
-        return puppyChangeProcessor(original, body, this.populateResponse);
+        //return puppyChangeProcessor(original, body, this.populateResponse);
       },
 
       argumentRules: ensureNumericId,

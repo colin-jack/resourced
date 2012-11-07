@@ -48,8 +48,7 @@
           greaterThan: from,
           message: "The from value must be less than the to value."
         });
-        require('util').log("From: " + from);
-        return " ************** OK *************** ";
+        return require('util').log("From: " + from);
       })
     ]
   });

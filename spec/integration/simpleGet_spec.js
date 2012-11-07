@@ -14,15 +14,15 @@ describe('When you send get request to simple resource', function(){
             .run(testUtil.assertNoError(done));
     })
 
-    it.skip('should raise appropriate error if argument does not match expectations', function(done) {
+    it.only('should raise appropriate error if argument does not match expectations', function(done) {
         var expectedBody = {
             property: "id",
             message: "The value must be numeric."
         };
 
         request(app).get('/puppies/bob')
-            .expectStatus(400)
             .expectBody(expectedBody)
-            .run(done); // testUtil.assertError(done)
+            .expectStatus(400)
+            .run(testUtil.assertNoError(done));
     })
 })
