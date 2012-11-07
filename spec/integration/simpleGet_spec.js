@@ -2,11 +2,11 @@ var request = require('testresources'),
     express = require('express'),
     testUtil = require('./testUtil');
 
-describe.skip('When you send get request to simple resource', function(){
+describe('When you send get request to simple resource', function(){
     beforeEach(require('./registerTestResources'))
 
-    it.skip('should respond with expected json when URI is correct', function(done) {
-        var body = { name: "spot", id: 5 };
+    it('should respond with expected json when URI is correct', function(done) {
+        var body = { name: "spot", id: "5" };
 
         request(app).get('/puppies/5')
             .expectBody(body)
