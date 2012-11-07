@@ -9,7 +9,7 @@ describe('when you send put request to simple resource which validates the body'
         var body = { name: "spot", id: 5 };
 
         request(app).put('/puppies/5', body)
-            .run(testUtil.assertNoError(done));
+            .run(done);
     })
 
     it('should raise appropriate error if body is missing', function(done) {
@@ -21,13 +21,14 @@ describe('when you send put request to simple resource which validates the body'
         var expectedResponseBody = {
             message: "The request body was not valid.",
             details: {
-
+               name: { message: 'The value must be populated.',
+                       type: 'not_populated' }
             }
         };
 
         request(app).put('/puppies/5')
             .expectBody(expectedResponseBody)
             .expectStatus(400)
-            .run(testUtil.assertNoError(done)); 
+            .run(done); 
     })
 })

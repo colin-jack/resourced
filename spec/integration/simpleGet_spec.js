@@ -11,7 +11,7 @@ describe('When you send get request to simple resource', function(){
         request(app).get('/puppies/5')
             .expectBody(body)
             .expectCached('public', 5)
-            .run(testUtil.assertNoError(done));
+            .run(done);
     })
 
     it('should raise appropriate error if argument does not match expectations', function(done) {
@@ -23,6 +23,6 @@ describe('When you send get request to simple resource', function(){
         request(app).get('/puppies/bob')
             .expectBody(expectedBody)
             .expectStatus(400)
-            .run(testUtil.assertNoError(done));
+            .run(done);
     })
 })
