@@ -14,7 +14,7 @@ var createWithNameIdRules = function() {
                 id: mustBe().numeric(),
                 name: mustBe().populated().string()
             },
-            bodyRules: {
+            schema: {
                 
             }
         };
@@ -33,7 +33,7 @@ var createWithIdBodyRules = function() {
         argumentRules: {
             id: mustBe().numeric()
         },
-        bodyRules: {
+        schema: {
             status: mustBe().populated().string(),
             age: mustBe().populated().numeric()
         }
@@ -50,7 +50,7 @@ var createWithBodyRules = function() {
         handlerWasCalled : function() {
             return wasCalled;
         },
-        bodyRules: {
+        schema: {
             status: mustBe().populated().string(),
             age: mustBe().populated().numeric()
         }

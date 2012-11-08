@@ -1,11 +1,12 @@
 var express = require('express');
-var resourced = require('../../index')
+var resourced = require('../../index');
+var winston = require('winston');
 
 global.app = express();
 app.use(express.bodyParser());
 
 var resourcesDir = __dirname + '/resources';
-console.log("About to load resources from: " + resourcesDir);
+winston.info("About to load resources from: " + resourcesDir);
 
 var registered = false;
 
