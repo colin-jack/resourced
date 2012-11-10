@@ -24,7 +24,7 @@ module.exports = new Resource({
             };
         }),
 
-        http.delete(function(id) {
+        http.destroy(function(id) {
             log("Resource deleted");
             return;
         }),
