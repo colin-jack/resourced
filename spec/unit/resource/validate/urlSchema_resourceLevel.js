@@ -25,7 +25,8 @@ describe('invalid URL', function() {
         describe("and a query string is invalid", function() {
             beforeEach(function() {  
                 var noRulesMethodDefinition = handlerDefinitionObjectMother.createWithNoRules();
-                returned = underTest(fakeRequest, responseSpy, noRulesMethodDefinition, resourceWithSchemaDefinition);
+                
+                returned = performValidation(noRulesMethodDefinition);
             });
 
             it('should set response as 400 and populate body with reason', function() {
@@ -42,7 +43,8 @@ describe('invalid URL', function() {
             beforeEach(function() {  
                 var overridingSoAllValidMethodDefinition = handlerDefinitionObjectMother.createWithNoRules();
                 overridingSoAllValidMethodDefinition.urlSchema = {}
-                returned = underTest(fakeRequest, responseSpy, overridingSoAllValidMethodDefinition, resourceWithSchemaDefinition);
+
+                returned = performValidation(overridingSoAllValidMethodDefinition);
             });
 
             it('should pass validation', function() {
@@ -51,5 +53,9 @@ describe('invalid URL', function() {
                 assert.isTrue(returned, "The validation method should have returned true.")
             });
         });
+
+        var performValidation = function(methodDefinition) {
+            return underTest(fakeRequest, responseSpy, methodDefinition, resourceWithSchemaDefinition);
+        }
     });
 });
