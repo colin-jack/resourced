@@ -94,6 +94,7 @@ respondsTo: [
     })
 ]
 ```
+Since delete is a reserved word in JavaScript 'del' or 'destroy' can be used instead, e.g. http.del(...).
 ##Features
 ####Validation
 Validation is performed by the [rules](https://github.com/colin-jack/rules) module, you can apply validation for the request body body:
