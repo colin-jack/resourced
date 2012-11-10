@@ -1,7 +1,8 @@
 # resourced (node.js)
 [![Build Status](https://travis-ci.org/colin-jack/resourced.png)](https://travis-ci.org/#!/colin-jack/resourced)
 
-NOTE - This is a very early version of this project and is not yet fully featured.
+NOTE - This is a very early version of this project and is not yet fully featured, I would be interested in any [feedback](https://resourced.uservoice.com/).
+
 ## Philosophy
 It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources. 
 
