@@ -10,7 +10,7 @@ var createWithNameIdRules = function() {
             handlerWasCalled : function() {
                 return wasCalled;
             },
-            argumentRules: {
+            urlSchema: {
                 id: mustBe().numeric(),
                 name: mustBe().populated().string()
             },
@@ -30,7 +30,7 @@ var createWithIdBodyRules = function() {
         handlerWasCalled : function() {
             return wasCalled;
         },
-        argumentRules: {
+        urlSchema: {
             id: mustBe().numeric()
         },
         schema: {

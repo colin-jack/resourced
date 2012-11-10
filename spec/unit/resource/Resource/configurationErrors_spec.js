@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    Resource = require('./../testFixture').require('Resource');
+    Resource = lib.require('Resource');
 
 describe('errors specifying resource', function() {
     describe('when you omit the URL when defining a resource', function() {

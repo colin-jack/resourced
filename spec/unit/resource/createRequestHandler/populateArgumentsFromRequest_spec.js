@@ -1,6 +1,5 @@
 var assert = require('chai').assert,
-             fixture = require('./../testFixture'),
-             populateArgumentsFromRequest = fixture.require('populateArgumentsFromRequest');
+    populateArgumentsFromRequest = lib.require('populateArgumentsFromRequest');
 
 // TODO: Fill in.
 describe('populating arguments from request', function() {

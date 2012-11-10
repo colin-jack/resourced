@@ -3,25 +3,37 @@ var http = lib.require('http');
 var cache = lib.require('cache');
 var mustBe = require('rules').mustBe;
 
-var ensureNumericId = {
-    id: mustBe().numeric().populated()
-};
-
-var kittenSchema = {
-    name: mustBe().populated().string({ maxLength: 50 }),
-}
-
 module.exports = new Resource({
-
     url: "/kittens/:id",
     cache: cache.minutes(5).publically(),
-    schema: kittenSchema,
+
+    urlSchema: {
+        id: mustBe().numeric().populated()
+    },
 
     respondsTo: [
     {
-        put: function(id, body) {
+        get: function(id, body) {
+            return {
+                name: "mikado"
+            };
+        }
+    },
+    {
+        // TODO: Support this
+        url: "/sendToCattery",
+
+        post: function(id, cattery, body) {
+            // TODO: Include content-location and optionally caching header
+            return {
+                name: "mikado",
+                mood: "annoyed"
+            };
         },
 
-        argumentRules: ensureNumericId,
+        urlSchema: {
+            // TODO: Support this
+            //cattery: mustBe().numeric().containedIn(validateCatteries)
+        },
     }]
 });

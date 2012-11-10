@@ -1,9 +1,9 @@
-var fixture = require('./../../testFixture'),
-    testUtil = require('./../testUtil'),
-    responseTestUtil = require('./../responseTestUtil'),
+var fixture = testLib.require('testFixture'),
+    testUtil = testLib.require('testUtil'),
+    responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
-    underTest = fixture.require('validateBody');
+    underTest = lib.require('validateBody');
 
 describe('validateBody - ', function() {
     describe("when the request body is validated", function() {

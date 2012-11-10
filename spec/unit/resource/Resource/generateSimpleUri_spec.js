@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    resourceObjectMother = require('./../util/resourceObjectMother');
+    resourceObjectMother = testLib.require('resourceObjectMother');
 
 describe('generating relative link to resource', function() {
     describe('when you generate a link to a simple resource', function() {

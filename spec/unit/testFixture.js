@@ -5,8 +5,13 @@
 // lots of broken tests (avoids paths like ./../../../lib/Resource from tests)
 var libNamespace = require('./../../lib/namespace');
 global.lib = libNamespace;
-module.exports = libNamespace;
+
+var requireNamespace = require('require-namespace');
+global.testLib = requireNamespace.createSync('testLib', __dirname + "/");
 
 // setup a few globals so we don't need to keep importing things into the test files
 global.assert = require('chai').assert
-fixture = module.exports
+
+
+//module.exports = libNamespace;
+//fixture = module.exports

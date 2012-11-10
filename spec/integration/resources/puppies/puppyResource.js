@@ -19,13 +19,13 @@ module.exports = new Resource({
             };
         },
 
-        argumentRules: ensureNumericId
+        urlSchema: ensureNumericId
     }, 
     {
         put: function(id, body) {
         },
 
-        argumentRules: ensureNumericId,
+        urlSchema: ensureNumericId,
         schema: puppySchema
     }]
 });

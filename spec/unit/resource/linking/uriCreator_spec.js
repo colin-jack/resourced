@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    uriCreator = require('./testFixture').require('uriCreator');
+    uriCreator = lib.require('uriCreator');
 
 describe('generating simple uri', function() {
     describe('when you generate a simple url', function() {

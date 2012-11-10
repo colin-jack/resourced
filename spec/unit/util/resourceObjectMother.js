@@ -1,5 +1,4 @@
-var testFixture = require('./../testFixture'),
-    Resource = testFixture.require('Resource');
+var Resource = lib.require('Resource');
     _u = require('underscore');
 
 var createGetOnlyResource = function(options) {

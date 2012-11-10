@@ -1,7 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    resourceObjectMother = require('./../util/resourceObjectMother'),
-    expressConfigurationSpy = require('./../util/expressConfigurationSpy');
+    resourceObjectMother = testLib.require('resourceObjectMother'),
+    expressConfigurationSpy = testLib.require('expressConfigurationSpy');
 
 describe('resource with single get method', function() {
     describe('when you trigger the handling request', function() {        

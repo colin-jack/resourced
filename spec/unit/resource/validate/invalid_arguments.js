@@ -1,8 +1,8 @@
-var testUtil = require('./../testUtil'),
-    responseTestUtil = require('./../responseTestUtil'),
+var testUtil = testLib.require('testUtil'),
+    responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
-    underTest = fixture.require('validateParams');
+    underTest = lib.require('validateParams');
 
 describe('validateParams', function() {
     describe("When argument validation is applied to parameters", function() {

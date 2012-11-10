@@ -1,7 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    requestResponseBuilder = require('./../util/requestResponseBuilder'),
-    createRequestHandler = require('./../testFixture').require('createRequestHandler');
+    requestResponseBuilder = testLib.require('requestResponseBuilder'),
+    createRequestHandler = lib.require('createRequestHandler');
 
 var bodyFromRequest = {
     foo: "bar"

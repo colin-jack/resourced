@@ -1,8 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    fixture = require('./../testFixture'),
     testUtil = require('./testUtil'),
-    createRequestHandler = fixture.require('createRequestHandler');
+    createRequestHandler = lib.require('createRequestHandler');
 
 describe('handling request', function() {
     describe('when you return an object from a GET handler method and do not otherwise set response body', function() {

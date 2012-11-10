@@ -1,10 +1,10 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    fixture = require('./../../testFixture'),
-    testUtil = require('./../testUtil'),
-    responseTestUtil = require('./../responseTestUtil'),
+    fixture = testLib.require('testFixture'),
+    testUtil = testLib.require('testUtil'),
+    responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother')
-    createRequestHandler = fixture.require('createRequestHandler');
+    createRequestHandler = lib.require('createRequestHandler');
 
 describe('createRequestHandler', function() {
     var fakeResponse = responseTestUtil.createResponseSpy();
