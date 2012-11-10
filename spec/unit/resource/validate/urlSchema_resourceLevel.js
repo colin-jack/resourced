@@ -6,7 +6,7 @@ var testUtil = testLib.require('testUtil'),
     underTest = lib.require('validateUrl');
 
 describe('invalid URL', function() {
-    describe("when url schema is applied at resource level and a query string value is invalid", function() {
+    describe("when url schema is applied at resource level", function() {
         var responseSpy, returned, fakeRequest, resourceWithSchemaDefinition;
 
         beforeEach(function() {  
@@ -35,6 +35,20 @@ describe('invalid URL', function() {
                 };
                 
                 validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+            });
+        });
+
+        describe("but its over-ridden at method level to make requests valid", function() {
+            beforeEach(function() {  
+                var overridingSoAllValidMethodDefinition = handlerDefinitionObjectMother.createWithNoRules();
+                overridingSoAllValidMethodDefinition.urlSchema = {}
+                returned = underTest(fakeRequest, responseSpy, overridingSoAllValidMethodDefinition, resourceWithSchemaDefinition);
+            });
+
+            it('should pass validation', function() {
+                assert.isUndefined(responseSpy.spiedStatus);   
+                assert.isUndefined(responseSpy.spiedBody);
+                assert.isTrue(returned, "The validation method should have returned true.")
             });
         });
     });
