@@ -125,7 +125,7 @@ You can run the sample application using the following command:
 
     node examples/web.js
     
-The output will end with a hard-coded URL that you can use to interact with the first resource:
+The output will end with a hard-coded URL that you can use to interact with the first resource using [curl](https://httpkit.com/resources/HTTP-from-the-Command-Line/):
 
 GET ```curl http://localhost:3050/people/5```<br/>
 PUT ```curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty"}'```<br/>
@@ -134,11 +134,8 @@ DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 
 
 ## Running Tests
-The tests should provide a reasonable spec for the framework. They use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
+The tests use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
 
     npm install -g mocha
 
-You can then run the tests using ```npm test``` or:
-
-    mocha -R spec spec/unit/testFixture spec/unit -w -G --recursive -b
-    mocha -R spec spec/integration/testFixture spec/integration -w -G --recursive -b
+You can then run the tests using ```npm test```.
