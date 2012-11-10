@@ -2,24 +2,30 @@ var testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
+    mustBe = require('rules').mustBe,
     underTest = lib.require('validateUrl');
 
 describe('invalid URL', function() {
-    describe("when url schema is applied at resource level", function() {
-        var responseSpy, noRulesHandler, returned;
+    describe("when url schema is applied at resource level and a query string value is invalid", function() {
+        var responseSpy, returned, fakeRequest, resourceWithSchemaDefinition;
 
         beforeEach(function() {  
-            responseSpy = responseTestUtil.createResponseSpy();
+            fakeRequest = testUtil.createFakeRequest();           
+            fakeRequest.query = { name: undefined }
 
-            noRulesHandler = handlerDefinitionObjectMother.createWithNoRules();
+            resourceWithSchemaDefinition = {
+                urlSchema: { 
+                    name: mustBe().numeric().populated()
+                }
+            }
+
+            responseSpy = responseTestUtil.createResponseSpy();
         });
 
         describe("and a query string is invalid", function() {
             beforeEach(function() {  
-                var fakeRequest = testUtil.createFakeRequest();           
-                fakeRequest.query = { name: undefined }
-
-                returned = underTest(fakeRequest, responseSpy, noRulesHandler);
+                var noRulesMethodDefinition = handlerDefinitionObjectMother.createWithNoRules();
+                returned = underTest(fakeRequest, responseSpy, noRulesMethodDefinition, resourceWithSchemaDefinition);
             });
 
             it('should set response as 400 and populate body with reason', function() {
