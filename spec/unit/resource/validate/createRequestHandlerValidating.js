@@ -1,6 +1,4 @@
-var assert = require('chai').assert,
-    sinon = require('sinon'),
-    fixture = testLib.require('testFixture'),
+var sinon = require('sinon'),
     testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother')

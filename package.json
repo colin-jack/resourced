@@ -33,8 +33,9 @@
     "HTTP",
     "RESTful",
     "express",
-    "resource oriented",
-    "ROA"
+    "services",
+    "web services",
+    "resource oriented"
   ],
 
   "devDependencies": {

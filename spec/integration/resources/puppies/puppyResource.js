@@ -6,9 +6,10 @@ var ensureNumericId = require('./validation/ensureNumericId');
 var puppySchema = require('./validation/puppySchema');
 
 module.exports = new Resource({
-
     url: "/puppies/:id",
     cache: cache.minutes(5).publically(),
+
+    urlSchema: ensureNumericId,
 
     respondsTo: [
     {
@@ -17,15 +18,12 @@ module.exports = new Resource({
                 name: "spot",
                 id: id
             };
-        },
-
-        urlSchema: ensureNumericId
+        }
     }, 
     {
         put: function(id, body) {
         },
 
-        urlSchema: ensureNumericId,
         schema: puppySchema
     }]
 });
