@@ -96,6 +96,35 @@ module.exports = new Resource
         "PostCode" :"EH99 7JJ"
   ]
 ```
+
+##Features
+####Validation
+You can apply validation for the request body body:
+
+```js
+    respondsTo: [
+    {
+        put: function(id, body) {
+            ...
+        },
+
+        schema:  {
+            name: mustBe().populated().string({ maxLength: 50 })
+        }
+    }]
+```
+
+You can apply the urlSchema to the entire resource (or at the method level if ypu prefer):
+```js
+module.exports = new Resource({
+    url: "/kittens/:id",
+    urlSchema: {
+        id: mustBe().numeric().populated()
+    },
+    ...
+```
+Requests that do not adhere to the schema(s) will result in a [400 response code](http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
 
@@ -107,6 +136,7 @@ GET ```curl http://localhost:3050/people/5```<br/>
 PUT ```curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty"}'```<br/>
 POST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>
 DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
+
 
 ## Running Tests
 The tests should provide a reasonable spec for the framework. They use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
