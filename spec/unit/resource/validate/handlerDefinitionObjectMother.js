@@ -1,64 +1,57 @@
 var mustBe = require('rules').mustBe;
 
-var createWithNameIdRules = function() {
+var statusAndAgeBodySchema = {
+    status: mustBe().populated().string(),
+    age: mustBe().populated().numeric()
+};
+
+var createBasicHandlerDefinitionSpy = function() {
     var wasCalled = false;
 
     return {
-            get: function(id) {
-                wasCalled = true;
-            },
-            handlerWasCalled : function() {
-                return wasCalled;
-            },
-            urlSchema: {
-                id: mustBe().numeric(),
-                name: mustBe().populated().string()
-            },
-            schema: {
-                
-            }
-        };
+        get: function(id) {
+            wasCalled = true;
+        },
+        handlerWasCalled : function() {
+            return wasCalled;
+        }   
+    };
 }
+
+var createWithNameIdRules = function() {
+    var toReturn = Object.create(createBasicHandlerDefinitionSpy());
+    toReturn.urlSchema =  {
+        id: mustBe().numeric(),
+        name: mustBe().populated().string()
+    };
+    return toReturn;
+};
+
+var createWithNoRules = function() {
+    return createBasicHandlerDefinitionSpy();
+};
 
 var createWithIdBodyRules = function() {
-    var wasCalled = false;
+    var toReturn = Object.create(createBasicHandlerDefinitionSpy());
     
-    return {
-        get: function(id) {
-            wasCalled = true;
-        },
-        handlerWasCalled : function() {
-            return wasCalled;
-        },
-        urlSchema: {
-            id: mustBe().numeric()
-        },
-        schema: {
-            status: mustBe().populated().string(),
-            age: mustBe().populated().numeric()
-        }
+    toReturn.urlSchema =  {
+        id: mustBe().numeric(),
     };
-}
+
+    toReturn.schema = statusAndAgeBodySchema;
+
+    return toReturn;
+};
 
 var createWithBodyRules = function() {
-    var wasCalled = false;
-
-    return {
-        get: function(id) {
-            wasCalled = true;
-        },
-        handlerWasCalled : function() {
-            return wasCalled;
-        },
-        schema: {
-            status: mustBe().populated().string(),
-            age: mustBe().populated().numeric()
-        }
-    };
-}
+    var toReturn = Object.create(createBasicHandlerDefinitionSpy());
+    toReturn.schema = statusAndAgeBodySchema;
+    return toReturn;
+};
 
 module.exports = {
     createWithNameIdRules: createWithNameIdRules,
     createWithIdBodyRules: createWithIdBodyRules,
-    createWithBodyRules: createWithBodyRules
+    createWithBodyRules: createWithBodyRules,
+    createWithNoRules: createWithNoRules
 }

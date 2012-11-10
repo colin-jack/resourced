@@ -5,7 +5,7 @@ var fixture = testLib.require('testFixture'),
     validationTestUtil = require('./validationTestUtil'),
     underTest = lib.require('validateBody');
 
-describe('validateBody - ', function() {
+describe('invalid body', function() {
     describe("when the request body is validated", function() {
         var responseSpy, handlerDefinition, returned;
 

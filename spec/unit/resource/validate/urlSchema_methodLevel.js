@@ -2,10 +2,10 @@ var testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
-    underTest = lib.require('validateParams');
+    underTest = lib.require('validateUrl');
 
-describe('validateParams', function() {
-    describe("When argument validation is applied to parameters", function() {
+describe('invalid URL', function() {
+    describe("When url schema is applied at method level", function() {
         var responseSpy, handlerMethodDefinition, returned;
 
         beforeEach(function() {  
