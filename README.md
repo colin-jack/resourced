@@ -78,29 +78,25 @@ Note the link to the associated address in the response.
 
 You can also send a PUT request to the resource, the example shown just echoes the request body back in the response. The only interesting things to note about the put example are that the request body will be passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are cached currently).
 
-### Resource Definition - CoffeeScript
-The following shows the address resource linked to by the person resource shown above:
-```coffeescript
-module.exports = new Resource
-  url: "/address/:id"
+Note that instead of calling http.put/http.get we could have used anonymous objects, the following two are equivalent:
 
-  # We can cache for a long time because we never modify addresses.
-  cache: cache.forever().publically(),
+```js
+respondsTo: [
+    {
+        get: function(id) {
+            ...
+        }
+    }]
 
-  respondsTo: [
-    http.get (id) ->
-      address =
-        "House Name/Number" : 72
-        "Stree Name" : "Fox Lane"
-        "Town" : "Edinburgh"
-        "PostCode" :"EH99 7JJ"
-  ]
+respondsTo: [
+    http.get(function(id) {
+        ...
+    })
+]
 ```
-
 ##Features
 ####Validation
-You can apply validation for the request body body:
-
+Validation is performed by the [rules](https://github.com/colin-jack/rules) module, you can apply validation for the request body body:
 ```js
     respondsTo: [
     {
@@ -113,7 +109,6 @@ You can apply validation for the request body body:
         }
     }]
 ```
-
 You can apply the urlSchema to the entire resource (or at the method level if ypu prefer):
 ```js
 module.exports = new Resource({
