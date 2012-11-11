@@ -96,8 +96,8 @@ respondsTo: [
 ```
 Since delete is a reserved word in JavaScript 'del' or 'destroy' can be used instead, e.g. http.del(...).
 ##Features
-* [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md)
-* [Validation](https://github.com/colin-jack/resourced/blob/master/docs/validation.md)
+* [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md) - HTTP caching of responses to GET requests.
+* [Validation](https://github.com/colin-jack/resourced/blob/master/docs/validation.md) - Allows validation of request bodies and URL's.
 
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
