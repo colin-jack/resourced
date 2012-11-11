@@ -12,18 +12,18 @@ You must first specify how long to cache for using one of the following:
 * forever - If this is used then you are specifying the responses can be cached forever
 * no - This method can be used if the responses should not be cached.
 
-If you call any of the methods other than ```no``` the the default is that responses should be cached privately (e.g. user browser cache) but you can explicitly specify where to cache:
-* public
-* private
+If you call any of the methods other than ```no``` then you can specify where to cache. The default is that responses can be cached publically but you can explicitly specify where to cache:
+* publically - Since public is the default you would only call this method if you want to make that fact explicit
+* privately - Client-side caching only (e.g. browser).
 
 ###Examples
 ```js
 var cache = require('resourced').cache;
-cache.hours(10)
-cache.hours(10).private() // same as above
-cache.days(2).publically()
+cache.minutes(5).privately()
+cache.days(2)
+cache.days(2).publically() // same as above
 cache.no()
-cache.forever().publically()
+cache.forever()
 ```
 
 ###Recommended Resources

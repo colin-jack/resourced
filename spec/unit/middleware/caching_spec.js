@@ -66,9 +66,9 @@ describe('cache definitions', function() {
     });
 
     describe('when you say a resource can be cached without specifying where and then make a GET request', function() {
-        it('should default to private', function() {
+        it('should default to public', function() {
             var spy = applyCachingAndSpyOnReponseHeaderSet(cache.hours(10), "get");
-            correctCacheControlValuesSet(36000, "private", spy)
+            correctCacheControlValuesSet(36000, "public", spy)
         });
     });
 
