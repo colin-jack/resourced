@@ -27,5 +27,5 @@ cache.forever()
 ```
 
 ###Recommended Resources
-[Caching Tutorial for Web Authors and Webmasters](http://www.mnot.net/cache_docs/)
-[Redbot](http://mnot.github.com/redbot/)
+* [Caching Tutorial for Web Authors and Webmasters](http://www.mnot.net/cache_docs/)
+* [Redbot](http://mnot.github.com/redbot/)
