@@ -2,7 +2,7 @@ var request = require('testresources'),
     express = require('express'),
     testUtil = require('./../testUtil');
 
-describe('when you send get request', function(){
+describe('when you apply a url schema at method level', function(){
     beforeEach(require('./../registerTestResources'))
 
     it('should respond with expected json when URI is correct', function(done) {

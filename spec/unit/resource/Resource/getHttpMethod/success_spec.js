@@ -32,6 +32,20 @@ describe('working out http method for a handler method', function() {
         });
     });
 
+    describe('when you ask for the http method for a method named put but it has verb overloaded to be POST', function() {
+        it('should get overriden value', function() {
+            var httpMethod = getHttpMethodWhenOverriddenAtHandlerLevel("put", "POST");
+            correctHttpMethodApplied(httpMethod, "post")
+        });
+    });
+
+    describe('when you ask for the http method for a method named put but it has verb overloaded to be GeT', function() {
+        it('should get overriden value', function() {
+            var httpMethod = getHttpMethodWhenOverriddenAtHandlerLevel("put", "GeT");
+            correctHttpMethodApplied(httpMethod, "get")
+        });
+    });
+
     describe('when you ask for the http method for a method named put and there is no overload', function() {
         it('should get overriden value', function() {
             var httpMethod = getHttpMethodForHandlerNoOverride("put");
