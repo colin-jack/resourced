@@ -65,6 +65,13 @@ describe('cache definitions', function() {
         });
     });
 
+    describe('when you say a resource can be cached without specifying where and then make a GET request', function() {
+        it('should default to private', function() {
+            var spy = applyCachingAndSpyOnReponseHeaderSet(cache.hours(10), "get");
+            correctCacheControlValuesSet(36000, "private", spy)
+        });
+    });
+
     // describe('when the caching information exists but its a POST request' : 'NYI - Do not cache',
     // describe('when the caching information exists but its a DELETE request' : 'NYI - Do not cache',
     // describe('when the caching information has negative value for years' : 'NYI - Consider flatiron / revalidator',
