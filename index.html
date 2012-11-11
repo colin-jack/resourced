@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Resourced by colin-jack</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Resourced</h1>
+        <p>A resource-oriented DSL for configuring express.js (REST/node.js).</p>
+
+        <p class="view"><a href="https://github.com/colin-jack/resourced">View the Project on GitHub <small>colin-jack/resourced</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/colin-jack/resourced/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/colin-jack/resourced/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/colin-jack/resourced">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>resourced (express.js)</h3>
+
+<p>A REST/resource-oriented DSL for configuring express.js which makes it easy to defined resources, include links, perform validation.</p>
+
+<h2>Usage</h2>
+
+<p>The following a simple resource which responds to GET requests:</p>
+
+<div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Resource</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="s2">"/people/:id"</span><span class="p">,</span>
+    <span class="nx">urlSchema</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">id</span><span class="o">:</span> <span class="nx">mustBe</span><span class="p">().</span><span class="nx">numeric</span><span class="p">().</span><span class="nx">populated</span><span class="p">()</span>
+    <span class="p">},</span>
+
+    <span class="nx">cache</span><span class="o">:</span> <span class="nx">caching</span><span class="p">.</span><span class="nx">minutes</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">publically</span><span class="p">(),</span>
+
+    <span class="nx">respondsTo</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">associatedAddressLink</span> <span class="o">=</span> <span class="nx">addressResource</span><span class="p">.</span><span class="nx">getLink</span><span class="p">(</span><span class="s2">"address"</span><span class="p">,</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="s2">"5"</span><span class="p">});</span>
+
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="nx">firstName</span> <span class="o">:</span> <span class="s2">"Colin Jack"</span><span class="p">,</span>
+                <span class="nx">address</span><span class="o">:</span> <span class="nx">associatedAddressLink</span>
+            <span class="p">};</span>
+        <span class="p">})</span>
+    <span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/colin-jack">colin-jack</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
