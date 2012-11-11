@@ -12,8 +12,14 @@ This lightweight DSL thus introduces abstractions that make it easy to design in
 * Caching - Where and how long to cache responses from the resource (optional).
 * Middleware - Middleware to run before and after requests, for example to perform authorization (optional).
 
+##Features
+* [Request Handlers](https://github.com/colin-jack/resourced/blob/master/docs/requestHandling.md) - Features like argument population make handling requests easier.
+* [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md) - HTTP caching of responses to GET requests.
+* [Validation](https://github.com/colin-jack/resourced/blob/master/docs/validation.md) - Allows validation of request bodies and URL's.
+* [Conventions](https://github.com/colin-jack/resourced/blob/master/docs/convetions.md) - Conventions are included to make it easier to create HTTP friendly services.
+
 ## Samples
-All these samples are taken from the [example application](#example).
+The sampl is taken from the [example application](#example).
 
 ### Configuration
 To configure restless you need to tell it which directory to look for resources in:
@@ -37,9 +43,11 @@ var Resource = require('resourced').Resource
 module.exports = new Resource({
     url: "/people/:id",
 
-    cache: caching.minutes(5).publically(),
+    cache: cache.minutes(5).publically(),
 
     respondsTo: [
+        // NOTE - Here instead of using http.get we could have used an anonymous object with
+        // a property called get containing the function, as we've done for PUT below.
         http.get(function(id) {
             associatedAddressLink = addressResource.getLink("address", { id: "5"});
 
@@ -51,9 +59,11 @@ module.exports = new Resource({
             };
         }),
         
-        http.put(function(id, body) {
-            return body;
-        })
+        { 
+            put: function(id, body) {
+                return body;
+            }
+        }
     ]
 });
 ```
@@ -75,29 +85,6 @@ The response to a GET request for the associated URI (for example /people/5) wou
       }
     }
 Note the link to the associated address in the response. 
-
-You can also send a PUT request to the resource, the example shown just echoes the request body back in the response. The only interesting things to note about the put example are that the request body will be passed in as an argument to the handler method and the response does not have the cache-contro header set (only GET requests are cached currently).
-
-Note that instead of calling http.put/http.get we could have used anonymous objects, the following two are equivalent:
-
-```js
-respondsTo: [
-    {
-        get: function(id) {
-            ...
-        }
-    }]
-
-respondsTo: [
-    http.get(function(id) {
-        ...
-    })
-]
-```
-Since delete is a reserved word in JavaScript 'del' or 'destroy' can be used instead, e.g. http.del(...).
-##Features
-* [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md) - HTTP caching of responses to GET requests.
-* [Validation](https://github.com/colin-jack/resourced/blob/master/docs/validation.md) - Allows validation of request bodies and URL's.
 
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
