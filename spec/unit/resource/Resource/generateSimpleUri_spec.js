@@ -16,7 +16,7 @@ describe('generating relative link to resource', function() {
         });
 
         it('should get expected value', function() {
-            assert.equal(link.url, "/1/4/2");
+            assert.equal(link.href, "/1/4/2");
             assert.equal(link.rel, "myRel");
         });
     });

@@ -1,7 +1,6 @@
 var createResponseSpy = function() {
     return { 
         send: function() { 
-            debugger;
             var args = Array.prototype.slice.call(arguments);
 
             if (args.length === 1) {

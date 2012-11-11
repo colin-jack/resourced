@@ -5,13 +5,13 @@ var cache = lib.require('cache');
 module.exports = new Resource({
     url: "/people/:id",
 
-    cache: cache.minutes(5).publically(),
+    cache: cache.no(),
 
     respondsTo: [
         {
             httpMethod: 'get',
             bob: function(id) {
-                associatedAddressLink = addressResource.getLink("address", { id: "5"});
+                var associatedAddressLink = require('./addressResource').getLink("address", { id: "5"});
 
                 return {
                     firstName : "Colin",

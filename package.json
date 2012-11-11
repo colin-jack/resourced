@@ -25,7 +25,7 @@
   },
 
   "scripts": {
-    "test": "mocha -R spec spec/unit/testFixture spec/unit --recursive & mocha -R spec spec/integration/testFixture spec/integration --recursive"
+    "test": "mocha -R spec spec/unit/testFixture spec/unit --recursive & mocha -R spec spec/integration/integrationTestFixture spec/integration --recursive"
   },
 
   "keywords": [
