@@ -1,6 +1,11 @@
 // Might as well get long stack traces in tests.
 //require('longjohn')
 
+var winston = require('winston');
+winston.cli();
+winston.info("Switching to only logging errors (testFixture.js).")
+winston.level = 'error';
+
 // A namespace is used so that reorganising the folder containing the code under test doesn't result in 
 // lots of broken tests (avoids paths like ./../../../lib/Resource from tests)
 var libNamespace = require('./../../lib/namespace');

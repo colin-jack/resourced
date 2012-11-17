@@ -37,9 +37,9 @@ describe('when you send PUT request to a resource and the method has body rules 
         };
 
         request(app).put('/puppies/5', requestBody)
-            .expectBody(expectedResponseBody)
-            .expectStatus(400)
-            .run(done); 
+                    .expectBody(expectedResponseBody)
+                    .expectStatus(400)
+                    .run(done); 
     })
 
     it('should raise appropriate error if body is missing', function(done) {
@@ -53,9 +53,11 @@ describe('when you send PUT request to a resource and the method has body rules 
             }
         };
 
+        debugger;
+
         request(app).put('/puppies/5', null)
-            .expectBody(expectedResponseBody)
-            .expectStatus(400)
-            .run(done); 
+                    .expectBody(expectedResponseBody)
+                    .expectStatus(400)
+                    .run(done); 
     })
 })

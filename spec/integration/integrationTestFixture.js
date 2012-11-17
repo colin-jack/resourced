@@ -1,7 +1,8 @@
 var winston = require('winston');
-winston.info("Switching to only logging errors (testFixture.js).")
 winston.cli();
+
 // TODO - See https://github.com/flatiron/winston/pull/112
+winston.info("Switching to only logging errors (testFixture.js).")
 winston.level = 'error';
 
 // sets up the namespace used by the test code, the namespace keeps the coupling related to directory structures

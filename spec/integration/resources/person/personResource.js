@@ -11,13 +11,12 @@ module.exports = new Resource({
         {
             httpMethod: 'get',
             bob: function(id) {
-                var associatedAddressLink = require('./addressResource').getLink("address", { id: "5"});
-
                 return {
                     firstName : "Colin",
                     secondName : "Jack",
                     id : id,
-                    address: associatedAddressLink
+
+                    address: this.urlFor('address', {id: 5})
                 };
             }
         },
