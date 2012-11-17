@@ -2,10 +2,6 @@ var sinon = require('sinon'),
     requestResponseBuilder = testLib.require('requestResponseBuilder'),
     underTest = lib.require('createRequestHandler');
 
-var bodyFromRequest = {
-    foo: "bar"
-};
-
 describe('request handler - urlFor', function() {
     describe('when you call a request handler', function() {
         var requestContext;
@@ -41,17 +37,5 @@ describe('request handler - urlFor', function() {
         wrapped(fakeRequest, requestResponseBuilder.createResponseSpy());
 
         return context;
-    };
-
-    function callWrappedHandlerAndReturnRequestBody(httpMethod) {  
-        var bodyInRequestInHandler;
-
-        var toWrap = function(id, body) {
-            bodyInRequestInHandler = this.request.body;
-        };
-
-        callWrappedHandler(toWrap, httpMethod);
-
-        return bodyInRequestInHandler;
     };
 });
