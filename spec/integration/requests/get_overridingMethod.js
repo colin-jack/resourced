@@ -2,10 +2,11 @@ var request = require('testresources'),
     express = require('express'),
     testUtil = require('./../testUtil');
 
-describe.only('when you make a GET request to a method which is specifically over-riding http method', function(){
+// NOTE - Uses personResource
+describe('when you make a GET request to a method which is specifically over-riding http method', function(){
     beforeEach(require('./../registerTestResources'))
 
-    it('should respond', function(done) {
+    it('should respond with appropriate body', function(done) {
         var expectedBody = {
                     firstName : "Colin",
                     secondName : "Jack",
