@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    urlCreator = lib.require('urlCreator');
+    createUrl = lib.require('createUrl');
 
 describe('generating simple uri', function() {
     var fakeRequest;
@@ -18,7 +18,7 @@ describe('generating simple uri', function() {
 
             var uriParams = { id: 1, idTwo: 4, somethingElse: 2, idThree: 3, idFour: 4};
 
-            url = urlCreator.createUrl(stubResource, uriParams, fakeRequest);
+            url = createUrl.createUrl(stubResource, uriParams, fakeRequest);
         });
 
         it('should get expected url', function() {
@@ -36,7 +36,7 @@ describe('generating simple uri', function() {
 
             var parameters = { id: 1, somethingElse: 2};
 
-            url = urlCreator.createUrl(stubResource, parameters, fakeRequest);
+            url = createUrl.createUrl(stubResource, parameters, fakeRequest);
         });
 
         it('should get url with tokens still included', function() {

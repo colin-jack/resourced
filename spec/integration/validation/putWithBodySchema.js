@@ -53,8 +53,6 @@ describe('when you send PUT request to a resource and the method has body rules 
             }
         };
 
-        debugger;
-
         request(app).put('/puppies/5', null)
                     .expectBody(expectedResponseBody)
                     .expectStatus(400)
