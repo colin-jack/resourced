@@ -9,7 +9,7 @@ module.exports = new Resource({
         http.get(function(id) {
             var address;
             return address = {
-                "House Name/Number": 72,
+                "House Number": 72,
                 "Stree Name": "Fox Lane",
                 "Town": "Edinburgh",
                 "PostCode": "EH99 7JJ"

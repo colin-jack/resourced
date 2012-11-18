@@ -15,13 +15,20 @@ describe('when you make a GET request to a method which is specifically over-rid
                     address: "http://127.0.0.1:" + 3551 + "/address/5"
                 }
 
+        var expectedAddressBody = {
+            "House Number": 72,
+            "Stree Name": "Fox Lane",
+            "Town": "Edinburgh",
+            "PostCode": "EH99 7JJ"
+        };
+
         resourceTest(app).get('/people/5')
             .expectBody(expectedBody)
             //.expectNotCached()
-            // .followLink("address")
-            //     .expectBody(...)
+            .followLink("address")
+                 .expectBody(expectedAddressBody)
             //     .expectCacheForever("publically")
-            //     .endLink()
+                 .endLink()
             .run(done);
     })
 })
