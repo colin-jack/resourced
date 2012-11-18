@@ -49,13 +49,11 @@ module.exports = new Resource({
         // NOTE - Here instead of using http.get we could have used an anonymous object with
         // a property called get containing the function, as we've done for PUT below.
         http.get(function(id) {
-            associatedAddressLink = addressResource.getLink("address", { id: "5"});
-
             return {
                 firstName : "Colin",
                 secondName : "Jack",
                 id : id,
-                address: associatedAddressLink
+                address: address: this.urlFor(addressResource, {id: 5})
             };
         }),
         
