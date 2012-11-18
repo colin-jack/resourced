@@ -4,7 +4,9 @@
 NOTE - This is a very early version of this project and is not yet fully featured, I would be interested in any [feedback](https://resourced.uservoice.com/).
 
 ## Philosophy
-It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources. 
+It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources.
+
+If you are familiar with MVC but not REST/ROA then you can think of a resource as serving the same purpose as a controller.
 
 This lightweight DSL thus introduces abstractions that make it easy to design in a resource-oriented (RESTful) style. Each resource contains:
 * URL - The address of the resource.
