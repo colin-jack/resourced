@@ -1,4 +1,4 @@
-var http = lib.require('http');
+var http = resourcedLib.require('http');
 
 describe('http', function() {
     describe("when you use 'http.put' to create an object describing a request handler", function() {

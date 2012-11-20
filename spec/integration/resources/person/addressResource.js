@@ -1,6 +1,6 @@
-var Resource = lib.require('Resource');
-var http = lib.require('http');
-var cache = lib.require('cache');
+var Resource = resourcedLib.require('Resource');
+var http = resourcedLib.require('http');
+var cache = resourcedLib.require('cache');
 
 module.exports = new Resource({
     url: "/address/:id",

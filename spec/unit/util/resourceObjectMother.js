@@ -1,4 +1,4 @@
-var Resource = lib.require('Resource');
+var Resource = resourcedLib.require('Resource');
     _u = require('underscore');
 
 var createGetOnlyResource = function(options) {

@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    populateArgumentsFromRequest = lib.require('populateArgumentsFromRequest');
+    populateArgumentsFromRequest = resourcedLib.require('populateArgumentsFromRequest');
 
 // TODO: Fill in.
 describe('populating arguments from request', function() {

@@ -1,7 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
     requestResponseBuilder = testLib.require('requestResponseBuilder'),
-    createRequestHandler = lib.require('createRequestHandler');
+    createRequestHandler = resourcedLib.require('createRequestHandler');
 
 var bodyFromRequest = {
     foo: "bar"

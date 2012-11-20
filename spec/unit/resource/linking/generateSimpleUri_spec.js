@@ -1,4 +1,4 @@
-var createUrl = lib.require('createUrl'),
+var createUrl = resourcedLib.require('createUrl'),
     resourceObjectMother = testLib.require('resourceObjectMother'),
     linkingTestUtil = testLib.require('linkingTestUtil');
 

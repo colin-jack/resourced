@@ -2,7 +2,7 @@ var sinon = require('sinon'),
     testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother')
-    createRequestHandler = lib.require('createRequestHandler');
+    createRequestHandler = resourcedLib.require('createRequestHandler');
 
 describe('createRequestHandler', function() {
     var fakeResponse = responseTestUtil.createResponseSpy();

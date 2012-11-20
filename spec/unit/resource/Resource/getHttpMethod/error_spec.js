@@ -1,4 +1,4 @@
-var getHttpMethodToUseForHandler = lib.require('getHttpMethodToUseForHandler');
+var getHttpMethodToUseForHandler = resourcedLib.require('getHttpMethodToUseForHandler');
 
 var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, httpMethod) {  
     var handlerObject = {

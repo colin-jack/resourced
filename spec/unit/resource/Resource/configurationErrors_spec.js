@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    Resource = lib.require('Resource');
+    Resource = resourcedLib.require('Resource');
 
 describe('errors specifying resource', function() {
     describe('when you omit the URL when defining a resource', function() {

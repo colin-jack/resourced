@@ -1,7 +1,7 @@
 var winston = require('winston');
 
 // global within the module
-lib = require('./lib/namespace');
+resourcedLib = require('./lib/namespace');
 
 var Resource = require('./lib/resource/Resource');
 var cache = require('./lib/caching/cache');
@@ -16,7 +16,7 @@ var configureResourcesInDirectory = function(directoryPath, done) {
             }
         }
 
-        var registerAllResourcesInDirectory = lib.require('registerAllResourcesInDirectory');
+        var registerAllResourcesInDirectory = resourcedLib.require('registerAllResourcesInDirectory');
         registerAllResourcesInDirectory(directoryPath, app, wrappingDone);
     } catch (ex) {
         winston.error("Failed to configure resources due to error: " + ex);
