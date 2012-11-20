@@ -1,3 +1,13 @@
+redbot from tests
+
+collection with multiple gets (paged, search)
+    -> generate link, how to know which link is for?
+    -> how do I support this with http.get(...)
+collection with multiple POSTS
+    -> want a way to link to one of them
+get link including query templates
+    -> Unfilled values in URL?
+
 // TODO - conventions about response codes etc, exceptions
 // TODO - Research node.js service/REST testing
 // TODO - Use https://github.com/flatiron/nconf, particularly to control per-request logging.

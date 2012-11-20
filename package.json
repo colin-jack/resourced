@@ -1,5 +1,5 @@
 {
-  "version": "0.3.81",
+  "version": "0.3.83",
 
   "name": "resourced",
   "description": "A resource oriented DSL for configuring express.js (REST).",
@@ -32,7 +32,9 @@
     "REST",
     "HTTP",
     "RESTful",
+    "request",
     "express",
+    "http",
     "services",
     "web services",
     "resource oriented"
@@ -48,7 +50,7 @@
     "coffee-script": "*",
     "objectcompare": "*",
     "changeprocessor": "*",
-    "testresources": "*",
+    "testresources": "0.0.91",
     "supertest": "*",
 
     "grunt" : "*"

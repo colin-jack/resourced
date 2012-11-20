@@ -1,5 +1,7 @@
 var winston = require('winston');
-global.lib = require('./lib/namespace');
+
+// global within the module
+lib = require('./lib/namespace');
 
 var Resource = require('./lib/resource/Resource');
 var cache = require('./lib/caching/cache');
