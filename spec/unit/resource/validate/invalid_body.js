@@ -3,7 +3,7 @@ var fixture = testLib.require('testFixture'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
-    underTest = resourcedLib.require('validateBody');
+    underTest = lib.require('validateBody');
 
 describe('invalid body', function() {
     describe("when the request body is validated", function() {

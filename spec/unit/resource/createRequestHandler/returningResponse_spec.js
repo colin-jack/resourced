@@ -1,7 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
     testUtil = require('./testUtil'),
-    createRequestHandler = resourcedLib.require('createRequestHandler');
+    createRequestHandler = lib.require('createRequestHandler');
 
 describe('handling request', function() {
     describe('when you return an object from a GET handler method and do not otherwise set response body', function() {

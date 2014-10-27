@@ -1,7 +1,6 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    requestResponseBuilder = testLib.require('requestResponseBuilder'),
-    createRequestHandler = lib.require('createRequestHandler');
+    createRequestHandler = lib.RequestHandlerCreator.create
 
 var bodyFromRequest = {
     foo: "bar"
@@ -51,8 +50,13 @@ describe('request handler', function() {
         handlerMethodDefinition[httpMethod] = toWrap;
 
         var wrapped = createRequestHandler(httpMethod, handlerMethodDefinition, httpMethod, resourceDefinition);
+        
+        var fakeResponseObject = {
+            send: function () { },
+            render: function () { }
+        };
 
-        wrapped(fakeRequest, requestResponseBuilder.createResponseSpy());
+        wrapped(fakeRequest, fakeResponseObject);
     };
 
     function callWrappedHandlerAndReturnBodyPassedIn(httpMethod) {

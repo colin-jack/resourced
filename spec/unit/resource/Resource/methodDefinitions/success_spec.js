@@ -1,21 +1,11 @@
-describe('specifying resource method', function() {
-    describe('when the resource method definition overrides HTTP method', function() {
-        it("should use over-ridden value");
-    });
+// var assert = require('chai').assert,
+//     Resource = require('./../../testFixture').require('Resource');
 
-    describe('when the resource method definition overrides caching', function() {
-        it("should use over-ridden value");
-    });
-
-    describe('when the resource method definition overrides response status code', function() {
-        it("should use over-ridden value");
-    });
-
-    describe('when the resource method definition has URL specified', function() {
-        it("should use over-ridden value");
-    });
-
-    describe('when the resource method definition has URL specified but it does not start with /', function() {
-        it("should use over-ridden value");
-    });    
-});
+// describe('specifying resource method', function() {
+// describe('when the resource method definition overrides HTTP method') //'NYI',
+// describe('when the resource method definition overrides caching') //'NYI',
+// describe('when the resource method definition overrides response status code') //'NYI',
+// describe('when the resource method definition has URL specified') //'NYI',
+// describe('when the resource method definition has URL specified but it does not start with /') //'NYI'
+    
+// });

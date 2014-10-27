@@ -1,10 +1,10 @@
 var sinon = require('sinon'),
     testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
-    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother')
-    createRequestHandler = resourcedLib.require('createRequestHandler');
+    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
+    createRequestHandler = lib.RequestHandlerCreator.create
 
-describe('createRequestHandler', function() {
+describe('RequestHandlerCreator', function() {
     var fakeResponse = responseTestUtil.createResponseSpy();
 
     describe('when the resource has argument validation applied and an argument for a request is invalid', function() {

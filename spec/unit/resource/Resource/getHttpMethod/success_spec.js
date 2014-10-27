@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    getHttpMethodToUseForHandler = resourcedLib.require('getHttpMethodToUseForHandler');
+    getHttpMethodToUseForHandler = lib.require('getHttpMethodToUseForHandler');
 
 var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, httpMethod) {  
     var handlerObject = {

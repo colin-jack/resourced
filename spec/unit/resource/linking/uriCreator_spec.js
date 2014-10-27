@@ -1,6 +1,6 @@
 var assert = require('chai').assert,
-    createUrl = resourcedLib.require('createUrl'),
-    linkingTestUtil = testLib.require('linkingTestUtil');
+    createUrl = lib.require('createUrl'),
+    linkingTestUtil = testLib.linkingTestUtil;
 
 describe('generating simple uri', function() {
 

@@ -1,7 +1,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
-    getResponseCachingMiddleware = resourcedLib.require('getResponseCachingMiddleware'),
-    cache = resourcedLib.require('cache');
+    getResponseCachingMiddleware = lib.require('getResponseCachingMiddleware'),
+    cache = lib.require('cache');
 
 describe('cache definitions', function() {
     describe('when you say a resource can be cached privately for five minutes and make a GET request', function() {

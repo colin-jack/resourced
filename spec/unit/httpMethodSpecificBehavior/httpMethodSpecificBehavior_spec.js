@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    httpMethodSpecificBehavior = resourcedLib.require('httpMethodSpecificBehavior');
+    httpMethodSpecificBehavior = lib.require('httpMethodSpecificBehavior');
 
 var getHttpMethodSpecificBehavior = function(httpMethod) {  
     return httpMethodSpecificBehavior.forHttpMethod(httpMethod);

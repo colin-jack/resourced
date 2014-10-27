@@ -1,4 +1,4 @@
-query parameters
+redbot from tests
 
 collection with multiple gets (paged, search)
     -> generate link, how to know which link is for?

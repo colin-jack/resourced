@@ -2,6 +2,7 @@
 Resource = require('../../lib/resource/Resource')
 http = require('../../lib/resource/http')
 caching = require('../../lib/caching/cache')
+ensure = require('rules').ensure
 
 people = [
     { firstName: "bob", lastName: "smith" },

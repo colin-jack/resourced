@@ -1,33 +1,29 @@
 {
-  "version": "0.3.84",
-
+  "version": "0.3.83",
   "name": "resourced",
   "description": "A resource oriented DSL for configuring express.js (REST).",
   "main": "index",
-
   "preferGlobal": false,
-
   "author": {
     "name": "Colin Jack"
   },
-
   "repository": {
     "type": "git",
     "url": "https://github.com/colin-jack/resourced.git"
   },
-
   "dependencies": {
-    "winston": "*",
-    "async": "*",
-    "underscore": "*",
+    "Q": "*",
+    "body-parser": "*",
+    "express": "*",
+    "q": "^2.0.2",
     "require-namespace": "*",
-    "rules" : "0.6.3"
+    "rules": "0.6.41",
+    "underscore": "*",
+    "winston": "*"
   },
-
   "scripts": {
-    "test": "mocha -R spec spec/unit/testFixture spec/unit --recursive & mocha -R spec spec/integration/integrationTestFixture spec/integration --recursive"
+    "test": "mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive & mocha --harmony -R spec spec/integration/integrationTestFixture spec/integration --recursive"
   },
-
   "keywords": [
     "REST",
     "HTTP",
@@ -39,31 +35,43 @@
     "web services",
     "resource oriented"
   ],
-
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
     "sinon": "*",
     "longjohn": "*",
     "moment": "*",
-    "express": "3*",
     "coffee-script": "*",
     "objectcompare": "*",
     "changeprocessor": "*",
-    "testresources": "0.0.91",
+    "testresources": "*",
     "supertest": "*",
-
-    "grunt" : "*"
+    "grunt": "*",
+    "errorhandler": "*"
   },
-
   "_npmUser": {
     "name": "colin_jack",
     "email": "colin.jack@gmail.com"
   },
-
   "license": "MIT",
-  
   "engines": {
-    "node": ">=0.6"
-  }
+    "node": ">=0.11.13"
+  },
+  "readme": "# resourced (node.js)\n[![Build Status](https://travis-ci.org/colin-jack/resourced.png)](https://travis-ci.org/#!/colin-jack/resourced)\n\nNOTE - This is a very early version of this project and is not yet fully featured.\n\n## Philosophy\nIt makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources.\n\nIf you are familiar with MVC but not REST/ROA then you can think of a resource as serving the same purpose as a controller.\n\nThis lightweight DSL thus introduces abstractions that make it easy to design in a resource-oriented (RESTful) style. Each resource contains:\n* URL - The address of the resource.\n* Methods - One or more HTTP request handler methods.\n* Caching - Where and how long to cache responses from the resource (optional).\n* Middleware - Middleware to run before and after requests, for example to perform authorization (optional).\n\n##Features\n* [Request Handlers](https://github.com/colin-jack/resourced/blob/master/docs/requestHandling.md) - Features like argument population make handling requests easier.\n* [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md) - HTTP caching of responses to GET requests.\n* [Validation](https://github.com/colin-jack/resourced/blob/master/docs/validation.md) - Allows validation of request bodies and URL's.\n* [Conventions](https://github.com/colin-jack/resourced/blob/master/docs/convetions.md) - Conventions are included to make it easier to create HTTP friendly services.\n\n## Samples\nThe sampl is taken from the [example application](#example).\n\n### Configuration\nTo configure restless you need to tell it which directory to look for resources in:\n\n```js\nvar resourcesDirectory = __dirname + '/resources';\nresourced.configureResourcesInDirectory(resourcesDirectory, done);\n```\nThe directory will be scanned for files including resources. You must also tell express to use the body parser:\n```js\napp.use(express.bodyParser())\n```\n\n### Resource Definition - JavaScript\nThe following shows a simple person resource, where the JSON response includes a link to the associated address:\n```js\nvar Resource = require('resourced').Resource\n    http = require('resourced').http,\n    cache = require('resourced').cache;\n\nmodule.exports = new Resource({\n    url: \"/people/:id\",\n\n    cache: cache.minutes(5).publically(),\n\n    respondsTo: [\n        // NOTE - Here instead of using http.get we could have used an anonymous object with\n        // a property called get containing the function, as we've done for PUT below.\n        http.get(function(id) {\n            return {\n                firstName : \"Colin\",\n                secondName : \"Jack\",\n                id : id,\n                address: address: this.urlFor(addressResource, {id: 5})\n            };\n        }),\n        \n        { \n            put: function(id, body) {\n                return body;\n            }\n        }\n    ]\n});\n```\nThe response to a GET request for the associated URI (for example /people/5) would be:\n\n    HTTP/1.1 200 OK\n    X-Powered-By: Express\n    Cache-Control: max-age=300, public\n    Content-Type: application/json; charset=utf-8\n    Content-Length: 129\n    ...\n    {\n      \"firstName\": \"Colin\",\n      \"secondName\": \"Jack\",\n      \"id\": \"5\",\n      \"address\": {\n        \"rel\": \"address\",\n        \"url\": \"/address/5\"\n      }\n    }\nNote the link to the associated address in the response. \n\n## <a name=\"example\"/>Running Examples\nYou can run the sample application using the following command:\n\n    node examples/web.js\n    \nThe output will end with a hard-coded URL that you can use to interact with the first resource using [curl](https://httpkit.com/resources/HTTP-from-the-Command-Line/):\n\nGET ```curl http://localhost:3050/people/5```<br/>\nPUT ```curl -i -H \"Content-Type: application/json\" -X PUT 'http://localhost:3050/people/5' -d '{\"firstName\":\"Mighty\"}'```<br/>\nPOST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>\nDELETE ```curl -i -X POST 'http://localhost:3050/people/5'```\n\n\n## Running Tests\nThe tests use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:\n\n    npm install -g mocha\n\nYou can then run the tests using ```npm test```.",
+  "_id": "resourced@0.3.83",
+  "dist": {
+    "shasum": "365b09123d7ae3696bd9e83a62998c2b3a6f9431",
+    "tarball": "http://registry.npmjs.org/resourced/-/resourced-0.3.83.tgz"
+  },
+  "_npmVersion": "1.1.59",
+  "maintainers": [
+    {
+      "name": "colin_jack",
+      "email": "colin.jack@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_shasum": "365b09123d7ae3696bd9e83a62998c2b3a6f9431",
+  "_from": "resourced@*",
+  "_resolved": "https://registry.npmjs.org/resourced/-/resourced-0.3.83.tgz"
 }

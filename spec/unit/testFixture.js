@@ -1,22 +1,27 @@
-// Might as well get long stack traces in tests.
-//require('longjohn')
+var setupLogging = function () {
+    var winston = require('winston');
+    winston.cli();
+    winston.info("Switching to only logging errors (testFixture.js).")
+    winston.level = 'error';
+}
 
-var winston = require('winston');
-winston.cli();
-winston.info("Switching to only logging errors (testFixture.js).")
-winston.level = 'error';
+var setupGlobalVariables = function () {
+    // A namespace is used so that reorganising the folder containing the code under test doesn't result in 
+    // lots of broken tests (avoids paths like ./../../../lib/Resource from tests)
+    var libNamespace = require('./../../lib/namespace');
+    global.lib = libNamespace;
+    
+    var requireNamespace = require('require-namespace');
+    global.testLib = requireNamespace.createSync(__dirname + "/util", 'testLib');
+    
+    global.assert = require('chai').assert
+}
 
-// A namespace is used so that reorganising the folder containing the code under test doesn't result in 
-// lots of broken tests (avoids paths like ./../../../lib/Resource from tests)
-global.resourcedLib = require('./../../lib/namespace');
+var setupLongStackTraces = function () {
+    // Might as well get long stack traces in tests.
+    require('longjohn')
+}
 
-
-var requireNamespace = require('require-namespace');
-global.testLib = requireNamespace.createSync('testLib', __dirname + "/");
-
-// setup a few globals so we don't need to keep importing things into the test files
-global.assert = require('chai').assert
-
-
-//module.exports = libNamespace;
-//fixture = module.exports
+setupLogging();
+setupGlobalVariables();
+setupLongStackTraces();

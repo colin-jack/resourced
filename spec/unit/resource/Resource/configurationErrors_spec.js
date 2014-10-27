@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    Resource = resourcedLib.require('Resource');
+    Resource = lib.require('Resource');
 
 describe('errors specifying resource', function() {
     describe('when you omit the URL when defining a resource', function() {
@@ -35,21 +35,9 @@ describe('errors specifying resource', function() {
         });
     });
 
-    describe('when the resource URL is an absolute URL', function() {
-         //'NYI - Consider flatiron / revalidator',    
-         it("should raise an error");
-    });
-
-    describe('when the resource cache value is not a caching definition object', function() {
-         //'NYI - Consider flatiron / revalidator',    
-         it("should raise an error");
-    });
-
-    describe('when you have multiple methods using same HTTP verb without over-riding URL', function() {
-         it("should raise an error");
-    });
-    
-    describe('when the url ends with a /', function() {
-         it("should log a warning");
-    });
+    // describe('when the resource URL is not valid') //'NYI - Consider flatiron / revalidator, covers not starting with / or invalid characters too',
+    // describe('when the resource URL is an absolute URL') //'NYI - Consider flatiron / revalidator',    
+    // describe('when the resource cache value is not a caching definition object') //'NYI - Consider flatiron / revalidator',    
+    // describe('when you have multiple methods using same HTTP verb') // 'NYI'
+    // describe('when the url ends with a /') // warning
 });

@@ -1,5 +1,5 @@
 var assert = require('chai').assert,
-    HttpMethod = resourcedLib.require('HttpMethod');
+    HttpMethod = lib.require('HttpMethod');
 
 var resultEquals = function(result, expected) {
     assert.equal(result, expected);

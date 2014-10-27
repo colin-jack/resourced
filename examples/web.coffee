@@ -5,32 +5,30 @@ winston = require('winston')
 resourced = require('../index')
 inspect = require('util').inspect
 require('longjohn') # Might as well get long stack traces as this is an example app
+bodyParser = require('body-parser')
+errorHandler = require('errorhandler')
 
 # TODO - Key aspects
 # [1] Body parse is required
 # [2] Call to configure resourced, it will scan the specified directory for resource files.
 # [3] Uncomment if you want to see the routes being used
+# [4] Create a namespace so we can access parts of resourced API directly
 
-createExpress = (done) ->
+createExpress = () ->
   winston.info "Creating express."
 
   global.app = express()
 
-  app.use(express.logger())
-
-  app.configure 'development', ->
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(errorHandler({ dumpExceptions: true, showStack: true }));
 
   # [1]
-  app.use(express.bodyParser())
-  
-  done()
+  app.use(bodyParser())
 
-configureRestless = (done) ->
+configureResourced = () ->
   # [2]
-  resourced.configureResourcesInDirectory(__dirname + '/resources', done)
+  resourced.configureResourcesInDirectory(__dirname + '/resources', global.app)
 
-startExpress = (done) ->
+startExpress = () ->
   winston.info "Express is now starting."
 
   port = process.env.PORT || 3050;  
@@ -42,14 +40,10 @@ startExpress = (done) ->
     winston.info "Express server listening on port #{port} in #{app.settings.env} mode."
     winston.info "Please go to 'http://localhost:#{port}/people/0' to start your exciting journey."
 
-    done()
-
-configureLogging = (done) ->
+configureLogging = () ->
   winston.handleExceptions();
-  done()
 
-processSeriesResult = (err) ->
-  if (err)
-    winston.error err.toString()
-
-async.series([configureLogging, createExpress, configureRestless, startExpress], processSeriesResult)
+configureLogging()
+createExpress()
+configureResourced()
+startExpress()

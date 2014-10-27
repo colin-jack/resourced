@@ -79,7 +79,10 @@ The response to a GET request for the associated URI (for example /people/5) wou
       "firstName": "Colin",
       "secondName": "Jack",
       "id": "5",
-      "address": "http://localhost:3050/address/5"
+      "address": {
+        "rel": "address",
+        "url": "/address/5"
+      }
     }
 Note the link to the associated address in the response. 
 
@@ -94,6 +97,7 @@ GET ```curl http://localhost:3050/people/5```<br/>
 PUT ```curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty"}'```<br/>
 POST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>
 DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
+
 
 ## Running Tests
 The tests use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
