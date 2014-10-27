@@ -22,7 +22,7 @@
     "winston": "*"
   },
   "scripts": {
-    "test": "mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive & mocha --harmony -R spec spec/integration/integrationTestFixture spec/integration --recursive"
+    "test": "mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive"
   },
   "keywords": [
     "REST",

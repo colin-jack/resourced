@@ -89,7 +89,7 @@ Note the link to the associated address in the response.
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
 
-    node examples/web.js
+    node --harmony examples\web
     
 The output will end with a hard-coded URL that you can use to interact with the first resource using [curl](https://httpkit.com/resources/HTTP-from-the-Command-Line/):
 
@@ -100,8 +100,5 @@ DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 
 
 ## Running Tests
-The tests use [mocha](http://visionmedia.github.com/mocha/) so you first need to install it:
-
-    npm install -g mocha
-
-You can then run the tests using ```npm test```.
+ mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive
+ mocha --harmony -R spec spec/integration/integrationTestFixture spec/integration --recursive

@@ -1,8 +1,8 @@
 var setupLogging = function () {
     var winston = require('winston');
     winston.cli();
-    winston.info("Switching to only logging errors (testFixture.js).")
-    winston.level = 'error';
+    //winston.info("Switching to only logging errors (testFixture.js).")
+    //winston.level = 'error';
 }
 
 var setupGlobalVariables = function () {
