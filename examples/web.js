@@ -1,11 +1,9 @@
 ﻿(function() {
-  var async, bodyParser, configureLogging, configureResourced, createExpress, errorHandler, express, inspect, namespace, resourced, startExpress, winston;
+  var bodyParser, configureLogging, configureResourced, createExpress, errorHandler, express, inspect, namespace, resourced, startExpress, winston;
 
   namespace = require('require-namespace');
 
   express = require('express');
-
-  async = require('async');
 
   winston = require('winston');
 

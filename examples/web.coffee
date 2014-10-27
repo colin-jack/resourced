@@ -1,6 +1,5 @@
 namespace = require('require-namespace')
 express = require('express')
-async = require('async')
 winston = require('winston')
 resourced = require('../index')
 inspect = require('util').inspect
