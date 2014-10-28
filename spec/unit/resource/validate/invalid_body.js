@@ -1,9 +1,10 @@
+var resourced = require('require-namespace').resourced;
 var fixture = testLib.require('testFixture'),
     testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
-    underTest = lib.require('validateBody');
+    underTest = resourced.require('validateBody');
 
 describe('invalid body', function() {
     describe("when the request body is validated", function() {

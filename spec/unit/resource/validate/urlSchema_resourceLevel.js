@@ -1,9 +1,10 @@
+var resourced = require('require-namespace').resourced;
 var testUtil = testLib.require('testUtil'),
     responseTestUtil = testLib.require('responseTestUtil'),
     handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
     validationTestUtil = require('./validationTestUtil'),
     mustBe = require('rules').mustBe,
-    underTest = lib.require('validateUrl');
+    underTest = resourced.require('validateUrl');
 
 describe('invalid URL', function() {
     describe("when url schema is applied at resource level", function() {

@@ -1,7 +1,8 @@
-var assert = require('chai').assert,
-    sinon = require('sinon'),
-    getHandlerMethodDefinitionObjectMother = testLib.getHandlerMethodDefinitionObjectMother,
-    createRequestHandler = lib.RequestHandlerCreator.create
+var assert = require('chai').assert;
+var resourced = require('require-namespace').resourced;
+var sinon = require('sinon');
+var getHandlerMethodDefinitionObjectMother = testLib.getHandlerMethodDefinitionObjectMother;
+var createRequestHandler = resourced.RequestHandlerCreator.create;
 
 describe('handling GET request', function () {
     var responseSendSpy;

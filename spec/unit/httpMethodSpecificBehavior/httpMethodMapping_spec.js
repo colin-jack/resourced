@@ -1,5 +1,6 @@
-var assert = require('chai').assert,
-    HttpMethod = lib.require('HttpMethod');
+var assert = require('chai').assert;
+var resourced = require('require-namespace').resourced;
+var HttpMethod = resourced.require('HttpMethod');
 
 var resultEquals = function(result, expected) {
     assert.equal(result, expected);

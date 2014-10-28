@@ -1,5 +1,6 @@
-var assert = require('chai').assert,
-    populateArgumentsFromRequest = lib.require('populateArgumentsFromRequest');
+var assert = require('chai').assert;
+var resourced = require('require-namespace').resourced;
+var populateArgumentsFromRequest = resourced.require('populateArgumentsFromRequest');
 
 // TODO: Fill in.
 describe('populating arguments from request', function() {

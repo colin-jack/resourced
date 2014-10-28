@@ -1,5 +1,6 @@
-var Resource = lib.require('Resource');
-    _u = require('underscore');
+var resourced = require('require-namespace').resourced;
+var Resource = resourced.require('Resource');
+var _u = require('underscore');
 
 var createGetOnlyResource = function(options) {
     var defaultOptions = {

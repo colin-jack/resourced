@@ -1,4 +1,5 @@
-describe('errors specifying resource method', function() {
+// TODO: Fill in
+describe('errors specifying resource method', function () {
     // Consider flatiron / revalidator',
     describe('when the resource method definition has no verb specified and conventions do not cover it', function() {
         it("should throw an exception")

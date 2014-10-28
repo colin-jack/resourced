@@ -1,5 +1,6 @@
-var assert = require('chai').assert,
-    httpMethodSpecificBehavior = lib.require('httpMethodSpecificBehavior');
+var assert = require('chai').assert;
+var resourced = require('require-namespace').resourced;
+var httpMethodSpecificBehavior = resourced.require('httpMethodSpecificBehavior');
 
 var getHttpMethodSpecificBehavior = function(httpMethod) {  
     return httpMethodSpecificBehavior.forHttpMethod(httpMethod);

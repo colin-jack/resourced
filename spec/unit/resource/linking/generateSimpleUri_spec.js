@@ -1,6 +1,8 @@
-var createUrl = lib.require('createUrl'),
-    resourceObjectMother = testLib.require('resourceObjectMother'),
-    linkingTestUtil = testLib.require('linkingTestUtil');
+var assert = require('chai').assert;
+var resourced = require('require-namespace').resourced;
+var createUrl = resourced.require('createUrl');
+var resourceObjectMother = testLib.require('resourceObjectMother');
+var linkingTestUtil = testLib.require('linkingTestUtil');
 
 describe('generating URL to resource', function() {
     describe('when you generate a url to a simple resource', function() {

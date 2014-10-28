@@ -1,6 +1,7 @@
-var assert = require('chai').assert,
-    sinon = require('sinon'),
-    createRequestHandler = lib.RequestHandlerCreator.create
+var assert = require('chai').assert;
+var resourced = require('require-namespace').resourced;
+var sinon = require('sinon')
+var createRequestHandler = resourced.RequestHandlerCreator.create
 
 var bodyFromRequest = {
     foo: "bar"

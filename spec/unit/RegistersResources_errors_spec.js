@@ -1,5 +1,6 @@
 ﻿var assert = require('chai').assert;
-var RegistersResources = lib.require('RegistersResources');
+var resourced = require('require-namespace').resourced;
+var RegistersResources = resourced.require('RegistersResources');
 
 describe('RegistersResources', function () {
     describe("invalid express instance provided", function () {

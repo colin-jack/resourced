@@ -1,6 +1,6 @@
-var Resource = lib.require('Resource');
-var http = lib.require('http');
-var cache = lib.require('cache');
+var Resource = resourced.require('Resource');
+var http = resourced.require('http');
+var cache = resourced.require('cache');
 var addressResource = require('./addressResource');
 
 module.exports = new Resource({
