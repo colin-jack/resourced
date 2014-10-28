@@ -1,3 +1,4 @@
+var resourced = require('require-namespace').resourced;
 var Resource = resourced.require('Resource');
 var http = resourced.require('http');
 var cache = resourced.require('cache');

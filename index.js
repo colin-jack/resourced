@@ -1,7 +1,8 @@
+var resourced = require('require-namespace').createSync(__dirname + '/lib', 'resourced');
 var winston = require('winston');
-var Resource = require('./lib/resource/Resource');
-var cache = require('./lib/caching/cache');
-var http = require('./lib/resource/http');
+var Resource = resourced.Resource;
+var cache = resourced.cache;
+var http = resourced.http;
 
 module.exports = { 
     configureResourcesInDirectory : resourced.RegistersResources.registerAllInDirectory,

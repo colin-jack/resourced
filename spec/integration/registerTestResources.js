@@ -3,7 +3,8 @@ var resourced = require('../../index');
 var winston = require('winston');
 var bodyParser = require('body-parser')
 
-var app = express();
+// NOTE - Creatin global app here just to make testing simpler
+global.app = express();
 app.use(bodyParser());
 
 var resourcesDir = __dirname + '/resources';

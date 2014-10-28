@@ -6,11 +6,9 @@ var setupLogging = function () {
 }
 
 var setupGlobalVariables = function () {
-    // A namespace is used so that reorganising the folder containing the code under test doesn't result in 
-    // lots of broken tests (avoids paths like ./../../../lib/Resource from tests)
-    require('./../../lib/resourcedNamespace');
-
     var requireNamespace = require('require-namespace');
+    requireNamespace.createSync(__dirname + "/", 'resourced');
+
     global.testLib = requireNamespace.createSync(__dirname + "/util", 'testLib');
     
     global.assert = require('chai').assert

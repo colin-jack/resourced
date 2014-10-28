@@ -5,11 +5,30 @@ winston.cli();
 winston.info("Switching to only logging errors (testFixture.js).")
 winston.level = 'error';
 
-// sets up the namespace used by the test code, the namespace keeps the coupling related to directory structures
-// under control so  we don't end up with paths like ../../../../lib/Resource
-var testFixture = require('./../unit/testFixture');
+var setupLogging = function () {
+    var winston = require('winston');
+    winston.cli();
+    //winston.info("Switching to only logging errors (testFixture.js).")
+    //winston.level = 'error';
+}
 
-debugger;
+var setupGlobalVariables = function () {
+    var requireNamespace = require('require-namespace');
+    global.testLib = requireNamespace.createSync(__dirname + "/util", 'testLib');
+    
+    global.assert = require('chai').assert
+}
 
-// Althoug tests should try to register too we might as well kick off the registration immediately.
-require('./registerTestResources')();
+var setupLongStackTraces = function () {
+    // Might as well get long stack traces in tests.
+    require('longjohn')
+}
+
+var registerResources = function () {
+    require('./registerTestResources')();
+}
+
+setupLogging();
+//setupGlobalVariables();
+setupLongStackTraces();
+registerResources
