@@ -21,8 +21,9 @@ describe('handling GET request', function () {
     });
 
 
-    describe('when you return an object from a GET handler method and do not otherwise set response body', function() {        
-        beforeEach(function() {  
+    describe('when you return an object from a GET handler method and do not otherwise set response body', function() {
+        beforeEach(function () {  
+            debugger;
             var handlerMethodDefinition = getHandlerMethodDefinitionObjectMother.createReturning(response);
 
             wrapAndCallHandlerDefinition(handlerMethodDefinition);

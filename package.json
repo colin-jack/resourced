@@ -12,11 +12,11 @@
     "url": "https://github.com/colin-jack/resourced.git"
   },
   "dependencies": {
-    "body-parser": "*",
+    "body-parser": "^1.9.2",
     "express": "*",
     "q": "^2.0.2",
-    "require-namespace": "^0.3.2",
-    "rules": "^0.6.41",
+    "require-namespace": "^0.3.3",
+    "rules": "^0.6.42",
     "underscore": "*",
     "winston": "*"
   },
@@ -46,7 +46,8 @@
     "testresources": "*",
     "supertest": "*",
     "grunt": "*",
-    "errorhandler": "*"
+    "errorhandler": "*",
+    "async": "*"
   },
   "_npmUser": {
     "name": "colin_jack",
