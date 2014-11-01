@@ -14,11 +14,11 @@
   "dependencies": {
     "body-parser": "^1.9.2",
     "express": "^4.10.1",
-    "require-namespace": "^0.3.3",
+    "q": "^2.0.2",
+    "require-namespace": "^0.3.41",
     "rules": "^0.6.42",
     "underscore": "*",
-    "winston": "*",
-    "q": "*"
+    "winston": "*"
   },
   "scripts": {
     "test": "mocha --harmony spec/unit/testFixture spec/unit --recursive -b -R list & mocha --harmony spec/integration/integrationTestFixture spec/integration --recursive -b -R list --timeout 2500"
