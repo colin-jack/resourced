@@ -10,15 +10,10 @@ var registersResources = function * (fixture) {
     
     var resourcesDir = __dirname + '/resources';
     
-    winston.log("info", "********************** About to load resources from: " + resourcesDir);
-    
     yield * resourced.configureResourcesInDirectory(resourcesDir, expressApp);
     
-    winston.log("info", "********************** Finished loading resources from: " + resourcesDir);
-
     fixture.expressApp = expressApp;
     fixture.closeExpress = function () {
-        debugger;
         expressApp.close();
     }
 }
@@ -27,11 +22,7 @@ var getRegisterResourcesWrapper = function (fixture) {
     return function (done) {
         Q.spawn(function *() {
             try {
-                winston.log("info", "*****  STARTING NEW EXPRESS APP");
-
                 yield * registersResources(fixture);
-                
-                winston.log("info", "** INIT DONE");
                 
                 done(null, null);
             } catch (err) {
