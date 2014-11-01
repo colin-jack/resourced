@@ -21,7 +21,7 @@
     "q": "*"
   },
   "scripts": {
-    "test": "mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive"
+    "test": ">mocha --harmony spec/unit/testFixture spec/unit --recursive -b -R list"
   },
   "keywords": [
     "REST",
