@@ -1,7 +1,7 @@
 ﻿var assert = require('chai').assert;
 var resourced = require('require-namespace').resourced;
 var RegistersResources = resourced.require('RegistersResources');
-var Q = require('Q');
+var Q = require('q');
 
 describe('RegistersResources', function () {
     var thrownError = null;

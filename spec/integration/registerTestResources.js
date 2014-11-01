@@ -2,7 +2,7 @@ var express = require('express');
 var resourced = require('../../index');
 var winston = require('winston');
 var bodyParser = require('body-parser');
-var Q = require('Q');
+var Q = require('q');
 
 var registersResources = function * (fixture) {
     var expressApp = express();
