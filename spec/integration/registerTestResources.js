@@ -4,28 +4,45 @@ var winston = require('winston');
 var bodyParser = require('body-parser');
 var Q = require('Q');
 
-var registersResources = function* () {
-    // NOTE - Creating global app here just to make testing simpler
-    global.app = express();
-    app.use(bodyParser());
+var registersResources = function * (fixture) {
+    var expressApp = express();
+    expressApp.use(bodyParser());
     
     var resourcesDir = __dirname + '/resources';
     
-    winston.log("info", "About to load resources from: " + resourcesDir);
+    winston.log("info", "********************** About to load resources from: " + resourcesDir);
     
-    yield * resourced.configureResourcesInDirectory(resourcesDir, app);
+    yield * resourced.configureResourcesInDirectory(resourcesDir, expressApp);
     
-    winston.log("info", "Loaded resources from: " + resourcesDir);
+    winston.log("info", "********************** Finished loading resources from: " + resourcesDir);
+
+    fixture.expressApp = expressApp;
+    fixture.closeExpress = function () {
+        debugger;
+        expressApp.close();
+    }
 }
 
-module.exports = function (done) {
-    Q.spawn(function *() {
-        try {
-            yield * registersResources();
-            
-            done(null, null);
-        } catch (err) {
-            done(err, null);
-        }
-    });
+var getRegisterResourcesWrapper = function (fixture) {
+    return function (done) {
+        Q.spawn(function *() {
+            try {
+                winston.log("info", "*****  STARTING NEW EXPRESS APP");
+
+                yield * registersResources(fixture);
+                
+                winston.log("info", "** INIT DONE");
+                
+                done(null, null);
+            } catch (err) {
+                done(err, null);
+            }
+        });
+    }
+}
+
+module.exports = function (fixture) {
+    if (!fixture) throw new Error("You must provide the fixture that the express app will be stored on.");
+
+    return getRegisterResourcesWrapper(fixture);
 };

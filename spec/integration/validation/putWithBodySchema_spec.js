@@ -1,14 +1,16 @@
-var request = require('testresources'), 
-    express = require('express'),
-    testUtil = require('./../testUtil');
+var resourceTest = require('testresources');
+var testUtil = require('./../testUtil');
+var registerTestResources = require('./../registerTestResources');
 
 describe('when you send PUT request to a resource and the method has body rules applied', function(){
-    beforeEach(require('./../registerTestResources'))
+    var fixture = {};
+    
+    before(registerTestResources(fixture))
 
     it('should work correctly if body is OK', function(done) {
         var body = { name: "spot", id: 5 };
 
-        request(app).put('/puppies/5', body)
+        resourceTest(fixture.expressApp).put('/puppies/5', body)
             .run(done);
     })
 
@@ -36,7 +38,7 @@ describe('when you send PUT request to a resource and the method has body rules 
             }   
         };
 
-        request(app).put('/puppies/5', requestBody)
+        resourceTest(fixture.expressApp).put('/puppies/5', requestBody)
                     .expectBody(expectedResponseBody)
                     .expectStatus(400)
                     .run(done); 
@@ -53,7 +55,7 @@ describe('when you send PUT request to a resource and the method has body rules 
             }
         };
 
-        request(app).put('/puppies/5', null)
+        resourceTest(fixture.expressApp).put('/puppies/5', null)
                     .expectBody(expectedResponseBody)
                     .expectStatus(400)
                     .run(done); 

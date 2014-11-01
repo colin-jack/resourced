@@ -1,14 +1,17 @@
-var request = require('testresources'), 
-    express = require('express'),
-    testUtil = require('./../testUtil');
+var resourceTest = require('testresources');
+var testUtil = require('./../testUtil');
+var registerTestResources = require('./../registerTestResources');
+
 
 describe('when you apply a url schema at resource level', function (){
-    beforeEach(require('./../registerTestResources'));
+    var fixture = {};
+    
+    before(registerTestResources(fixture))
 
     it('should respond with expected json when URI is correct', function (done) {
         var body = { name: "mikado"};
 
-        request(app).get('/kittens/5')
+        resourceTest(fixture.expressApp).get('/kittens/5')
             .expectBody(body)
             .expectCached('public', 5)
             .run(done);
@@ -20,7 +23,7 @@ describe('when you apply a url schema at resource level', function (){
             message: "The value must be numeric."
         };
 
-        request(app).get('/kittens/bob')
+        resourceTest(fixture.expressApp).get('/kittens/bob')
             .expectBody(expectedBody)
             .expectStatus(400)
             .run(done);

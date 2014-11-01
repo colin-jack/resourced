@@ -1,9 +1,11 @@
 ﻿var assert = require('assert');
 var resourceTest = require('testresources');
+var registerTestResources = require('./../registerTestResources');
 
 describe('Test Suite', function() {
-   
-    beforeEach(require('./../registerTestResources'));
+    var fixture = {};
+    
+    before(registerTestResources(fixture))
 
     it('should respond with appropriate body', function (done) {
         var expectedBody = {
@@ -20,7 +22,9 @@ describe('Test Suite', function() {
             "PostCode": "EH99 7JJ"
         };
         
-        resourceTest(app).get('/people/5')
+        require("winston").info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% get_simple")
+
+        resourceTest(fixture.expressApp).get('/people/5')
             .expectBody(expectedBody)
             .expectNotCached()
             .followLink("address")

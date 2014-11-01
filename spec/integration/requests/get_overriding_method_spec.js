@@ -1,10 +1,12 @@
 var resourceTest = require('testresources');
-var express = require('express');
 var testUtil = require('./../testUtil');
+var registerTestResources = require('./../registerTestResources');
 
 // NOTE - Uses personResource
 describe('when you make a GET request to a method which is specifically over-riding http method', function (){
-    beforeEach(require('./../registerTestResources'))
+    var fixture = {};
+
+    before(registerTestResources(fixture))
 
     it('should respond with appropriate body', function(done) {
         var expectedBody = {
@@ -14,7 +16,7 @@ describe('when you make a GET request to a method which is specifically over-rid
                     address: "http://127.0.0.1:" + resourceTest.port + "/address/5"
         }
         
-        debugger;
+        require("winston").info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% get_overriding_method_spec")
 
         var expectedAddressBody = {
             "House Number": 72,
@@ -23,7 +25,8 @@ describe('when you make a GET request to a method which is specifically over-rid
             "PostCode": "EH99 7JJ"
         };
         
-        resourceTest(app).get('/people/5')
+        resourceTest(fixture.expressApp)
+            .get('/people/5')
             .expectBody(expectedBody)
             .expectNotCached()
             .followLink("address")
