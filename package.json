@@ -1,5 +1,5 @@
 {
-  "version": "0.3.83",
+  "version": "0.4.0-alpha.1",
   "name": "resourced",
   "description": "A resource oriented DSL for configuring express.js (REST).",
   "main": "index",
@@ -13,12 +13,12 @@
   },
   "dependencies": {
     "body-parser": "^1.9.2",
-    "express": "*",
-    "q": "^2.0.2",
+    "express": "^4.10.1",
     "require-namespace": "^0.3.3",
     "rules": "^0.6.42",
     "underscore": "*",
-    "winston": "*"
+    "winston": "*",
+    "q": "*"
   },
   "scripts": {
     "test": "mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive"
@@ -46,8 +46,7 @@
     "testresources": "*",
     "supertest": "*",
     "grunt": "*",
-    "errorhandler": "*",
-    "async": "*"
+    "errorhandler": "*"
   },
   "_npmUser": {
     "name": "colin_jack",

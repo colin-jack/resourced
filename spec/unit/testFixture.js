@@ -7,7 +7,7 @@ var setupLogging = function () {
 
 var setupGlobalVariables = function () {
     var requireNamespace = require('require-namespace');
-    requireNamespace.createSync(__dirname + "/", 'resourced');
+    requireNamespace.createSync(__dirname + "/../../lib", 'resourced');
 
     global.testLib = requireNamespace.createSync(__dirname + "/util", 'testLib');
     
