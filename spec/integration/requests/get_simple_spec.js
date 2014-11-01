@@ -22,8 +22,6 @@ describe('Test Suite', function() {
             "PostCode": "EH99 7JJ"
         };
         
-        require("winston").info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% get_simple")
-
         resourceTest(fixture.expressApp).get('/people/5')
             .expectBody(expectedBody)
             .expectNotCached()

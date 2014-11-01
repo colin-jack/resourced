@@ -16,8 +16,6 @@ describe('when you make a GET request to a method which is specifically over-rid
                     address: "http://127.0.0.1:" + resourceTest.port + "/address/5"
         }
         
-        require("winston").info("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% get_overriding_method_spec")
-
         var expectedAddressBody = {
             "House Number": 72,
             "Stree Name": "Fox Lane",
