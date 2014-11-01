@@ -100,5 +100,7 @@ DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
 
 
 ## Running Tests
- mocha --harmony -R spec spec/unit/testFixture spec/unit --recursive
- mocha --harmony -R spec spec/integration/integrationTestFixture spec/integration --recursive
+'''
+mocha --harmony spec/unit/testFixture spec/unit --recursive -b -R list
+mocha --harmony spec/integration/integrationTestFixture spec/integration --recursive -b -R list
+'''

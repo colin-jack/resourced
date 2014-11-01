@@ -12,7 +12,9 @@ describe('when you make a GET request to a method which is specifically over-rid
                     secondName : "Jack",
                     id : '5',
                     address: "http://127.0.0.1:" + resourceTest.port + "/address/5"
-                }
+        }
+        
+        debugger;
 
         var expectedAddressBody = {
             "House Number": 72,

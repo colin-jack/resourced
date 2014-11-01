@@ -1,8 +1,8 @@
-﻿var Mocha = require('mocha'),
+﻿// Useful if you want to debug some mocha tests in Visual Studio
+var Mocha = require('mocha'),
     fs = require('fs'),
     path = require('path');
 
-// First, you need to instantiate a Mocha instance.
 var mocha = new Mocha({
                 bail: true,
                 timeout: false
@@ -11,14 +11,14 @@ var mocha = new Mocha({
 // Then, you need to use the method "addFile" on the mocha
 // object for each file.
 
-var testDirectory = __dirname + "/validation";
+var testDirectory = __dirname + "/requests";
 
 mocha.addFile("./spec/integration/integrationTestFixture.js");
 
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
-    return  file.substr(-3) === '.js' && file.indexOf("getWithUrlSchema_spec") !== -1;
+    return  file.substr(-3) === '.js' && file.indexOf("get_overriding_method_spec") !== -1;
 }).forEach(function (file) {
     // Use the method "addFile" to add the file to mocha
     mocha.addFile(path.join(testDirectory, file));
