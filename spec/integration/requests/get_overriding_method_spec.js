@@ -23,6 +23,8 @@ describe('when you make a GET request to a method which is specifically over-rid
             "PostCode": "EH99 7JJ"
         };
         
+        debugger;
+        
         resourceTest(fixture.expressApp)
             .get('/people/5')
             .expectBody(expectedBody)

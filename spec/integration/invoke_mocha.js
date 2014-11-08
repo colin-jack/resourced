@@ -11,14 +11,12 @@ var mocha = new Mocha({
 // Then, you need to use the method "addFile" on the mocha
 // object for each file.
 
-var testDirectory = __dirname + "/validation";
-
-mocha.addFile("./spec/integration/integrationTestFixture.js");
+var testDirectory = __dirname + "/requests";
 
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
-    return file.substr(-3) === '.js';// && file.indexOf("get_overriding_method_spec") !== -1;
+    return file.substr(-3) === '.js' && file.indexOf("get_overriding_method_spec") !== -1;
 }).forEach(function (file) {
     // Use the method "addFile" to add the file to mocha
     mocha.addFile(path.join(testDirectory, file));
