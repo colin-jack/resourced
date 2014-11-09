@@ -53,8 +53,8 @@
     <Compile Include="lib\resource\validation\validateUrl.js" />
     <Compile Include="spec\integration\integrationTestFixture.js" />
     <Compile Include="spec\integration\invoke_mocha.js" />
-    <Compile Include="spec\integration\registerTestResources.js" />
-    <Compile Include="spec\integration\requests\getWithUrlSchema_methodLevel_spec.js" />
+    <Compile Include="spec\integration\requests\get_no_cachine_specified.js" />
+    <Compile Include="spec\integration\url_schema\get_with_url_schema_methodLevel_spec.js" />
     <Compile Include="spec\integration\requests\get_follow_link_spec.js" />
     <Compile Include="spec\integration\testUtil.js" />
     <Compile Include="spec\testFixture.js" />
@@ -63,9 +63,8 @@
     <Compile Include="spec\integration\configuration\configuringFromMixedDirectory_spec.js" />
     <Compile Include="spec\integration\configuration\Resource_errors.js" />
     <Compile Include="spec\integration\requests\get_overriding_method_spec.js" />
-    <Compile Include="spec\integration\validation\getWithUrlSchema_methodLevel_spec.js" />
-    <Compile Include="spec\integration\validation\getWithUrlSchema_spec.js" />
-    <Compile Include="spec\integration\validation\putWithBodySchema_spec.js" />
+    <Compile Include="spec\integration\url_schema\get_with_url_schema_resource_level_spec.js" />
+    <Compile Include="spec\integration\url_schema\put_with_body_schema_spec.js" />
     <Compile Include="spec\integration\resources\kittens\kittensResource.js" />
     <Compile Include="spec\integration\resources\person\addressResource.js" />
     <Compile Include="spec\integration\resources\person\personResource.js" />
@@ -127,7 +126,7 @@
     <Folder Include="spec\integration\resources\person" />
     <Folder Include="spec\integration\resources\puppies" />
     <Folder Include="spec\integration\resources\puppies\validation" />
-    <Folder Include="spec\integration\validation" />
+    <Folder Include="spec\integration\url_schema\" />
     <Folder Include="spec\unit" />
     <Folder Include="spec\unit\httpMethodSpecificBehavior" />
     <Folder Include="spec\unit\middleware" />

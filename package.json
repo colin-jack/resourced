@@ -18,7 +18,9 @@
     "require-namespace": "^0.3.41",
     "rules": "^0.6.42",
     "underscore": "*",
-    "winston": "*"
+    "winston": "*",
+
+    "morgan": "*"
   },
   "scripts": {
     "test": "mocha --harmony spec/unit --recursive -b -R list & mocha --harmony spec/integration --recursive -b -R list --timeout 2500"

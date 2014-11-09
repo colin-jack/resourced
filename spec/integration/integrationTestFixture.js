@@ -3,6 +3,7 @@ var express = require('express');
 var winston = require('winston');
 var bodyParser = require('body-parser');
 var resourceTest = require('testresources')
+var morgan = require('morgan')
 
 var baseFixture = require('./../testFixture');
 
@@ -10,8 +11,6 @@ var resourced = baseFixture.resourced;
 
 var registerTestResources = function * (expressApp) {
     var resourcesDir = __dirname + '/resources';
-    
-    debugger;
     
     yield * resourced.RegistersResources.registerAllInDirectory(resourcesDir, expressApp);
 };
@@ -26,11 +25,10 @@ var startExpressServer = function () {
         
         try {
             var expressApp = express();
-            expressApp.use(bodyParser());
+            expressApp.use(bodyParser.json());
+            expressApp.use(morgan());
             
             yield * registerTestResources(expressApp)
-            
-            debugger;
             
             var serverWrapper = resourceTest.startServer(expressApp);
             
@@ -39,7 +37,7 @@ var startExpressServer = function () {
             fixture.server = serverWrapper;
             
             Object.defineProperty(fixture, "port", { get: function () { return this.server.port; } });
-            
+
             deferred.resolve();            
         } catch (e) {
             winston.error("Error during preperation for test: " + e);
