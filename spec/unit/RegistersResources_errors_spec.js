@@ -1,6 +1,6 @@
-﻿var assert = require('chai').assert;
-var resourced = require('require-namespace').resourced;
-var RegistersResources = resourced.require('RegistersResources');
+﻿var fixture = require('./../unitTestFixture')
+var assert = fixture.assert;
+var RegistersResources = fixture.resourced.RegistersResources;
 var Q = require('q');
 
 describe('RegistersResources', function () {

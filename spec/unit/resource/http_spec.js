@@ -1,7 +1,6 @@
 var fixture = require('./../unitTestFixture')
 var http = fixture.resourced.require('http');
 
-var fixture = require('./../unitTestFixture')
 var assert = fixture.assert;
 
 describe('http', function() {

@@ -1,8 +1,8 @@
-var assert = require('chai').assert;
-var resourced = require('require-namespace').resourced;
+var fixture = require('./../unitTestFixture');
+var assert = fixture.assert;
 var sinon = require('sinon')
-var getResponseCachingMiddleware = resourced.require('getResponseCachingMiddleware')
-var cache = resourced.require('cache');
+var getResponseCachingMiddleware = fixture.resourced.require('getResponseCachingMiddleware')
+var cache = fixture.resourced.require('cache');
 
 describe('cache definitions', function() {
     describe('when you say a resource can be cached privately for five minutes and make a GET request', function() {
