@@ -1,4 +1,4 @@
-﻿var fixture = require('./../unitTestFixture')
+﻿var fixture = require('./unitTestFixture')
 var assert = fixture.assert;
 var RegistersResources = fixture.resourced.RegistersResources;
 var Q = require('q');
