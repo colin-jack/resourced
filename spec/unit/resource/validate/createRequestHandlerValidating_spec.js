@@ -1,9 +1,14 @@
-var resourced = require('require-namespace').resourced;
-var sinon = require('sinon'),
-    testUtil = testLib.require('testUtil'),
-    responseTestUtil = testLib.require('responseTestUtil'),
-    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
-    createRequestHandler = resourced.RequestHandlerCreator.create
+var sinon = require('sinon');
+
+var fixture = require('./../../unitTestFixture')
+var assert = fixture.assert;
+var resourceObjectMother = fixture.testLib.resourceObjectMother;
+var testUtil = fixture.testLib.testUtil;
+var responseTestUtil = fixture.testLib.responseTestUtil;
+var handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother');
+var validationTestUtil = require('./validationTestUtil');
+
+var createRequestHandler = fixture.resourced.RequestHandlerCreator.create;
 
 describe('RequestHandlerCreator', function() {
     var fakeResponse = responseTestUtil.createResponseSpy();

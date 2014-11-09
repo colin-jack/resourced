@@ -1,5 +1,7 @@
-var resourced = require('require-namespace').resourced;
-var getHttpMethodToUseForHandler = resourced.require('getHttpMethodToUseForHandler');
+var fixture = require('./../../../unitTestFixture')
+
+var getHttpMethodToUseForHandler = fixture.resourced.getHttpMethodToUseForHandler;
+var assert = fixture.assert;
 
 var getHttpMethodWhenOverriddenAtHandlerLevel = function(handlerMethodName, httpMethod) {  
     var handlerObject = {

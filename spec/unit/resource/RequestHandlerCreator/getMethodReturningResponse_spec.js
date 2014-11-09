@@ -1,8 +1,12 @@
-var assert = require('chai').assert;
-var resourced = require('require-namespace').resourced;
 var sinon = require('sinon');
-var getHandlerMethodDefinitionObjectMother = testLib.getHandlerMethodDefinitionObjectMother;
+
+var resourced = require('require-namespace').resourced;
 var createRequestHandler = resourced.RequestHandlerCreator.create;
+
+var fixture = require('./../../unitTestFixture')
+var assert = fixture.assert;
+var linkingTestUtil = fixture.testLib.linkingTestUtil;
+var getHandlerMethodDefinitionObjectMother = fixture.testLib.getHandlerMethodDefinitionObjectMother;
 
 describe('handling GET request', function () {
     var responseSendSpy;

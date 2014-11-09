@@ -1,7 +1,9 @@
-var assert = require('chai').assert;
 var resourced = require('require-namespace').resourced;
 var createUrl = resourced.require('createUrl');
-var linkingTestUtil = testLib.linkingTestUtil;
+
+var fixture = require('./../../unitTestFixture')
+var assert = fixture.assert;
+var linkingTestUtil = fixture.testLib.linkingTestUtil;
 
 describe('generating simple uri', function() {
 

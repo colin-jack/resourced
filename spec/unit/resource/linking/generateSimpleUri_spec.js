@@ -1,8 +1,10 @@
-var assert = require('chai').assert;
 var resourced = require('require-namespace').resourced;
 var createUrl = resourced.require('createUrl');
-var resourceObjectMother = testLib.require('resourceObjectMother');
-var linkingTestUtil = testLib.require('linkingTestUtil');
+
+var fixture = require('./../../unitTestFixture')
+var assert = fixture.assert;
+var resourceObjectMother = fixture.testLib.resourceObjectMother;
+var linkingTestUtil = fixture.testLib.linkingTestUtil;
 
 describe('generating URL to resource', function() {
     describe('when you generate a url to a simple resource', function() {

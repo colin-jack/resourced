@@ -1,9 +1,13 @@
-var resourced = require('require-namespace').resourced;
-var testUtil = testLib.require('testUtil'),
-    responseTestUtil = testLib.require('responseTestUtil'),
-    handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother'),
-    validationTestUtil = require('./validationTestUtil'),
-    underTest = resourced.require('validateUrl');
+var fixture = require('./../../unitTestFixture');
+
+var underTest = fixture.resourced.require('validateUrl');
+
+var assert = fixture.assert;
+var testUtil = fixture.testLib.testUtil;
+var responseTestUtil = fixture.testLib.responseTestUtil;
+
+var handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother');
+var validationTestUtil = require('./validationTestUtil');
 
 describe('invalid URL', function() {
     describe("When url schema is applied at method level", function() {

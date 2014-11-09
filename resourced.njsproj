@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4d2daf23-881b-4a9b-a41b-316fd1871840}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>spec\integration\invoke_mocha.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <NodeExeArguments>--harmony</NodeExeArguments>
+    <StartWebBrowser>True</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="target.txt" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Compile Include="index.js" />
+    <Content Include="docs\caching.md" />
+    <Content Include="docs\requestHandling.md" />
+    <Content Include="docs\validation.md" />
+    <Compile Include="examples\web.js" />
+    <Compile Include="lib\namespace.js" />
+    <Compile Include="lib\RegistersResources.js" />
+    <Compile Include="examples\resources\people.js" />
+    <Compile Include="examples\resources\person.js" />
+    <Compile Include="examples\resources\address\addressResource.js" />
+    <Compile Include="lib\caching\cache.js" />
+    <Compile Include="lib\caching\CachingDefinition.js" />
+    <Compile Include="lib\caching\getResponseCachingMiddleware.js" />
+    <Compile Include="lib\caching\NoCachingDefinition.js" />
+    <Compile Include="lib\http\httpMethodSpecificBehavior.js" />
+    <Compile Include="lib\linking\createUrl.js" />
+    <Compile Include="lib\registration\processPotentialResourceFile.js" />
+    <Compile Include="lib\registration\processPotentialResourceFiles.js" />
+    <Compile Include="lib\registration\shouldSkipFile.js" />
+    <Compile Include="lib\registration\tryToRequire.js" />
+    <Compile Include="lib\resource\ExpressUpdater.js" />
+    <Compile Include="lib\resource\getHandlerMethod.js" />
+    <Compile Include="lib\resource\getHttpMethodToUseForHandler.js" />
+    <Compile Include="lib\resource\http.js" />
+    <Compile Include="lib\resource\HttpMethod.js" />
+    <Compile Include="lib\resource\populateArgumentsFromRequest.js" />
+    <Compile Include="lib\resource\RequestHandlerCreator.js" />
+    <Compile Include="lib\resource\Resource.js" />
+    <Compile Include="lib\resource\validation\validateBody.js" />
+    <Compile Include="lib\resource\validation\validateUrl.js" />
+    <Compile Include="spec\integration\integrationTestFixture.js" />
+    <Compile Include="spec\integration\invoke_mocha.js" />
+    <Compile Include="spec\integration\registerTestResources.js" />
+    <Compile Include="spec\integration\requests\getWithUrlSchema_methodLevel_spec.js" />
+    <Compile Include="spec\integration\requests\get_follow_link_spec.js" />
+    <Compile Include="spec\integration\testUtil.js" />
+    <Compile Include="spec\testFixture.js" />
+    <Compile Include="spec\unit\invoke_mocha.js" />
+    <Compile Include="spec\unit\RegistersResources_errors_spec.js" />
+    <Compile Include="spec\integration\configuration\configuringFromMixedDirectory_spec.js" />
+    <Compile Include="spec\integration\configuration\Resource_errors.js" />
+    <Compile Include="spec\integration\requests\get_overriding_method_spec.js" />
+    <Compile Include="spec\integration\validation\getWithUrlSchema_methodLevel_spec.js" />
+    <Compile Include="spec\integration\validation\getWithUrlSchema_spec.js" />
+    <Compile Include="spec\integration\validation\putWithBodySchema_spec.js" />
+    <Compile Include="spec\integration\resources\kittens\kittensResource.js" />
+    <Compile Include="spec\integration\resources\person\addressResource.js" />
+    <Compile Include="spec\integration\resources\person\personResource.js" />
+    <Compile Include="spec\integration\resources\puppies\puppyResource.js" />
+    <Compile Include="spec\integration\resources\puppies\validation\ensureNumericId.js" />
+    <Compile Include="spec\integration\resources\puppies\validation\puppySchema.js" />
+    <Compile Include="spec\unit\httpMethodSpecificBehavior\httpMethodMapping_spec.js" />
+    <Compile Include="spec\unit\httpMethodSpecificBehavior\httpMethodSpecificBehavior_spec.js" />
+    <Compile Include="spec\unit\middleware\caching_spec.js" />
+    <Compile Include="spec\unit\registerHandlerMethodWithExpress\httpVerbForMethod_spec.js" />
+    <Compile Include="spec\unit\resource\http_spec.js" />
+    <Compile Include="spec\unit\resource\validate\createRequestHandlerValidating_spec.js" />
+    <Compile Include="spec\unit\resource\validate\invalid_body_spec.js" />
+    <Compile Include="spec\unit\resource\validate\urlSchema_methodLevel_spec.js" />
+    <Compile Include="spec\unit\resource\validate\urlSchema_resourceLevel_spec.js" />
+    <Compile Include="spec\unit\unitTestFixture.js" />
+    <Compile Include="spec\unit\util\expressConfigurationSpy.js" />
+    <Compile Include="spec\unit\util\getHandlerMethodDefinitionObjectMother.js" />
+    <Compile Include="spec\unit\util\linkingTestUtil.js" />
+    <Compile Include="spec\unit\util\resourceObjectMother.js" />
+    <Compile Include="spec\unit\util\responseTestUtil.js" />
+    <Compile Include="spec\unit\util\testUtil.js" />
+    <Compile Include="spec\unit\resource\linking\generateSimpleUri_spec.js" />
+    <Compile Include="spec\unit\resource\linking\uriCreator_spec.js" />
+    <Content Include="spec\unit\resource\RequestHandlerCreator\TODO.txt" />
+    <Compile Include="spec\unit\resource\RequestHandlerCreator\errors_spec.js" />
+    <Compile Include="spec\unit\resource\RequestHandlerCreator\getMethodReturningResponse_spec.js" />
+    <Compile Include="spec\unit\resource\RequestHandlerCreator\populateArgumentsFromRequest_spec.js" />
+    <Compile Include="spec\unit\resource\RequestHandlerCreator\requestBody_spec.js" />
+    <Compile Include="spec\unit\resource\RequestHandlerCreator\responseStatusCodes_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configurationErrors_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configuringExpress_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\mapHandlerArguments_spec.js" />
+    <Compile Include="spec\unit\resource\validate\handlerDefinitionObjectMother.js" />
+    <Compile Include="spec\unit\resource\validate\validationTestUtil.js" />
+    <Compile Include="spec\unit\resource\Resource\getHttpMethod\error_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\getHttpMethod\success_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\methodDefinitions\errors_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\methodDefinitions\success_spec.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs" />
+    <Folder Include="examples" />
+    <Folder Include="examples\resources" />
+    <Folder Include="examples\resources\address" />
+    <Folder Include="lib" />
+    <Folder Include="lib\caching" />
+    <Folder Include="lib\http" />
+    <Folder Include="lib\linking" />
+    <Folder Include="lib\registration" />
+    <Folder Include="lib\resource" />
+    <Folder Include="lib\resource\validation" />
+    <Folder Include="spec" />
+    <Folder Include="spec\integration" />
+    <Folder Include="spec\integration\configuration" />
+    <Folder Include="spec\integration\requests" />
+    <Folder Include="spec\integration\resources" />
+    <Folder Include="spec\integration\resources\kittens" />
+    <Folder Include="spec\integration\resources\person" />
+    <Folder Include="spec\integration\resources\puppies" />
+    <Folder Include="spec\integration\resources\puppies\validation" />
+    <Folder Include="spec\integration\validation" />
+    <Folder Include="spec\unit" />
+    <Folder Include="spec\unit\httpMethodSpecificBehavior" />
+    <Folder Include="spec\unit\middleware" />
+    <Folder Include="spec\unit\registerHandlerMethodWithExpress" />
+    <Folder Include="spec\unit\resource" />
+    <Folder Include="spec\unit\resource\linking" />
+    <Folder Include="spec\unit\resource\RequestHandlerCreator" />
+    <Folder Include="spec\unit\resource\Resource" />
+    <Folder Include="spec\unit\resource\Resource\getHttpMethod" />
+    <Folder Include="spec\unit\resource\Resource\methodDefinitions" />
+    <Folder Include="spec\unit\resource\validate" />
+    <Folder Include="spec\unit\util" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

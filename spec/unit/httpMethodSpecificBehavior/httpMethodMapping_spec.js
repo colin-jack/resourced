@@ -1,6 +1,8 @@
-var assert = require('chai').assert;
-var resourced = require('require-namespace').resourced;
-var HttpMethod = resourced.require('HttpMethod');
+
+var fixture = require('./../unitTestFixture')
+var assert = fixture.assert;
+var testUtil = fixture.testLib.testUtil;
+var HttpMethod = fixture.resourced.HttpMethod;
 
 var resultEquals = function(result, expected) {
     assert.equal(result, expected);

@@ -1,4 +1,3 @@
- # resourced (node.js)
 [![Build Status](https://travis-ci.org/colin-jack/resourced.png)](https://travis-ci.org/#!/colin-jack/resourced)
 
 NOTE - This is a very early version of this project and is not yet fully featured.

@@ -1,7 +1,9 @@
-var assert = require('chai').assert;
 var sinon = require('sinon');
-var resourceObjectMother = testLib.require('resourceObjectMother');
-var expressConfigurationSpy = testLib.require('expressConfigurationSpy');
+
+var fixture = require('./../../unitTestFixture')
+var assert = fixture.assert;
+var resourceObjectMother = fixture.testLib.resourceObjectMother;
+var expressConfigurationSpy = fixture.testLib.expressConfigurationSpy;
 
 describe('resource with single get method', function() {
     describe('when you trigger the handling request', function() {        

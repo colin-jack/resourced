@@ -1,5 +1,8 @@
-var resourced = require('require-namespace').resourced;
-var http = resourced.require('http');
+var fixture = require('./../unitTestFixture')
+var http = fixture.resourced.require('http');
+
+var fixture = require('./../unitTestFixture')
+var assert = fixture.assert;
 
 describe('http', function() {
     describe("when you use 'http.put' to create an object describing a request handler", function() {

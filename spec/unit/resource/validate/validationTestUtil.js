@@ -1,3 +1,6 @@
+var fixture = require('./../../unitTestFixture');
+var assert = fixture.assert;
+
 var shouldCorrectlyFailValidation = function (responseSpy, expectedBody, returned) {
     assert.equal(responseSpy.spiedStatus, 400, "Status code should have been 400");   
     assert.deepEqual(responseSpy.spiedBody, expectedBody);

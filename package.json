@@ -21,7 +21,7 @@
     "winston": "*"
   },
   "scripts": {
-    "test": "mocha --harmony spec/unit/testFixture spec/unit --recursive -b -R list & mocha --harmony spec/integration/integrationTestFixture spec/integration --recursive -b -R list --timeout 2500"
+    "test": "mocha --harmony spec/unit --recursive -b -R list & mocha --harmony spec/integration --recursive -b -R list --timeout 2500"
   },
   "keywords": [
     "REST",
@@ -37,15 +37,17 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
+
+    "chai-as-promised": "*",
+    "superagent": "*",
+
     "sinon": "*",
-    "longjohn": "*",
+
     "moment": "*",
     "coffee-script": "*",
     "objectcompare": "*",
     "changeprocessor": "*",
     "testresources": "*",
-    "supertest": "*",
-    "grunt": "*",
     "errorhandler": "*"
   },
   "_npmUser": {

@@ -1,0 +1,1 @@
+﻿The integration test fixture ensures all these resources are registered with a running express instance server, the tests can then send requests to them to test parts of the functionality.

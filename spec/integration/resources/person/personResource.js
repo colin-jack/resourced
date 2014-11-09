@@ -12,7 +12,9 @@ module.exports = new Resource({
     respondsTo: [
         {
             httpMethod: 'get',
-            bob: function(id) {
+            get: function (id) {
+            
+                debugger;
 
                 return {
                     firstName : "Colin",
