@@ -1,12 +1,10 @@
 var sinon = require('sinon');
 
-var resourced = require('require-namespace').resourced;
-var createRequestHandler = resourced.RequestHandlerCreator.create;
-
 var fixture = require('./../../unitTestFixture')
 var assert = fixture.assert;
 var linkingTestUtil = fixture.testLib.linkingTestUtil;
 var getHandlerMethodDefinitionObjectMother = fixture.testLib.getHandlerMethodDefinitionObjectMother;
+var createRequestHandler = fixture.resourced.RequestHandlerCreator.create;
 
 describe('handling GET request', function () {
     var responseSendSpy;

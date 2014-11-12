@@ -1,10 +1,9 @@
-var resourced = require('require-namespace').resourced;
-var createUrl = resourced.require('createUrl');
-
 var fixture = require('./../../unitTestFixture')
 var assert = fixture.assert;
 var resourceObjectMother = fixture.testLib.resourceObjectMother;
 var linkingTestUtil = fixture.testLib.linkingTestUtil;
+
+var createUrl = fixture.resourced.require('createUrl');
 
 describe('generating URL to resource', function() {
     describe('when you generate a url to a simple resource', function() {

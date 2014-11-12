@@ -1,7 +1,6 @@
 var resourceTest = require('testresources')
 var fixture = require('./../integrationTestFixture')
 
-var assert = fixture.assert;
 var superAgent = require('superagent');
 
 describe('when you apply a url schema at method level', function () {
@@ -10,7 +9,8 @@ describe('when you apply a url schema at method level', function () {
     before(fixture.ensureSetup);
     
     beforeEach(function () {
-        request = superAgent.get('/puppies/5');
+        var url = fixture.server.fullUrl('/puppies/5');
+        request = superAgent.get(url);
     });
 
     it('should respond with expected json when URI is correct', function() {
@@ -29,7 +29,8 @@ describe('when you apply a url schema at method level', function () {
     before(fixture.ensureSetup);
     
     beforeEach(function () {
-        request = superAgent.get('/puppies/bob');
+        var url = fixture.server.fullUrl('/puppies/bob');
+        request = superAgent.get(url);
     });
     
     it('should raise appropriate error if value in URI does not match expectations', function() {

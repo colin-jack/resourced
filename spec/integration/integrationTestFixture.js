@@ -30,9 +30,7 @@ var startExpressServer = function () {
             
             yield * registerTestResources(expressApp)
             
-            var serverWrapper = resourceTest.startServer(expressApp);
-            
-            yield * serverWrapper.ensureServerRunning();
+            var serverWrapper = yield resourceTest.startTestServer(expressApp);
             
             fixture.server = serverWrapper;
             
@@ -52,6 +50,7 @@ var startExpressServer = function () {
 };
 
 var fixture = Object.create(baseFixture);
+
 fixture.ensureSetup = startExpressServer;
 
 module.exports = fixture;

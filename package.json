@@ -13,14 +13,13 @@
   },
   "dependencies": {
     "body-parser": "^1.9.2",
-    "express": "^4.10.1",
+    "express": "^4.10.2",
+    "morgan": "*",
     "q": "^2.0.2",
     "require-namespace": "^0.3.41",
     "rules": "^0.6.42",
     "underscore": "*",
-    "winston": "*",
-
-    "morgan": "*"
+    "winston": "*"
   },
   "scripts": {
     "test": "mocha --harmony spec/unit --recursive -b -R list & mocha --harmony spec/integration --recursive -b -R list --timeout 2500"
@@ -39,17 +38,15 @@
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
-
     "chai-as-promised": "*",
     "superagent": "*",
-
+    "testresources": "0.0.93-alpha.3",
+    
     "sinon": "*",
-
     "moment": "*",
     "coffee-script": "*",
     "objectcompare": "*",
     "changeprocessor": "*",
-    "testresources": "*",
     "errorhandler": "*"
   },
   "_npmUser": {

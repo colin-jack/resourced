@@ -1,8 +1,7 @@
-var assert = require('chai').assert;
-var resourced = require('require-namespace').resourced;
-var populateArgumentsFromRequest = resourced.require('populateArgumentsFromRequest');
+var fixture = require('./../../unitTestFixture')
+var assert = fixture.assert;
+var populateArgumentsFromRequest = fixture.resourced.require('populateArgumentsFromRequest');
 
-// TODO: Fill in.
 describe('populating arguments from request', function() {
     describe('when you populate arguments from a request containing parameters for some values', function() {
         it('should populate appropriate arguments', function() {
@@ -24,10 +23,11 @@ describe('populating arguments from request', function() {
 
     describe('when you populate arguments from a request containing only query values', function() {
          it('should populate appropriate arguments', function() {
-            var query = {id : 5, name: 6};
+            var query = { id : 5, name: 6 };
+            debugger;
             var handlerArguments = getHandlerArguments([], query);
 
-            assert.deepEqual(handlerArguments, [5, 6, undefined, undefined, undefined]);
+            assert.deepEqual(handlerArguments, [5, 6, undefined, undefined, undefined, undefined]);
         });
     });
 
@@ -53,6 +53,6 @@ describe('populating arguments from request', function() {
 
     function getHandlerArguments(params, query) {
         var request = createRequest(params, query);
-        return populateArgumentsFromRequest(request, handlerMethod);
+        return populateArgumentsFromRequest(request, null, handlerMethod);
     }
 });

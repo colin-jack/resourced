@@ -1,11 +1,14 @@
 // TODO: Load this using require-namespace
-var Resource = require('../../lib/resource/Resource'),
-    http = require('../../lib/resource/http'),
-    caching = require('../../lib/caching/cache'),
-    addressResource = require('./address/addressResource'),
-    log = require('util').log,
-    format = require('util').format,
-    inspect = require('util').inspect;
+var resourced = require('../../index');
+var Resource = resourced.Resource;
+var http = resourced.http;
+var cache = resourced.cache;
+
+var addressResource = require('./addressResource');
+
+var log = require('util').log;
+var format = require('util').format;
+var inspect = require('util').inspect;
 
 module.exports = new Resource({
     url: "/people/:id",

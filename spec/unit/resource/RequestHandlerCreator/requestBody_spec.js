@@ -1,31 +1,18 @@
-var assert = require('chai').assert;
-var resourced = require('require-namespace').resourced;
+var fixture = require('./../../unitTestFixture');
+var assert = fixture.assert;
+var createRequestHandler = fixture.resourced.RequestHandlerCreator.create
+
 var sinon = require('sinon')
-var createRequestHandler = resourced.RequestHandlerCreator.create
 
 var bodyFromRequest = {
     foo: "bar"
 };
 
 describe('request handler', function() {
-    describe('when you call a request handler associated with PUT', function() {
-        it('should pass in response body as last argument', function() {
-            var bodySentToHandler = callWrappedHandlerAndReturnBodyPassedIn("put");
-            assert.equal(bodySentToHandler, bodyFromRequest);
-        });
-    });
-
     describe('when you call a request handler associated with PUT and access request body in handler', function() {
         it('should get appropriate value', function() {
             var bodyInRequestInHandler = callWrappedHandlerAndReturnRequestBody("put");
             assert.equal(bodyInRequestInHandler, bodyFromRequest);
-        });
-    });
-
-    describe('when you call a request handler associated with POST', function() {
-        it('should pass in response body as last argument', function() {
-            var bodySentToHandler = callWrappedHandlerAndReturnBodyPassedIn("post");
-            assert.equal(bodySentToHandler, bodyFromRequest);
         });
     });
 
@@ -61,15 +48,16 @@ describe('request handler', function() {
     };
 
     function callWrappedHandlerAndReturnBodyPassedIn(httpMethod) {
-        var bodySendToHandler;
+        var bodySentToHandler;
 
-        var toWrap = function(id, body) {
-            bodySendToHandler = body;
+        var toWrap = function (id, body) {
+            debugger;
+            bodySentToHandler = body;
         };
-
+        
         callWrappedHandler(toWrap, httpMethod);
 
-        return bodySendToHandler;
+        return bodySentToHandler;
     };
 
     function callWrappedHandlerAndReturnRequestBody(httpMethod) {  

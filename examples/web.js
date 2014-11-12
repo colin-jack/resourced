@@ -1,58 +1,67 @@
-﻿(function() {
-  var bodyParser, configureLogging, configureResourced, createExpress, errorHandler, express, inspect, namespace, resourced, startExpress, winston;
+﻿var express = require('express');
+var winston = require('winston');
+var resourced = require('../index');
+var inspect = require('util').inspect;
+var bodyParser = require('body-parser');
+var errorHandler = require('errorhandler');
+var q = require("Q");
 
-  namespace = require('require-namespace');
+// NOTE - Key aspects
+// [1] Body parser is required
+// [2] Call to configure resourced, it will scan the specified directory for resource files.
+// [3] resourced uses generators so using Q.spawn to ensure things happen in correct order
 
-  express = require('express');
+var createExpress = function() {
+  winston.info("Creating express.");
+  
+  var app = express();
+  
+  app.use(errorHandler({
+    dumpExceptions: true,
+    showStack: true
+  }));
+  
+  //[1]
+  app.use(bodyParser.json());
 
-  winston = require('winston');
+  return app;
+};
 
-  resourced = require('../index');
+var configureResourced = function(app) {
+  //[2]
+  return resourced.configureResourcesInDirectory(__dirname + '/resources', app);
+};
 
-  inspect = require('util').inspect;
+var startExpress = function(app) {
+  winston.info("Express is now starting.");
+  
+  var port = process.env.PORT || 3050;
 
-  require('longjohn');
+  //[3]
+  winston.info("Routes: " +  inspect(app.router._routes)
 
-  bodyParser = require('body-parser');
+  return app.listen(port, function() {
+    winston.info("Express server listening on port " + port + " in " + app.settings.env + " mode.");
 
-  errorHandler = require('errorhandler');
+    return winston.info("Please go to 'http://localhost:" + port + "/people/0' to start your exciting journey.");
+  });
+};
 
-  createExpress = function() {
-    winston.info("Creating express.");
-    global.app = express();
-    app.use(errorHandler({
-      dumpExceptions: true,
-      showStack: true
-    }));
-    return app.use(bodyParser());
-  };
-
-  configureResourced = function() {
-    return resourced.configureResourcesInDirectory(__dirname + '/resources', global.app);
-  };
-
-  startExpress = function() {
-    var port;
-    winston.info("Express is now starting.");
-    port = process.env.PORT || 3050;
-    return app.listen(port, function() {
-      winston.info("Express server listening on port " + port + " in " + app.settings.env + " mode.");
-      return winston.info("Please go to 'http://localhost:" + port + "/people/0' to start your exciting journey.");
-    });
-  };
-
-  configureLogging = function() {
+var configureLogging = function() {
     return winston.handleExceptions();
   };
 
-  configureLogging();
+var setupAndRunServer = function() {
+  //[3]
+  Q.spawn(function * () {
+    configureLogging();
 
-  createExpress();
+    var app = createExpress();
 
-  configureResourced();
+    yield * configureResourced(app);
 
-  startExpress();
+    startExpress(app);
+  });
+}
 
-}).call(this);
-
-//# sourceMappingURL=web.js.map
+setupAndRunServer();
