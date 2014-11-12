@@ -1,5 +1,6 @@
 var resourced = require('require-namespace').resourced;
 var Resource = resourced.Resource;
+var cache = resourced.cache;
 
 var ensureNumericId = require('./validation/ensureNumericId');
 var puppySchema = require('./validation/puppySchema');
@@ -7,6 +8,8 @@ var puppySchema = require('./validation/puppySchema');
 module.exports = new Resource({
     url: "/puppies/:id",
     urlSchema: ensureNumericId,
+    
+    cache: cache.minutes(5).publically(),
 
     respondsTo: [
     {
@@ -18,9 +21,9 @@ module.exports = new Resource({
        }
     },
     {
-        put: function (id, body) {
+        put: function (id) {
             debugger;
-            this.response.send(body);
+            this.response.send(this.request.body);
         },
 
         schema: puppySchema

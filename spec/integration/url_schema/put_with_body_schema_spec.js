@@ -4,24 +4,24 @@ var superAgent = require('superagent');
 var resourceTest = require('testresources')
 var fixture = require('./../integrationTestFixture')
 
-describe('when you test a put request', function () {
-    var request;
+describe.skip('when you test a put request', function () {
+    var request, requestBody;
     
     before(fixture.ensureSetup);
 
     beforeEach(function () {
-        var validRequestBody = {
+        requestBody = {
             name: 'fido',
             cell: 'isolation'
         };
         var url = fixture.server.fullUrl('/puppies/5');
 
-        request = superAgent.put(url).send(validRequestBody)
+        request = superAgent.put(url).send(requestBody)
     });
     
     it('should pass if your expectations are correct', function () {
         return resourceTest(request)
-                        .expectBody({ name: 'fido' })
+                        .expectBody(requestBody)
                         .run(fixture.server)
     });
 });
@@ -41,10 +41,15 @@ describe('when you test a put request but omit one of the required fields in the
     });
     
     it('should fail with suitable error', function () {
-        var expectedBody = { 
+        var expectedBody = {
             message: "The request body was not valid.",
-            details: null
-        }
+            details: {
+                cell: {
+                    message: 'The value must be populated.', 
+                    type: 'not_populated'
+                }
+            }
+        };
 
         return resourceTest(request)
                     .expectStatus(400)

@@ -15,29 +15,34 @@ var registerTestResources = function * (expressApp) {
     yield * resourced.RegistersResources.registerAllInDirectory(resourcesDir, expressApp);
 };
 
+var deferred;
+
 // We want to setup the express server exactly once for each test run, this method ensures that is what happens.
 var startExpressServer = function () {
-    if (fixture.server) return;
+    if (fixture.server || deferred) return deferred.promise;
     
-    var deferred = Q.defer();
+    deferred = Q.defer();
 
     Q.spawn(function *() {
         
         try {
             var expressApp = express();
             expressApp.use(bodyParser.json());
-            expressApp.use(morgan());
+            expressApp.use(morgan("combined"));
             
             yield * registerTestResources(expressApp)
             
-            var serverWrapper = yield resourceTest.startTestServer(expressApp);
+            var serverWrapper = yield resourceTest.startServer(expressApp);
             
             fixture.server = serverWrapper;
+            
+            debugger;
             
             Object.defineProperty(fixture, "port", { get: function () { return this.server.port; } });
 
             deferred.resolve();            
         } catch (e) {
+            debugger;
             winston.error("Error during preperation for test: " + e);
             
             deferred.reject(e);
