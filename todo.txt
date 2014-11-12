@@ -1,0 +1,5 @@
+﻿E:\github\resourced\spec\unit\resource\validate\urlSchema_resourceLevel_spec.js
+
+find out why integration tests skipped
+
+e:\github\resourced>mocha --harmony spec --recursive

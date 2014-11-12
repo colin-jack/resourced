@@ -12,7 +12,8 @@ describe('when you test a get request and resource returns json which is not cac
     before(fixture.ensureSetup);
     
     beforeEach(function () {
-        request = superAgent.get('/people/5');
+        var url = fixture.server.fullUrl('/people/5');
+        request = superAgent.get(url);
         
         expectedBody = {
             firstName : "Colin",

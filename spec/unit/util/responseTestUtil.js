@@ -12,7 +12,10 @@ var createResponseSpy = function() {
                 this.spiedBody = arguments[1];
             }
         },
-        status: function(status) { this.spiedStatus = status }
+        status: function (status) {
+            this.spiedStatus = status;
+            return this;
+        }
     };
 };
 
