@@ -24,7 +24,6 @@ describe('populating arguments from request', function() {
     describe('when you populate arguments from a request containing only query values', function() {
          it('should populate appropriate arguments', function() {
             var query = { id : 5, name: 6 };
-            debugger;
             var handlerArguments = getHandlerArguments([], query);
 
             assert.deepEqual(handlerArguments, [5, 6, undefined, undefined, undefined, undefined]);
@@ -41,10 +40,16 @@ describe('populating arguments from request', function() {
         });
     });
 
-    function createRequest(params, query) {
+    function createRequest(query) {
+        return {
+            query: query
+        };
+    }
+    
+    function createContext(params, request) {
         return {
             params: params,
-            query: query
+            request: request
         };
     }
 
@@ -52,9 +57,8 @@ describe('populating arguments from request', function() {
     }
 
     function getHandlerArguments(params, query) {
-        var request = createRequest(params, query);
-        // TODO: Pass in context
-        debugger;
-        return populateArgumentsFromRequest(request, null, handlerMethod);
+        var request = createRequest(query);
+        var context = createContext(params, request);
+        return populateArgumentsFromRequest(context, null, handlerMethod);
     }
 });
