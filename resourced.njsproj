@@ -42,11 +42,11 @@
     <Compile Include="lib\registration\processPotentialResourceFiles.js" />
     <Compile Include="lib\registration\shouldSkipFile.js" />
     <Compile Include="lib\registration\tryToRequire.js" />
-    <Compile Include="lib\resource\ExpressUpdater.js" />
     <Compile Include="lib\resource\getHandlerMethod.js" />
     <Compile Include="lib\resource\getHttpMethodToUseForHandler.js" />
     <Compile Include="lib\resource\http.js" />
     <Compile Include="lib\resource\HttpMethod.js" />
+    <Compile Include="lib\resource\KoaUpdater.js" />
     <Compile Include="lib\resource\populateArgumentsFromRequest.js" />
     <Compile Include="lib\resource\RequestHandlerCreator.js" />
     <Compile Include="lib\resource\Resource.js" />
@@ -118,8 +118,6 @@
     <Folder Include="lib\registration" />
     <Folder Include="lib\resource" />
     <Folder Include="lib\resource\validation" />
-    <Folder Include="node_modules\" />
-    <Folder Include="node_modules\koa-route\" />
     <Folder Include="spec" />
     <Folder Include="spec\integration" />
     <Folder Include="spec\integration\configuration" />
