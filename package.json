@@ -46,7 +46,7 @@
         "chai-as-promised": "*",
 
         "superagent": "*",
-        "testresources": "0.0.93-alpha.3",
+        "testresources": "0.1.0-alpha.1",
 
         "sinon": "*",
         "moment": "*",
