@@ -4,14 +4,14 @@ var Resource = resourced.Resource;
 var http = resourced.http;
 var cache = resourced.cache;
 
-var addressResource = require('./addressResource');
+var addressResource = require('./address');
 
 var log = require('util').log;
 var format = require('util').format;
 var inspect = require('util').inspect;
 
 module.exports = new Resource({
-    url: "/people/:id",
+    url: "/person/:id",
 
     cache: cache.minutes(5).publically(),
 

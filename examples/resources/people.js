@@ -5,15 +5,12 @@ var cache = resourced.cache;
 var ensure = require('rules').ensure;
 var _u = require('underscore');
 
+var personResource = require('./person');
+
 var people = [
-    { firstName: "bob", lastName: "smith" },
-    { firstName: "francis", lastName: "smith" },
-    { firstName: "bill", lastName: "bridge" },
-    { firstName: "edgar", lastName: "jones" },
-    { firstName: "lily", lastName: "wright" },
-    { firstName: "mike", lastName: "terry" },
-    { firstName: "sarah", lastName: "connors" },
-    { firstName: "dorothy", lastName: "fibbers" }
+    { firstName: "bob", lastName: "smith", id : 1 },
+    { firstName: "francis", lastName: "smith", id : 2 },
+    { firstName: "bill", lastName: "bridge", id : 3 }
   ];
 
 module.exports = new Resource({
@@ -22,12 +19,25 @@ module.exports = new Resource({
     cache: cache.minutes(5).publically(),
     
     respondsTo: [
-    http.get(function * (firstName, secondName) {
+    http.get(function * (firstName, lastName) {
+        var self = this;
+
+        ensure(firstName).string();
+        ensure(lastName).string();
         
-        debugger;
-        ensure(from).populated().string();
+        var searchTerms = {};
+        if (firstName !== undefined) searchTerms.firstName = firstName;
+        if (lastName !== undefined) searchTerms.lastName = lastName;
         
-        var matching = _u.where(people, { firstName: firstName, secondName: secondName });
+        var matching = _u.where(people, searchTerms);
+        
+        //debugger;
+        
+        var withUrls = matching.map(function (person) {
+            debugger;
+            person.self = self.urlFor(personResource, person);
+            return person;
+        });
         
         return matching;
     })
