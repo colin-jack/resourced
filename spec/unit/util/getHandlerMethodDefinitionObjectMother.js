@@ -1,16 +1,16 @@
 ﻿var createReturning = function (toReturn) {
     return {
-        get: function () {
+        get: function * () {
             return toReturn;
         }
     };
 }
 
 
-var createExplicitlyRendering = function (toReturn) {
+var createExplicitlySettingBody = function (toSetBodyTo) {
     return {
-        get: function () {
-            this.response.render(toReturn);
+        get: function * () {
+            this.response.body = toSetBodyTo;
             return "irrelevant";
         }
     };
@@ -18,5 +18,5 @@ var createExplicitlyRendering = function (toReturn) {
 
 module.exports = {
     createReturning: createReturning,
-    createExplicitlyRendering: createExplicitlyRendering
+    createExplicitlySettingBody: createExplicitlySettingBody
 }

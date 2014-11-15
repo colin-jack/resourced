@@ -1,4 +1,5 @@
 var sinon = require('sinon');
+var Q = require('q')
 
 var fixture = require('./../../unitTestFixture')
 var assert = fixture.assert;
@@ -7,58 +8,59 @@ var getHandlerMethodDefinitionObjectMother = fixture.testLib.getHandlerMethodDef
 var createRequestHandler = fixture.resourced.RequestHandlerCreator.create;
 
 describe('handling GET request', function () {
-    var responseSendSpy;
-    var response;
     var fakeResponse;
 
     beforeEach(function () {
         fakeResponse = {
-            send: function () { },
-            render: function () { }
+            body: null
         };
-        
-        response = {};
 
-        responseSendSpy = sinon.spy(fakeResponse, "send");
-        responseRenderSpy = sinon.spy(fakeResponse, "render");
+        returnedFromHandler = {};
     });
 
-
     describe('when you return an object from a GET handler method and do not otherwise set response body', function() {
-        beforeEach(function () {  
-            var handlerMethodDefinition = getHandlerMethodDefinitionObjectMother.createReturning(response);
+        var returnedFromHandler = {};
+        beforeEach(function (done) {  
 
-            wrapAndCallHandlerDefinition(handlerMethodDefinition);
+            var handlerMethodDefinition = getHandlerMethodDefinitionObjectMother.createReturning(returnedFromHandler);
+
+            wrapAndCallHandlerDefinition(handlerMethodDefinition, done);
         });
 
         it('should use the returned object as response body', function () {
-            assert.isTrue(responseSendSpy.calledOnce);
-            assert.equal(response, responseSendSpy.firstCall.args[0]);
-        });
-
-        it('should not call render method', function () {
-            assert.isFalse(responseRenderSpy.called);
+            assert.equal(returnedFromHandler, fakeResponse.body);
         });
     });
     
-    describe('when you set response body explicitly', function () {
-        beforeEach(function () {
-            var handlerMethodDefinition = getHandlerMethodDefinitionObjectMother.createExplicitlyRendering(response);
+    describe('when you set response body explicitly', function (done) {
+        var bodySet = {};
+
+        beforeEach(function (done) {
+            var handlerMethodDefinition = getHandlerMethodDefinitionObjectMother.createExplicitlySettingBody(bodySet);
             
-            wrapAndCallHandlerDefinition(handlerMethodDefinition);
+            wrapAndCallHandlerDefinition(handlerMethodDefinition, done);
         });
         
         it('should ignore any returned value', function () {
-            assert.isFalse(responseSendSpy.called);
+            assert.equal(bodySet, fakeResponse.body);
         });
     });
 
 
-    function wrapAndCallHandlerDefinition(handlerMethodDefinition) {
+    function wrapAndCallHandlerDefinition(handlerMethodDefinition, done) {
         var fakeResourceDefinition = {};
+        
+        debugger;
         
         var wrapped = createRequestHandler("get", handlerMethodDefinition, "get", fakeResourceDefinition);
         
-        wrapped({}, fakeResponse);
+        Q.spawn(function * () {
+            debugger;
+            var context = { response: fakeResponse };
+
+            yield * wrapped.call(context);
+
+            done();
+        })
     }
 });
