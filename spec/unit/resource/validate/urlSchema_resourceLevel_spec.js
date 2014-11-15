@@ -5,14 +5,13 @@ var mustBe = require('rules').mustBe;
 
 var assert = fixture.assert;
 var testUtil = fixture.testLib.testUtil;
-var responseTestUtil = fixture.testLib.responseTestUtil;
 
 var handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother');
 var validationTestUtil = require('./validationTestUtil');
 
 describe('invalid URL', function() {
     describe("when url schema is applied at resource level", function() {
-        var responseSpy, returned, fakeRequest, resourceWithSchemaDefinition;
+        var fakeResponse, returned, fakeRequest, resourceWithSchemaDefinition;
 
         beforeEach(function() {  
             fakeRequest = testUtil.createFakeRequest();           
@@ -24,7 +23,7 @@ describe('invalid URL', function() {
                 }
             }
 
-            responseSpy = responseTestUtil.createResponseSpy();
+            fakeResponse = testUtil.createFakeResponse();
         });
 
         describe("and a query string is invalid", function() {
@@ -40,7 +39,7 @@ describe('invalid URL', function() {
                     property: "name"
                 };
                 
-                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+                validationTestUtil.shouldCorrectlyFailValidation(fakeResponse, expectedBody, returned);
             });
         });
 
@@ -53,14 +52,19 @@ describe('invalid URL', function() {
             });
 
             it('should pass validation', function() {
-                assert.isUndefined(responseSpy.spiedStatus);   
-                assert.isUndefined(responseSpy.spiedBody);
+                assert.isUndefined(fakeResponse.spiedStatus);   
+                assert.isUndefined(fakeResponse.spiedBody);
                 assert.isTrue(returned, "The validation method should have returned true.")
             });
         });
 
-        var performValidation = function(methodDefinition) {
-            return underTest(fakeRequest, responseSpy, methodDefinition, resourceWithSchemaDefinition);
+        var performValidation = function (methodDefinition) {
+            var context = {
+                request: fakeRequest, 
+                response: fakeResponse
+            };
+
+            return underTest(context, methodDefinition, resourceWithSchemaDefinition);
         }
     });
 });

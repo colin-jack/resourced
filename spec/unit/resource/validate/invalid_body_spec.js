@@ -3,17 +3,16 @@ var fixture = require('./../../unitTestFixture')
 var underTest = fixture.resourced.validateBody;
 
 var testUtil = fixture.testLib.testUtil;
-var responseTestUtil = fixture.testLib.responseTestUtil;
 
 var handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother');
 var validationTestUtil = require('./validationTestUtil');
 
 describe('invalid body', function() {
     describe("when the request body is validated", function() {
-        var responseSpy, handlerDefinition, returned;
+        var fakeResponse, handlerDefinition, returned;
 
         beforeEach(function() {  
-            responseSpy = responseTestUtil.createResponseSpy();
+            fakeResponse = testUtil.createFakeResponse();
         });  
 
         describe("and it is invalid", function() {
@@ -24,8 +23,13 @@ describe('invalid body', function() {
                 fakeRequest.body = createInvalidRequestBody();
 
                 var handlerDefinition = handlerDefinitionObjectMother.createWithIdBodyRules();
+                
+                var context = {
+                    request: fakeRequest, 
+                    response: fakeResponse
+                };
 
-                returned = underTest(fakeRequest, responseSpy, handlerDefinition);
+                returned = underTest(context, handlerDefinition);
             });
 
             it('should fail because of invalid query string', function() {
@@ -44,7 +48,7 @@ describe('invalid body', function() {
                     }
                 }
                 
-                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+                validationTestUtil.shouldCorrectlyFailValidation(fakeResponse, expectedBody, returned);
             });
         });
 

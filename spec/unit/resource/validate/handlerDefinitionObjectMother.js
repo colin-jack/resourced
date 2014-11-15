@@ -9,7 +9,7 @@ var createBasicHandlerDefinitionSpy = function() {
     var wasCalled = false;
 
     return {
-        get: function(id) {
+        get: function * (id) {
             wasCalled = true;
         },
         handlerWasCalled : function() {

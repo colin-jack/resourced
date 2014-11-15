@@ -4,26 +4,30 @@ var underTest = fixture.resourced.require('validateUrl');
 
 var assert = fixture.assert;
 var testUtil = fixture.testLib.testUtil;
-var responseTestUtil = fixture.testLib.responseTestUtil;
 
 var handlerDefinitionObjectMother = require('./handlerDefinitionObjectMother');
 var validationTestUtil = require('./validationTestUtil');
 
 describe('invalid URL', function() {
     describe("When url schema is applied at method level", function() {
-        var responseSpy, handlerMethodDefinition, returned;
+        var fakeResponse, handlerMethodDefinition, returned;
 
         beforeEach(function() {  
-            responseSpy = responseTestUtil.createResponseSpy();
+            fakeResponse = testUtil.createFakeResponse();
             handlerMethodDefinition = handlerDefinitionObjectMother.createWithNameIdRules();
         });
 
         describe("and a query string is invalid", function() {
             beforeEach(function() {  
                 var invalidNameQuery =  { name: undefined };
-                var fakeRequest = testUtil.createFakeRequest(null, invalidNameQuery);           
+                var fakeRequest = testUtil.createFakeRequest(invalidNameQuery);
+                
+                var context = {
+                    request: fakeRequest, 
+                    response: fakeResponse
+                };
 
-                returned = underTest(fakeRequest, responseSpy, handlerMethodDefinition);
+                returned = underTest(context, handlerMethodDefinition);
             });
 
             it('should set response as 400 and populate body with reason', function() {
@@ -32,16 +36,22 @@ describe('invalid URL', function() {
                     property: "name"
                 };
                 
-                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+                validationTestUtil.shouldCorrectlyFailValidation(fakeResponse, expectedBody, returned);
             });
         });
 
        describe("and a params value is invalid", function() {
             beforeEach(function() {  
                 var invalidIdParams =  { id: "bob" };
-                var fakeRequest = testUtil.createFakeRequest(invalidIdParams);           
+                var fakeRequest = testUtil.createFakeRequest();
+                
+                var context = {
+                    request: fakeRequest, 
+                    response: fakeResponse,
+                    params: invalidIdParams
+                };
 
-                underTest(fakeRequest, responseSpy, handlerMethodDefinition);
+                underTest(context, handlerMethodDefinition);
             });
 
             it('should set response as 400 and populate body with reason', function() {
@@ -50,7 +60,9 @@ describe('invalid URL', function() {
                     property: "id"
                 };
                 
-                validationTestUtil.shouldCorrectlyFailValidation(responseSpy, expectedBody, returned);
+                debugger;
+                
+                validationTestUtil.shouldCorrectlyFailValidation(fakeResponse, expectedBody, returned);
             });
         });
     });

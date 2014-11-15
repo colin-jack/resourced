@@ -77,7 +77,7 @@
     <Compile Include="spec\unit\middleware\caching_spec.js" />
     <Compile Include="spec\unit\registerHandlerMethodWithExpress\httpVerbForMethod_spec.js" />
     <Compile Include="spec\unit\resource\http_spec.js" />
-    <Compile Include="spec\unit\resource\validate\createRequestHandlerValidating_spec.js" />
+    <Compile Include="spec\unit\resource\validate\create_request_handler_validating_spec.js" />
     <Compile Include="spec\unit\resource\validate\invalid_body_spec.js" />
     <Compile Include="spec\unit\resource\validate\urlSchema_methodLevel_spec.js" />
     <Compile Include="spec\unit\resource\validate\urlSchema_resourceLevel_spec.js" />
@@ -86,7 +86,6 @@
     <Compile Include="spec\unit\util\getHandlerMethodDefinitionObjectMother.js" />
     <Compile Include="spec\unit\util\linkingTestUtil.js" />
     <Compile Include="spec\unit\util\resourceObjectMother.js" />
-    <Compile Include="spec\unit\util\responseTestUtil.js" />
     <Compile Include="spec\unit\util\testUtil.js" />
     <Compile Include="spec\unit\resource\linking\generateSimpleUri_spec.js" />
     <Compile Include="spec\unit\resource\linking\uriCreator_spec.js" />

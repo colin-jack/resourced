@@ -1,13 +1,19 @@
-var createFakeRequest  = function(params, query) {
-    params = params || {};
+var createFakeRequest  = function(query) {
     query = query || {};
 
     return {
-        params: params,
         query: query
     }
 }
 
+var createFakeResponse = function () {
+    return {
+        body: null,
+        status: null
+    };
+};
+
 module.exports = {
-    createFakeRequest : createFakeRequest
+    createFakeRequest : createFakeRequest,
+    createFakeResponse: createFakeResponse
 }

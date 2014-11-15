@@ -11,12 +11,12 @@ var mocha = new Mocha({
 // Then, you need to use the method "addFile" on the mocha
 // object for each file.
 
-var testDirectory = __dirname + "/spec/unit/resource/Resource/"
+var testDirectory = __dirname + "/spec/unit/resource/validate/";
 
 // Here is an example:
 fs.readdirSync(testDirectory).filter(function (file) {
     // Only keep the .js files
-    return file.substr(-3) === '.js' && file.indexOf("configuring_koa_spec.js") !== -1;
+    return file.substr(-3) === '.js' && file.indexOf("invalid_body_spec.js") !== -1;
 }).forEach(function (file) {
     // Use the method "addFile" to add the file to mocha
     mocha.addFile(path.join(testDirectory, file));
