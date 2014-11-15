@@ -12,9 +12,9 @@ module.exports = new Resource({
    respondsTo: [
        {
            httpMethod: 'get',
-           get: function (id) {
+           get: function * (id) {
             
-               debugger;
+               //debugger;
 
                return {
                    firstName : "Colin",
@@ -27,15 +27,15 @@ module.exports = new Resource({
            }
        },
 
-       http.destroy(function(id) {
+       http.destroy(function * (id) {
            return;
        }),
 
-       http.post(function(id) {
+       http.post(function * (id) {
            return;
        }),
 
-       http.put(function(id, body) {
+       http.put(function * (id, body) {
                return body;
            })
    ]

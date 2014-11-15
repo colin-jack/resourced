@@ -1,4 +1,3 @@
-var express = require('express');
 var superAgent = require('superagent');
 
 var resourceTest = require('testresources')

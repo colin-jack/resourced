@@ -24,7 +24,7 @@ describe.skip('when you get from a resource and the method is being over-ridden'
         
     //    debugger;
         
-    //    resourceTest(fixture.expressApp)
+    //    resourceTest(fixture.koaApp)
     //        .get('/people/5')
     //        .expectBody(expectedBody)
     //        .expectNotCached()

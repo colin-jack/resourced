@@ -14,7 +14,7 @@ module.exports = new Resource({
 
    respondsTo: [
    {
-       get: function(id, body) {
+       get: function * (id, body) {
            return {
                name: "mikado"
            };
@@ -25,7 +25,6 @@ module.exports = new Resource({
        url: "/sendToCattery",
 
        post: function(id, cattery) {
-           // TODO: Include content-location and optionally caching header
            return {
                name: "mikado",
                mood: "annoyed"

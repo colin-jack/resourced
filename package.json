@@ -1,82 +1,83 @@
 {
-  "version": "0.5.0-alpha.1",
-  "name": "resourced",
-  "description": "A resource oriented DSL for configuring koa.",
-  "main": "index",
-  "preferGlobal": false,
-  "author": {
-    "name": "Colin Jack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/colin-jack/resourced.git"
-  },
-  "dependencies": {
-    "koa": "&",
-    "koa-bodyparser": "*",
-    "koa-logger": "*",
+    "version": "0.5.0-alpha.1",
+    "name": "resourced",
+    "description": "A resource oriented DSL for configuring koa.",
+    "main": "index",
+    "preferGlobal": false,
+    "author": {
+        "name": "Colin Jack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/colin-jack/resourced.git"
+    },
+    "dependencies": {
+        "koa": "*",
+        "koa-bodyparser": "*",
+        "koa-logger": "*",
 
-    "koa-router": "*",
+        "koa-router": "*",
+        "koa-logger": "*",
 
-    "q": "^2.0.2",
-    "require-namespace": "^0.3.41",
-    "rules": "^0.6.42",
-    "underscore": "*",
-    "winston": "*"
-  },
-  "scripts": {
-    "test": "mocha --harmony spec/unit --recursive -b -R list & mocha --harmony spec/integration --recursive -b -R list --timeout 2500"
-  },
-  "keywords": [
-    "REST",
-    "HTTP",
-    "RESTful",
-    "request",
-    "koa",
-    "http",
-    "services",
-    "web services",
-    "resource oriented",
-    "middleware"
-  ],
-  "devDependencies": {
-    "mocha": "*",
-    "chai": "*",
-    "chai-as-promised": "*",
+        "q": "^2.0.2",
+        "require-namespace": "^0.3.41",
+        "rules": "^0.6.42",
+        "underscore": "*",
+        "winston": "*"
+    },
+     "scripts": {
+        "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"
+    },
+    "keywords": [
+        "REST",
+        "HTTP",
+        "RESTful",
+        "request",
+        "koa",
+        "http",
+        "services",
+        "web services",
+        "resource oriented",
+        "middleware"
+    ],
+    "devDependencies": {
+        "mocha": "*",
+        "chai": "*",
+        "chai-as-promised": "*",
 
-    "superagent": "*",
-    "testresources": "0.0.93-alpha.3",
+        "superagent": "*",
+        "testresources": "0.0.93-alpha.3",
 
-    "sinon": "*",
-    "moment": "*",
-    "coffee-script": "*",
-    "objectcompare": "*",
-    "changeprocessor": "*",
-    "errorhandler": "*"
-  },
-  "_npmUser": {
-    "name": "colin_jack",
-    "email": "colin.jack@gmail.com"
-  },
-  "license": "MIT",
-  "engines": {
-    "node": ">=0.11.13",
-    "engineStrict": "true"
-  },
-  "_id": "resourced@0.3.83",
-  "dist": {
-    "shasum": "365b09123d7ae3696bd9e83a62998c2b3a6f9431",
-    "tarball": "http://registry.npmjs.org/resourced/-/resourced-0.3.83.tgz"
-  },
-  "_npmVersion": "1.1.59",
-  "maintainers": [
-    {
-      "name": "colin_jack",
-      "email": "colin.jack@gmail.com"
-    }
-  ],
-  "directories": {},
-  "_shasum": "365b09123d7ae3696bd9e83a62998c2b3a6f9431",
-  "_from": "resourced@*",
-  "_resolved": "https://registry.npmjs.org/resourced/-/resourced-0.3.83.tgz"
+        "sinon": "*",
+        "moment": "*",
+        "coffee-script": "*",
+        "objectcompare": "*",
+        "changeprocessor": "*",
+        "errorhandler": "*"
+    },
+    "_npmUser": {
+        "name": "colin_jack",
+        "email": "colin.jack@gmail.com"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.11.13",
+        "engineStrict": "true"
+    },
+    "_id": "resourced@0.3.83",
+    "dist": {
+        "shasum": "365b09123d7ae3696bd9e83a62998c2b3a6f9431",
+        "tarball": "http://registry.npmjs.org/resourced/-/resourced-0.3.83.tgz"
+    },
+    "_npmVersion": "1.1.59",
+    "maintainers": [
+        {
+            "name": "colin_jack",
+            "email": "colin.jack@gmail.com"
+        }
+    ],
+    "directories": { },
+    "_shasum": "365b09123d7ae3696bd9e83a62998c2b3a6f9431",
+    "_from": "resourced@*",
+    "_resolved": "https://registry.npmjs.org/resourced/-/resourced-0.3.83.tgz"
 }

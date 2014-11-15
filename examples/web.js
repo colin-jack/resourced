@@ -1,10 +1,11 @@
 ﻿var koa = require('koa');
-var bodyParser = require('koa-bodyparser')
+var bodyParser = require('koa-bodyparser');
+var router = require('koa-router');
+
 var winston = require('winston');
 var resourced = require('../index');
 var inspect = require('util').inspect;
-var errorHandler = require('errorhandler');
-var router = require('koa-router');
+
 var Q = require("Q");
 
 // NOTE - Key aspects

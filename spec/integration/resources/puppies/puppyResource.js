@@ -13,7 +13,7 @@ module.exports = new Resource({
 
     respondsTo: [
     {
-       get: function(id) {
+       get: function * (id) {
            return {
                name: "spot",
                id: id
@@ -21,9 +21,8 @@ module.exports = new Resource({
        }
     },
     {
-        put: function (id) {
-            debugger;
-            this.response.send(this.request.body);
+        put: function * (id) {
+            this.response.body = this.request.body;
         },
 
         schema: puppySchema

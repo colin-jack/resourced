@@ -1,24 +1,26 @@
 ﻿var Q = require('q')
-var express = require('express');
 var winston = require('winston');
-var bodyParser = require('body-parser');
+
+var koa = require('koa');
+var bodyParser = require('koa-bodyparser');
+var router = require('koa-router');
+var logger = require('koa-logger')
+
 var resourceTest = require('testresources')
-var morgan = require('morgan')
 
 var baseFixture = require('./../testFixture');
-
 var resourced = baseFixture.resourced;
 
-var registerTestResources = function * (expressApp) {
+var registerTestResources = function * (app) {
     var resourcesDir = __dirname + '/resources';
     
-    yield * resourced.RegistersResources.registerAllInDirectory(resourcesDir, expressApp);
+    yield * resourced.RegistersResources.registerAllInDirectory(resourcesDir, app);
 };
 
 var deferred;
 
 // We want to setup the express server exactly once for each test run, this method ensures that is what happens.
-var startExpressServer = function () {
+var startKoaServer = function () {
     if (fixture.server || deferred) return deferred.promise;
     
     deferred = Q.defer();
@@ -26,17 +28,18 @@ var startExpressServer = function () {
     Q.spawn(function *() {
         
         try {
-            var expressApp = express();
-            expressApp.use(bodyParser.json());
-            expressApp.use(morgan("combined"));
+            var app = koa();
+            app.use(logger());       
+            app.use(bodyParser());
+            app.use(router(app));
             
-            yield * registerTestResources(expressApp)
+            yield * registerTestResources(app)
             
-            var serverWrapper = yield resourceTest.startServer(expressApp);
+            var serverWrapper = yield resourceTest.startServer(app);
             
             fixture.server = serverWrapper;
             
-            debugger;
+            //debugger;
             
             Object.defineProperty(fixture, "port", { get: function () { return this.server.port; } });
 
@@ -56,6 +59,6 @@ var startExpressServer = function () {
 
 var fixture = Object.create(baseFixture);
 
-fixture.ensureSetup = startExpressServer;
+fixture.ensureSetup = startKoaServer;
 
 module.exports = fixture;
