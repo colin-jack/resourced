@@ -82,7 +82,7 @@
     <Compile Include="spec\unit\resource\validate\urlSchema_methodLevel_spec.js" />
     <Compile Include="spec\unit\resource\validate\urlSchema_resourceLevel_spec.js" />
     <Compile Include="spec\unit\unitTestFixture.js" />
-    <Compile Include="spec\unit\util\expressConfigurationSpy.js" />
+    <Compile Include="spec\unit\util\koaConfigurationSpyingHelper.js" />
     <Compile Include="spec\unit\util\getHandlerMethodDefinitionObjectMother.js" />
     <Compile Include="spec\unit\util\linkingTestUtil.js" />
     <Compile Include="spec\unit\util\resourceObjectMother.js" />
@@ -96,8 +96,8 @@
     <Compile Include="spec\unit\resource\RequestHandlerCreator\populateArgumentsFromRequest_spec.js" />
     <Compile Include="spec\unit\resource\RequestHandlerCreator\requestBody_spec.js" />
     <Compile Include="spec\unit\resource\RequestHandlerCreator\responseStatusCodes_spec.js" />
-    <Compile Include="spec\unit\resource\Resource\configurationErrors_spec.js" />
-    <Compile Include="spec\unit\resource\Resource\configuringExpress_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configuration_errors_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configuring_koa_spec.js" />
     <Compile Include="spec\unit\resource\Resource\mapHandlerArguments_spec.js" />
     <Compile Include="spec\unit\resource\validate\handlerDefinitionObjectMother.js" />
     <Compile Include="spec\unit\resource\validate\validationTestUtil.js" />

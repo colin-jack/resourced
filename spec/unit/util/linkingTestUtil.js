@@ -1,6 +1,6 @@
 var fakeRequest = {
     protocol: "https",
-    header: function(headerToGet) {
+    get: function(headerToGet) {
         if (headerToGet === 'host') {
             return "foo.com:35"
         }

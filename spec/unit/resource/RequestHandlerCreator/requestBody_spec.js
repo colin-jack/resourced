@@ -24,11 +24,7 @@ describe('request handler', function() {
     });
 
     function callWrappedHandler(toWrap, httpMethod) {
-        var fakeRequest = {
-            params : { 
-                "id" : 5
-            },
-
+        var fakeRequest = {   
             body: bodyFromRequest
         };
 
@@ -39,18 +35,27 @@ describe('request handler', function() {
 
         var wrapped = createRequestHandler(httpMethod, handlerMethodDefinition, httpMethod, resourceDefinition);
         
-        var fakeResponseObject = {
+        var fakeResponse = {
             send: function () { },
             render: function () { }
         };
+        
+        var context = {
+            request: fakeRequest,
+            response: fakeResponse,
+            params : {
+                "id" : 5
+            }
+        }
 
-        wrapped(fakeRequest, fakeResponseObject);
+        var iterator = wrapped.call(context);
+        iterator.next();
     };
 
     function callWrappedHandlerAndReturnBodyPassedIn(httpMethod) {
         var bodySentToHandler;
 
-        var toWrap = function (id, body) {
+        var toWrap = function * (id, body) {
             debugger;
             bodySentToHandler = body;
         };
@@ -63,7 +68,7 @@ describe('request handler', function() {
     function callWrappedHandlerAndReturnRequestBody(httpMethod) {  
         var bodyInRequestInHandler;
 
-        var toWrap = function(id, body) {
+        var toWrap = function * (id, body) {
             bodyInRequestInHandler = this.request.body;
         };
 
