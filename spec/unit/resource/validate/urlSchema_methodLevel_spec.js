@@ -60,8 +60,6 @@ describe('invalid URL', function() {
                     property: "id"
                 };
                 
-                debugger;
-                
                 validationTestUtil.shouldCorrectlyFailValidation(fakeResponse, expectedBody, returned);
             });
         });

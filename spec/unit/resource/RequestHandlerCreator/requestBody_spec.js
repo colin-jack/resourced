@@ -56,7 +56,6 @@ describe('request handler', function() {
         var bodySentToHandler;
 
         var toWrap = function * (id, body) {
-            debugger;
             bodySentToHandler = body;
         };
         

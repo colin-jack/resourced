@@ -50,12 +50,9 @@ describe('handling GET request', function () {
     function wrapAndCallHandlerDefinition(handlerMethodDefinition, done) {
         var fakeResourceDefinition = {};
         
-        debugger;
-        
         var wrapped = createRequestHandler("get", handlerMethodDefinition, "get", fakeResourceDefinition);
         
         Q.spawn(function * () {
-            debugger;
             var context = { response: fakeResponse };
 
             yield * wrapped.call(context);

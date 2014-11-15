@@ -31,9 +31,7 @@ describe('resource with single get method', function() {
                 "third" : 3
             };
 
-            resourceSpy.configure(spyingHelper.stubKoa);
-            
-            debugger;
+            resourceSpy.configure(spyingHelper.stubKoa
 
             spyingHelper.triggerWrappedHandlerMethod(stubRequest, params);
 

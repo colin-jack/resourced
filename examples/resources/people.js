@@ -30,11 +30,8 @@ module.exports = new Resource({
         if (lastName !== undefined) searchTerms.lastName = lastName;
         
         var matching = _u.where(people, searchTerms);
-        
-        //debugger;
-        
+
         var withUrls = matching.map(function (person) {
-            //debugger;
             person.self = self.urlFor(personResource, person);
             return person;
         });

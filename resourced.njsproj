@@ -21,7 +21,6 @@
     <Content Include="target.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Compile Include="examples\koa.js" />
     <Compile Include="examples\resources\address.js" />
     <Compile Include="index.js" />
     <Content Include="docs\caching.md" />

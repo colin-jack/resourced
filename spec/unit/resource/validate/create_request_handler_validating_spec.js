@@ -89,8 +89,6 @@ describe('RequestHandlerCreator', function () {
                 }
             };
             
-            debugger;
-            
             assert.deepEqual(fakeResponse.body, expectedBody, 
                             "Expected: " + require('util').inspect(expectedBody) + "Actual: " + require('util').inspect(fakeResponse.body));
         });
@@ -104,8 +102,6 @@ describe('RequestHandlerCreator', function () {
             
             var fakeRequest = testUtil.createFakeRequest();
             fakeRequest.body = null;
-            
-            debugger;
             
             createAndCallHandler(handlerMethodDefinition, fakeRequest, fakeResponse);
         });

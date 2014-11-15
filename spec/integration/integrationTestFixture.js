@@ -39,13 +39,10 @@ var startKoaServer = function () {
             
             fixture.server = serverWrapper;
             
-            //debugger;
-            
             Object.defineProperty(fixture, "port", { get: function () { return this.server.port; } });
 
             deferred.resolve();            
         } catch (e) {
-            debugger;
             winston.error("Error during preperation for test: " + e);
             
             deferred.reject(e);

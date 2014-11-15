@@ -17,8 +17,6 @@ var people = [
     { firstName: "bill", lastName: "bridge", id : 3, "job": "soldier", addressId: 1 }
   ];
 
-
-
 module.exports = new Resource({
     url: "/person/:id",
 
@@ -26,7 +24,6 @@ module.exports = new Resource({
 
     respondsTo: [
         http.get(function * (id) {
-            debugger;
             ensure(id).populated().numeric({ min : 0, max: people.length - 1 });
         
             var person = people[id];
