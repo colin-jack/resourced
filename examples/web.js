@@ -40,7 +40,7 @@ var startListening = function (app) {
     return app.listen(port, function () {
         winston.info("Web server listening on port " + port + " in " + app.env + " mode.");
         
-        return winston.info("Please go to 'http://localhost:" + port + "/people?firstName=bob&lastName=smith' to start your exciting journey");
+        return winston.info("Please go to 'http://localhost:" + port + "/people?lastName=smith' to start your exciting journey");
     });
 };
 

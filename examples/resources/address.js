@@ -1,14 +1,15 @@
+var ensure = require('rules').ensure;
+
 var resourced = require('../../index');
 var Resource = resourced.Resource;
 var http = resourced.http;
 var cache = resourced.cache;
 
-var presetAddress = {
-  "House Name/Number": 72,
-  "Stree Name": "Fox Lane",
-  "Town": "Edinburgh",
-  "PostCode": "EH99 7JJ"
-};
+var presetAddresses = [
+    { "House Number": 72, "Street": "Fox Lane", "Town": "Edinburgh", "PostCode": "EH99 7JJ" },
+    { "House Number": 12, "Street": "Henderson Row", "Town": "Edinburgh", "PostCode": "EH87 7GJ" },
+    { "House Number": 4, "Street": "Merchiston Lane", "Town": "Edinburgh", "PostCode": "EH87 7GJ" },
+]
 
 var addressResource = new Resource({
   url: "/address/:id",
@@ -18,9 +19,11 @@ var addressResource = new Resource({
   respondsTo: [
   
     http.get(function * (id) {
-        debugger;
+        //debugger;
+        
+        ensure(id).populated().numeric({ min : 0, max: presetAddresses.length - 1 });
 
-        return presetAddress;
+        return presetAddresses[id];
     })
   ]
 });

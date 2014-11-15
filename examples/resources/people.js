@@ -34,7 +34,7 @@ module.exports = new Resource({
         //debugger;
         
         var withUrls = matching.map(function (person) {
-            debugger;
+            //debugger;
             person.self = self.urlFor(personResource, person);
             return person;
         });

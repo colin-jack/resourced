@@ -1,4 +1,5 @@
-// TODO: Load this using require-namespace
+var ensure = require('rules').ensure;
+
 var resourced = require('../../index');
 var Resource = resourced.Resource;
 var http = resourced.http;
@@ -10,6 +11,14 @@ var log = require('util').log;
 var format = require('util').format;
 var inspect = require('util').inspect;
 
+var people = [
+    { firstName: "bob", lastName: "smith", id : 1, "job": "tinker", addressId: 3 },
+    { firstName: "francis", lastName: "smith", id : 2, "job": "tailor", addressId: 2 },
+    { firstName: "bill", lastName: "bridge", id : 3, "job": "soldier", addressId: 1 }
+  ];
+
+
+
 module.exports = new Resource({
     url: "/person/:id",
 
@@ -17,12 +26,13 @@ module.exports = new Resource({
 
     respondsTo: [
         http.get(function * (id) {
-            return {
-                firstName : "Colin",
-                secondName : "Jack",
-                id : id,
-                address: this.urlFor(addressResource, {id: 5})
-            };
+            debugger;
+            ensure(id).populated().numeric({ min : 0, max: people.length - 1 });
+        
+            var person = people[id];
+            person.address = this.urlFor(addressResource, { id: person.addressId });
+
+            return person;
         }),
 
         http.destroy(function * (id) {
