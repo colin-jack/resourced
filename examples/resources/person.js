@@ -13,10 +13,10 @@ var inspect = require('util').inspect;
 module.exports = new Resource({
     url: "/people/:id",
 
-    cache: caching.minutes(5).publically(),
+    cache: cache.minutes(5).publically(),
 
     respondsTo: [
-        http.get(function(id) {
+        http.get(function * (id) {
             return {
                 firstName : "Colin",
                 secondName : "Jack",
@@ -25,17 +25,17 @@ module.exports = new Resource({
             };
         }),
 
-        http.destroy(function(id) {
+        http.destroy(function * (id) {
             log("Resource deleted");
             return;
         }),
 
-        http.post(function(id) {
+        http.post(function * (id) {
             log("Post accepted");
             return;
         }),
 
-        http.put(function(id, body) {
+        http.put(function * (id, body) {
             var message = format("You are over-writing the person with ID %s with the object %s.", id, inspect(body));
             log(message);
 

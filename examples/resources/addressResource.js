@@ -17,11 +17,11 @@ var addressResource = new Resource({
 
   respondsTo: [
   
-    http.get(function(id) {
-      var address;
+    http.get(function * (id) {
+        debugger;
 
-      return presetAddress;
-    });
+        return presetAddress;
+    })
   ]
 });
 

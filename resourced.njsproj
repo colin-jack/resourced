@@ -6,7 +6,7 @@
     <ProjectGuid>{4d2daf23-881b-4a9b-a41b-316fd1871840}</ProjectGuid>
     <ProjectHome />
     <ProjectView>ShowAllFiles</ProjectView>
-    <StartupFile>spec\unit\invoke_mocha.js</StartupFile>
+    <StartupFile>examples\web.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
@@ -21,6 +21,7 @@
     <Content Include="target.txt" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Compile Include="examples\koa.js" />
     <Compile Include="examples\resources\addressResource.js" />
     <Compile Include="index.js" />
     <Content Include="docs\caching.md" />
@@ -52,8 +53,7 @@
     <Compile Include="lib\resource\validation\validateBody.js" />
     <Compile Include="lib\resource\validation\validateUrl.js" />
     <Compile Include="spec\integration\integrationTestFixture.js" />
-    <Compile Include="spec\integration\invoke_mocha.js" />
-    <Compile Include="spec\integration\requests\get_no_cachine_specified.js" />
+    <Compile Include="spec\integration\requests\get_no_cachine_specified_spec.js" />
     <Compile Include="spec\integration\url_schema\get_with_url_schema_methodLevel_spec.js" />
     <Compile Include="spec\integration\requests\get_follow_link_spec.js" />
     <Compile Include="spec\integration\testUtil.js" />
@@ -111,7 +111,6 @@
     <Folder Include="docs" />
     <Folder Include="examples" />
     <Folder Include="examples\resources" />
-    <Folder Include="examples\resources\address" />
     <Folder Include="lib" />
     <Folder Include="lib\caching" />
     <Folder Include="lib\http" />
@@ -119,10 +118,12 @@
     <Folder Include="lib\registration" />
     <Folder Include="lib\resource" />
     <Folder Include="lib\resource\validation" />
+    <Folder Include="node_modules\" />
+    <Folder Include="node_modules\koa-route\" />
     <Folder Include="spec" />
     <Folder Include="spec\integration" />
     <Folder Include="spec\integration\configuration" />
-    <Folder Include="spec\integration\requests" />
+    <Folder Include="spec\integration\requests\" />
     <Folder Include="spec\integration\resources" />
     <Folder Include="spec\integration\resources\kittens" />
     <Folder Include="spec\integration\resources\person" />

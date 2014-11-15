@@ -53,6 +53,8 @@ describe('populating arguments from request', function() {
 
     function getHandlerArguments(params, query) {
         var request = createRequest(params, query);
+        // TODO: Pass in context
+        debugger;
         return populateArgumentsFromRequest(request, null, handlerMethod);
     }
 });

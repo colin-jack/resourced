@@ -24,7 +24,7 @@ module.exports = new Resource({
        // TODO: Support this
        url: "/sendToCattery",
 
-       post: function(id, cattery, body) {
+       post: function(id, cattery) {
            // TODO: Include content-location and optionally caching header
            return {
                name: "mikado",

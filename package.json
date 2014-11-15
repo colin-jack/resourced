@@ -1,7 +1,7 @@
 {
-  "version": "0.4.0-alpha.1",
+  "version": "0.5.0-alpha.1",
   "name": "resourced",
-  "description": "A resource oriented DSL for configuring express.js (REST).",
+  "description": "A resource oriented DSL for configuring koa.",
   "main": "index",
   "preferGlobal": false,
   "author": {
@@ -12,9 +12,12 @@
     "url": "https://github.com/colin-jack/resourced.git"
   },
   "dependencies": {
-    "body-parser": "^1.9.2",
-    "express": "^4.10.2",
-    "morgan": "*",
+    "koa": "&",
+    "koa-bodyparser": "*",
+    "koa-logger": "*",
+
+    "koa-router": "*",
+
     "q": "^2.0.2",
     "require-namespace": "^0.3.41",
     "rules": "^0.6.42",
@@ -29,19 +32,21 @@
     "HTTP",
     "RESTful",
     "request",
-    "express",
+    "koa",
     "http",
     "services",
     "web services",
-    "resource oriented"
+    "resource oriented",
+    "middleware"
   ],
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
     "chai-as-promised": "*",
+
     "superagent": "*",
     "testresources": "0.0.93-alpha.3",
-    
+
     "sinon": "*",
     "moment": "*",
     "coffee-script": "*",
