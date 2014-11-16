@@ -19,7 +19,7 @@ module.exports = new Resource({
     cache: cache.minutes(5).publically(),
     
     respondsTo: [
-    http.get(function * (firstName, lastName) {
+    http.get(function * get(firstName, lastName) {
         var self = this;
 
         ensure(firstName).string();

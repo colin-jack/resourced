@@ -10,3 +10,8 @@ npm-debug.log
 .ntvs*.dat
 *.dat.tmp
 *.tmp
+*.tmp
+*.etl
+*njsperf
+*.vspx
+*.psess

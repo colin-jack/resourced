@@ -4,36 +4,34 @@ var router = require('koa-router');
 var logger = require('koa-logger')
 
 var winston = require('winston');
-var resourced = require('../index');
 var inspect = require('util').inspect;
 
 var Q = require("Q");
-
-// NOTE - Key aspects
-// [1] Body parser is required
-// [2] Call to configure resourced, it will scan the specified directory for resource files.
-// [3] resourced uses generators so using Q.spawn to ensure things happen in correct order
-// [4] Routing is required
 
 var createApp = function () {
     winston.info("Creating app.");
     
     var app = koa();
-    
-    //app.use(logger());  
-    
-    //[1]
     app.use(bodyParser());
+    app.use(router(app));
     
-    // [4]
-    app.use(router(app));     
+    var people = [
+        { firstName: "bob", lastName: "smith", id : 1, "job": "tinker", addressId: 3 },
+        { firstName: "francis", lastName: "smith", id : 2, "job": "tailor", addressId: 2 },
+        { firstName: "bill", lastName: "bridge", id : 3, "job": "soldier", addressId: 1 }
+    ];
+    
+    app.get('/person/:id', function * () {
+        var id = Number(this.params.id);
+        if (id < 0) throw new Error("Id must greater than 0");
+
+        var person = people[id];
+        person.address = "http://...";
+        
+        this.response.body = person;
+    });
     
     return app;
-};
-
-var configureResourced = function (app) {
-    //[2]
-    return resourced.configureResourcesInDirectory(__dirname + '/resources', app);
 };
 
 var startListening = function (app) {
@@ -44,7 +42,8 @@ var startListening = function (app) {
     return app.listen(port, function () {
         winston.info("Web server listening on port " + port + " in " + app.env + " mode.");
         
-        return winston.info("Please go to 'http://localhost:" + port + "/people?lastName=smith' to start your exciting journey");
+        // loadtest -c 50 --rps 2000 http://localhost:3050/person/2
+        return winston.info("You can use loadtest to compare performnace of this versus 'person.js' in the resources directory. Url is http://localhost:" + port + "/person/2'.");
     });
 };
 
@@ -53,13 +52,10 @@ var configureLogging = function () {
 };
 
 var setupAndRunServer = function () {
-    //[3]
     Q.spawn(function * () {
         configureLogging();
         
         var app = createApp();
-        
-        yield * configureResourced(app);
         
         startListening(app);
     });
