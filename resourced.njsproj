@@ -79,6 +79,7 @@
     <Compile Include="spec\unit\middleware\caching_spec.js" />
     <Compile Include="spec\unit\registerHandlerMethodWithExpress\httpVerbForMethod_spec.js" />
     <Compile Include="spec\unit\resource\http_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configuration_errors\responds_to_errors_spec.js" />
     <Compile Include="spec\unit\resource\Resource\configuration_errors\resource_url_errors_spec.js" />
     <Compile Include="spec\unit\resource\validate\create_request_handler_validating_spec.js" />
     <Compile Include="spec\unit\resource\validate\invalid_body_spec.js" />

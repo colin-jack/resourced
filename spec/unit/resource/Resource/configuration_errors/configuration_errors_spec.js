@@ -37,14 +37,10 @@ describe('errors specifying resource', function() {
     });
     
     
-
-
-    // no responds to
-    // unspecified property
     // not a generator
 
-    // describe('when the resource URL is an absolute URL') //'NYI - Consider flatiron / revalidator',    
-    // describe('when the resource cache value is not a caching definition object') //'NYI - Consider flatiron / revalidator',    
-    // describe('when you have multiple methods using same HTTP verb') // 'NYI'
-    // describe('when the url ends with a /') // warning
+    describe.skip('when the resource URL is an absolute URL', function () { });
+    describe.skip('when the resource cache value is not a caching definition object', function () { });
+    describe.skip('when you have multiple methods using same HTTP verb', function () { });
+    describe.skip('when the url ends with a /', function () { });
 });
