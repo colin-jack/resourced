@@ -1,6 +1,6 @@
-var resourced = require('require-namespace').resourced;
-var assert = require('chai').assert,
-    Resource = resourced.require('Resource');
+var fixture = require('./../../../unitTestFixture');
+var assert = fixture.assert;
+var Resource = fixture.resourced.Resource;
 
 describe('errors specifying resource', function() {
     describe('when you omit the URL when defining a resource', function() {
@@ -35,8 +35,14 @@ describe('errors specifying resource', function() {
             assert.throws(createResource, Error);
         });
     });
+    
+    
 
-    // describe('when the resource URL is not valid') //'NYI - Consider flatiron / revalidator, covers not starting with / or invalid characters too',
+
+    // no responds to
+    // unspecified property
+    // not a generator
+
     // describe('when the resource URL is an absolute URL') //'NYI - Consider flatiron / revalidator',    
     // describe('when the resource cache value is not a caching definition object') //'NYI - Consider flatiron / revalidator',    
     // describe('when you have multiple methods using same HTTP verb') // 'NYI'

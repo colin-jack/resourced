@@ -23,7 +23,9 @@
         "require-namespace": "^0.3.41",
         "rules": "0.6.45",
         "underscore": "*",
-        "winston": "*"
+        "winston": "*",
+
+        "valid-url" : "*"
     },
      "scripts": {
         "test": "mocha --harmony spec/testFixture spec/unit/**/*_spec.js --recursive -b -R list & mocha --harmony spec/integration/**/*_spec.js --recursive -b -R list"

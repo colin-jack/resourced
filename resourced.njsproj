@@ -6,7 +6,7 @@
     <ProjectGuid>{4d2daf23-881b-4a9b-a41b-316fd1871840}</ProjectGuid>
     <ProjectHome />
     <ProjectView>ShowAllFiles</ProjectView>
-    <StartupFile>examples\non_resource\web.js</StartupFile>
+    <StartupFile>invoke_mocha.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
@@ -79,6 +79,7 @@
     <Compile Include="spec\unit\middleware\caching_spec.js" />
     <Compile Include="spec\unit\registerHandlerMethodWithExpress\httpVerbForMethod_spec.js" />
     <Compile Include="spec\unit\resource\http_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configuration_errors\resource_url_errors_spec.js" />
     <Compile Include="spec\unit\resource\validate\create_request_handler_validating_spec.js" />
     <Compile Include="spec\unit\resource\validate\invalid_body_spec.js" />
     <Compile Include="spec\unit\resource\validate\urlSchema_methodLevel_spec.js" />
@@ -97,7 +98,7 @@
     <Compile Include="spec\unit\resource\RequestHandlerCreator\populateArgumentsFromRequest_spec.js" />
     <Compile Include="spec\unit\resource\RequestHandlerCreator\requestBody_spec.js" />
     <Compile Include="spec\unit\resource\RequestHandlerCreator\responseStatusCodes_spec.js" />
-    <Compile Include="spec\unit\resource\Resource\configuration_errors_spec.js" />
+    <Compile Include="spec\unit\resource\Resource\configuration_errors\configuration_errors_spec.js" />
     <Compile Include="spec\unit\resource\Resource\configuring_koa_spec.js" />
     <Compile Include="spec\unit\resource\Resource\mapHandlerArguments_spec.js" />
     <Compile Include="spec\unit\resource\validate\handlerDefinitionObjectMother.js" />
@@ -141,6 +142,7 @@
     <Folder Include="spec\unit\resource\Resource" />
     <Folder Include="spec\unit\resource\Resource\getHttpMethod" />
     <Folder Include="spec\unit\resource\Resource\methodDefinitions" />
+    <Folder Include="spec\unit\resource\Resource\configuration_errors\" />
     <Folder Include="spec\unit\resource\validate" />
     <Folder Include="spec\unit\util" />
   </ItemGroup>
