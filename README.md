@@ -63,17 +63,6 @@ You can run the sample application using the following command:
 
     node --harmony examples\web.js
 
-## Philosophy
-It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources.
-
-If you are familiar with MVC but not REST/ROA then you can think of a resource as serving the same purpose as a controller.
-
-This lightweight DSL thus introduces abstractions that make it easy to design in a resource-oriented (RESTful) style. Each resource contains:
-* URL - The address of the resource.
-* Methods - One or more HTTP request handler methods.
-* Caching - Where and how long to cache responses from the resource (optional).
-* Middleware - Middleware to run before and after requests, for example to perform authorization (optional).
-
 ##Features
 * [Request Handlers](https://github.com/colin-jack/resourced/blob/master/docs/requestHandling.md) - Features like argument population make handling requests easier.
 * [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md) - HTTP caching of responses to GET requests.
