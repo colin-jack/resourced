@@ -4,9 +4,6 @@ NOTE - This is a very early version of this project and is not yet fully feature
 
 A resource-oriented DSL for configuring koa.
 
-## Samples
-The sample is taken from the [example application](#example).
-
 ### Configuration
 To configure resourced you need to tell it which directory to look for resources in:
 
@@ -28,13 +25,12 @@ Q.spawn(function *() {
 ```
 Note that [koa-router]() is also required and that it, and any other middleware, must be installed before resourced.
 
-### Resource Definition - JavaScript
+### Resource Definition
 The following shows a simple person resource, where the JSON response includes a link to the associated address:
 ```js
 var Resource = require('resourced').Resource;
 var http = require('resourced').http;
 var cache = require('resourced').cache;
-
 var ensure = require('rules').ensure;
 
 var addressResource = require('./address');
