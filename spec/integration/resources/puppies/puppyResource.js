@@ -10,21 +10,21 @@ module.exports = new Resource({
     urlSchema: ensureNumericId,
     
     cache: cache.minutes(5).publically(),
-
+    
     respondsTo: [
     {
-       get: function * (id) {
-           return {
-               name: "spot",
-               id: id
-           };
-       }
+        get: function * (id) {            
+            return {
+                name: "spot",
+                id: id
+            };
+        }
     },
     {
         put: function * (id) {
             this.response.body = this.request.body;
         },
-
+        
         schema: puppySchema
     }]
 });

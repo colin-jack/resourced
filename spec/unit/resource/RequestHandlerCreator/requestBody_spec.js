@@ -67,7 +67,7 @@ describe('request handler', function() {
     function callWrappedHandlerAndReturnRequestBody(httpMethod) {  
         var bodyInRequestInHandler;
 
-        var toWrap = function * (id, body) {
+        var toWrap = function * (id) {
             bodyInRequestInHandler = this.request.body;
         };
 

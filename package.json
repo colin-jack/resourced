@@ -21,7 +21,7 @@
 
         "q": "^2.0.2",
         "require-namespace": "^0.3.41",
-        "rules": "^0.6.42",
+        "rules": "0.6.45",
         "underscore": "*",
         "winston": "*"
     },

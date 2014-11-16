@@ -31,9 +31,7 @@ var ensure = require('rules').ensure;
 var addressResource = require('./address');
 
 var people = [
-    { firstName: "bob", lastName: "smith", id : 1, "job": "tinker", addressId: 3 },
-    { firstName: "francis", lastName: "smith", id : 2, "job": "tailor", addressId: 2 },
-    { firstName: "bill", lastName: "bridge", id : 3, "job": "soldier", addressId: 1 }
+    { firstName: "bob", lastName: "smith", id : 1, "job": "tinker", addressId: 3 }
 ];
 
 module.exports = new Resource({

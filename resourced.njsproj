@@ -54,6 +54,8 @@
     <Compile Include="lib\resource\validation\validateUrl.js" />
     <Compile Include="spec\integration\integrationTestFixture.js" />
     <Compile Include="spec\integration\requests\get_no_cachine_specified_spec.js" />
+    <Compile Include="spec\integration\resources\puppies\kennelResource.js" />
+    <Compile Include="spec\integration\url_schema\get_resource_method_internally_applies_rules.js" />
     <Compile Include="spec\integration\url_schema\get_with_url_schema_methodLevel_spec.js" />
     <Compile Include="spec\integration\requests\get_follow_link_spec.js" />
     <Compile Include="spec\integration\testUtil.js" />
