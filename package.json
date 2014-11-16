@@ -1,5 +1,5 @@
 {
-    "version": "0.5.0-alpha.1",
+    "version": "0.5.0-alpha.2",
     "name": "resourced",
     "description": "A resource oriented DSL for configuring koa.",
     "main": "index",
