@@ -8,16 +8,25 @@ A resource-oriented DSL for configuring koa.
 The sample is taken from the [example application](#example).
 
 ### Configuration
-To configure restless you need to tell it which directory to look for resources in:
+To configure resourced you need to tell it which directory to look for resources in:
 
 ```js
-var resourcesDirectory = __dirname + '/resources';
-resourced.configureResourcesInDirectory(resourcesDirectory, done);
+var resourced = require('resourced');
+var router = require('koa-router');
+
+Q.spawn(function *() {
+    // ...
+
+    app.use(router(app));
+
+    var resourcesDir = __dirname + '/resources';
+
+    yield * resourced.configureResourcesInDirectory(resourcesDir, app);
+
+    // ,,,
+});
 ```
-The directory will be scanned for files including resources. You must also tell express to use the body parser:
-```js
-app.use(express.bodyParser())
-```
+Note that [koa-router]() is also required and that it, and any other middleware, must be installed before resourced.
 
 ### Resource Definition - JavaScript
 The following shows a simple person resource, where the JSON response includes a link to the associated address:
@@ -52,37 +61,11 @@ module.exports = new Resource({
     ]
 });
 ```
-The response to a GET request for the associated URI (for example /people/5) would be:
-
-    HTTP/1.1 200 OK
-    X-Powered-By: Express
-    Cache-Control: max-age=300, public
-    Content-Type: application/json; charset=utf-8
-    Content-Length: 129
-    ...
-    {
-      "firstName": "Colin",
-      "secondName": "Jack",
-      "id": "5",
-      "address": {
-        "rel": "address",
-        "url": "/address/5"
-      }
-    }
-Note the link to the associated address in the response. 
 
 ## <a name="example"/>Running Examples
 You can run the sample application using the following command:
 
-    node --harmony examples\web
-    
-The output will end with a hard-coded URL that you can use to interact with the first resource using [curl](https://httpkit.com/resources/HTTP-from-the-Command-Line/):
-
-GET ```curl http://localhost:3050/people/5```<br/>
-PUT ```curl -i -H "Content-Type: application/json" -X PUT 'http://localhost:3050/people/5' -d '{"firstName":"Mighty"}'```<br/>
-POST ```curl -i -X DELETE 'http://localhost:3050/people/5'```<br/>
-DELETE ```curl -i -X POST 'http://localhost:3050/people/5'```
-
+    node --harmony examples\web.js
 
 ## Philosophy
 It makes sense to use a general purpose web framework such as express.js for JSON service layers, but when designing such service layers it also makes sense to design in terms of HTTP accessible resources.
@@ -100,10 +83,3 @@ This lightweight DSL thus introduces abstractions that make it easy to design in
 * [Caching](https://github.com/colin-jack/resourced/blob/master/docs/caching.md) - HTTP caching of responses to GET requests.
 * [Validation](https://github.com/colin-jack/resourced/blob/master/docs/validation.md) - Allows validation of request bodies and URL's.
 * [Conventions](https://github.com/colin-jack/resourced/blob/master/docs/convetions.md) - Conventions are included to make it easier to create HTTP friendly services.
-
-
-## Running Tests
-'''
-mocha --harmony spec/unit/testFixture spec/unit --recursive -b -R list
-mocha --harmony spec/integration/integrationTestFixture spec/integration --recursive -b -R list --timeout 2500
-'''

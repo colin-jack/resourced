@@ -26,7 +26,6 @@ var startKoaServer = function () {
     deferred = Q.defer();
 
     Q.spawn(function *() {
-        
         try {
             var app = koa();
             app.use(logger());       
