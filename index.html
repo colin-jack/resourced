@@ -1,68 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Resourced by colin-jack</title>
+    <meta name="description" content="Resourced : A resource-oriented DSL for configuring express.js (REST/node.js).">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Resourced</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Resourced</h1>
-        <p>A resource-oriented DSL for configuring express.js (REST/node.js).</p>
 
-        <p class="view"><a href="https://github.com/colin-jack/resourced">View the Project on GitHub <small>colin-jack/resourced</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/colin-jack/resourced">View on GitHub</a>
 
+          <h1 id="project_title">Resourced</h1>
+          <h2 id="project_tagline">A resource-oriented DSL for configuring express.js (REST/node.js).</h2>
 
-        <ul>
-          <li><a href="https://github.com/colin-jack/resourced/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/colin-jack/resourced/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/colin-jack/resourced">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>resourced (express.js)</h3>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/colin-jack/resourced/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/colin-jack/resourced/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-<p>A REST/resource-oriented DSL for configuring express.js which makes it easy to defined resources, include links, perform validation.</p>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="resourced-expressjs" class="anchor" href="#resourced-expressjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>resourced (express.js)</h3>
 
-<h2>Usage</h2>
+<p>A REST/resource-oriented DSL for configuring koa which makes it easy to defined HTTP resources.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>The following a simple resource which responds to GET requests:</p>
 
-<div class="highlight"><pre><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Resource</span><span class="p">({</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="s2">"/people/:id"</span><span class="p">,</span>
-    <span class="nx">urlSchema</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">id</span><span class="o">:</span> <span class="nx">mustBe</span><span class="p">().</span><span class="nx">numeric</span><span class="p">().</span><span class="nx">populated</span><span class="p">()</span>
-    <span class="p">},</span>
+<div class="highlight highlight-js"><pre><span class="pl-sv">module</span>.exports <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Resource</span>({
+    url<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">"</span>/person/:id<span class="pl-pds">"</span></span>,
 
-    <span class="nx">cache</span><span class="o">:</span> <span class="nx">caching</span><span class="p">.</span><span class="nx">minutes</span><span class="p">(</span><span class="mi">5</span><span class="p">).</span><span class="nx">publically</span><span class="p">(),</span>
+    cache<span class="pl-k">:</span> cache.minutes(<span class="pl-c1">5</span>).publically(),
 
-    <span class="nx">respondsTo</span><span class="o">:</span> <span class="p">[</span>
-        <span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">associatedAddressLink</span> <span class="o">=</span> <span class="nx">addressResource</span><span class="p">.</span><span class="nx">getLink</span><span class="p">(</span><span class="s2">"address"</span><span class="p">,</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="s2">"5"</span><span class="p">});</span>
+    respondsTo<span class="pl-k">:</span> [
+        http.get(<span class="pl-st">function</span> <span class="pl-st">*</span> (<span class="pl-vpf">id</span>) {
+            ensure(id).populated().numeric({ min <span class="pl-k">:</span> <span class="pl-c1">0</span> });
 
-            <span class="k">return</span> <span class="p">{</span>
-                <span class="nx">firstName</span> <span class="o">:</span> <span class="s2">"Colin Jack"</span><span class="p">,</span>
-                <span class="nx">address</span><span class="o">:</span> <span class="nx">associatedAddressLink</span>
-            <span class="p">};</span>
-        <span class="p">})</span>
-    <span class="p">]</span>
-<span class="p">});</span>
-</pre></div>
+            <span class="pl-s">var</span> person <span class="pl-k">=</span> <span class="pl-c">// potentially yield whilst loading from data store or external service</span>
+
+            person.address <span class="pl-k">=</span> <span class="pl-v">this</span>.urlFor(addressResource, { id<span class="pl-k">:</span> person.addressId });
+
+            <span class="pl-k">return</span> person;
+        })
+    ]
+});</pre></div>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/colin-jack">colin-jack</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Resourced maintained by <a href="https://github.com/colin-jack">colin-jack</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
